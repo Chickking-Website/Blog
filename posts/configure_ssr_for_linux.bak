@@ -1,0 +1,82 @@
+---
+title: Linux 配置 ShadowsocksR
+date: 2018-1-13 21:45:20
+tags: [Linux, Hack]
+toc: true
+---
+这个话题不多说，大家都懂。
+在 Windows 上有 Shadowsocks-dotnet，在 macOS 上有 ShadowsocksX-NG，难道 Linux 上就没有好的 ShadowsocksR 工具了？
+
+非也，非也。
+
+ShadowsocksR-Live 就做了一个工具，叫做 [shadowsocksr-native](https://github.com/ShadowsocksR-Live/shadowsocksr-native)，它通过 C 写成，不依赖 Python 等解释型语言。
+
+我的环境是 Ubuntu 17.10 artful.
+## SSR-Native 配置
+首先，我们需要生成一个配置文件，并保存到 `/etc/ssr-native/config.json`。
+模板如下:
+```json
+{
+    "server": "你的服务器 IP 地址",
+    "server_port": 你的服务器端口,
+    "password": "你的密码",
+    "method": "加密方式，如 aes-256-cfb",
+    "protocol": "通讯协议，如 auth_aes128_md5",
+    "protocol_param":"",
+    "obfs": "混淆协议，如 plain",
+    "obfs_param": "",
+    "local_address": "127.0.0.1",
+    "local_port": 1080,
+    "timeout": 300
+}
+```
+我还向大家提供一个 Desktop 文件以及图标。图标如下：
+![SSR Icon](https://github.com/Chickking-Website/SomeFile/blob/master/201801/ubuntu/ssr-native/icon.png?raw=true)  
+把以下代码根据自己情况修改，然后存储到 `/usr/share/applications/shadowsocksr.desktop` 中。
+```plain
+[Desktop Entry]
+Name=ShadowsocksR
+GenericName=ShadowsocksR
+Comment=ShadowsocksR Command Line Tool
+Exec=/home/victor/Applications/ssr-native/ssr-client
+Icon=/home/victor/Applications/ssr-native/icon.png
+Terminal=false
+Type=Application
+Categories=Network;
+StartupNotify=false
+```
+注意，它启动后不会有任何提示，Dock 的图标下也不会有小灯，但它确实运行了。
+
+## PAC 生成
+首先安装 pip：
+```bash
+sudo apt-get install python-pip
+```
+然后通过 pip 安装 genpac：
+```bash
+sudo pip install genpac
+```
+生成 PAC 文件（输出到当前目录下的 auto.pac）：
+```bash
+genpac -p "SOCKS5 127.0.0.1:1080" --gfwlist-proxy="SOCKS5 127.0.0.1:1080" --gfwlist-url=https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt > auto.pac
+```
+
+## 终端代理
+安装 polipo：
+```bash
+sudo apt-get install polipo
+```
+在 `/etc/polipo/config` 中加入：
+```
+socksParentProxy = localhost:1080
+```
+然后启动服务:
+```
+sudo service polipo start
+```
+在需要科学地上网时在命令前面加入 `http_proxy=http://localhost:8123`.
+
+## 浏览器配置
+Chrome 配置方法，[这篇文章](https://doub.bid/ss-jc28/#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%A9%E5%B1%95)写得好。  
+下载地址：https://softs.fun/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/other/Proxy%20SwitchyOmega%202.4.6.crx.
+上面生成的 PAC 可以在这里使用了。
