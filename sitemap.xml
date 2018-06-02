@@ -16,14 +16,14 @@
   </url>
   
   <url>
-    <loc>/posts/lemon-mac.html</loc>
+    <loc>/posts/lemon-mac/</loc>
     
     <lastmod>2018-04-27T15:40:31.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/lemon-mac/</loc>
+    <loc>/posts/lemon-mac.html</loc>
     
     <lastmod>2018-04-27T15:40:31.000Z</lastmod>
     
@@ -44,14 +44,14 @@
   </url>
   
   <url>
-    <loc>/posts/exgcd_and_euler_sieve_template/</loc>
+    <loc>/posts/exgcd_and_euler_sieve_template.html</loc>
     
     <lastmod>2018-04-06T11:06:53.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/exgcd_and_euler_sieve_template.html</loc>
+    <loc>/posts/exgcd_and_euler_sieve_template/</loc>
     
     <lastmod>2018-04-06T11:06:53.000Z</lastmod>
     
@@ -100,13 +100,6 @@
   </url>
   
   <url>
-    <loc>/posts/2018-noip-winter-campus-in-qingdao/</loc>
-    
-    <lastmod>2018-02-13T05:29:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/2018-noip-winter-campus-in-qingdao.html</loc>
     
     <lastmod>2018-02-13T05:29:04.000Z</lastmod>
@@ -114,14 +107,21 @@
   </url>
   
   <url>
-    <loc>/posts/stack-and-queue-basic/</loc>
+    <loc>/posts/2018-noip-winter-campus-in-qingdao/</loc>
+    
+    <lastmod>2018-02-13T05:29:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/stack-and-queue-basic.html</loc>
     
     <lastmod>2018-02-01T23:55:49.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/stack-and-queue-basic.html</loc>
+    <loc>/posts/stack-and-queue-basic/</loc>
     
     <lastmod>2018-02-01T23:55:49.000Z</lastmod>
     
@@ -156,14 +156,14 @@
   </url>
   
   <url>
-    <loc>/posts/variable-as-array-s-initial-length.html</loc>
+    <loc>/posts/variable-as-array-s-initial-length/</loc>
     
     <lastmod>2017-12-21T14:29:50.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/variable-as-array-s-initial-length/</loc>
+    <loc>/posts/variable-as-array-s-initial-length.html</loc>
     
     <lastmod>2017-12-21T14:29:50.000Z</lastmod>
     
@@ -184,14 +184,14 @@
   </url>
   
   <url>
-    <loc>/posts/a-completely-new-beginning/</loc>
+    <loc>/posts/a-completely-new-beginning.html</loc>
     
     <lastmod>2017-11-29T14:49:48.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/a-completely-new-beginning.html</loc>
+    <loc>/posts/a-completely-new-beginning/</loc>
     
     <lastmod>2017-11-29T14:49:48.000Z</lastmod>
     
@@ -212,14 +212,14 @@
   </url>
   
   <url>
-    <loc>/posts/a-better-solution-of-markdown-support-for-emlog.html</loc>
+    <loc>/posts/enable-CX-20751-2-by-AppleALC.html</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L/</loc>
+    <loc>/posts/tech-of-jobs-remembering/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -233,7 +233,7 @@
   </url>
   
   <url>
-    <loc>//msgboard/index.html</loc>
+    <loc>/posts/turn-an-old-iPhone-into-a-server/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -261,21 +261,7 @@
   </url>
   
   <url>
-    <loc>/posts/a-better-solution-of-markdown-support-for-emlog/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/tech-of-jobs-remembering/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/simulation-of-ppc-macos-via-qemu/</loc>
+    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -289,14 +275,14 @@
   </url>
   
   <url>
-    <loc>/posts/drcom-auto-login-script/</loc>
+    <loc>/posts/emlog-variables-dev-of-keypad-and-acme-sh/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/emlog-variables-dev-of-keypad-and-acme-sh/</loc>
+    <loc>/posts/drcom-auto-login-script/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -310,14 +296,7 @@
   </url>
   
   <url>
-    <loc>/posts/turn-an-old-iPhone-into-a-server/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/simulation-of-ppc-macos-via-qemu.html</loc>
+    <loc>/posts/simulation-of-ppc-macos-via-qemu/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -338,6 +317,27 @@
   </url>
   
   <url>
+    <loc>/posts/simulation-of-ppc-macos-via-qemu.html</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/a-better-solution-of-markdown-support-for-emlog/</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/a-better-solution-of-markdown-support-for-emlog.html</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>/posts/tech-of-jobs-remembering.html</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
@@ -352,7 +352,7 @@
   </url>
   
   <url>
-    <loc>/posts/enable-CX-20751-2-by-AppleALC.html</loc>
+    <loc>//msgboard/index.html</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
