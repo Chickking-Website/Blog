@@ -1052,8 +1052,8 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 		}
 	}
 	setInterval("parse_comment()", 1000);
-	document.getElementsByClassName("gt-header-textarea")[0].setAttribute("onpropertychange", "gt_r()");
-	document.getElementsByClassName("gt-header-textarea")[0].setAttribute("oninput", "gt_r()");
+	document.getElementsByClassName("gt-header-textarea")[0].onkeyup = gt_r;
+	document.getElementsByClassName("gt-header-textarea")[0].onpaste = gt_r;
 </script>
 </body>
 </html>
