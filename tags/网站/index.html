@@ -711,14 +711,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 			comment_arr[i].setAttribute("parsed", 1);
 		}
 	}
-	function r(){
+	function gt_r(){
 		for (var i = 0; i < document.getElementsByClassName("gt-comment-content").length; i++) {
 			document.getElementsByClassName("gt-comment-content")[i].setAttribute("parsed", 0);
 		}
 	}
-	setInterval("setTimeout(\"parse_comment()\", 1000);", 1000);
-	document.getElementsByClassName("gt-header-textarea")[0].addEventListener("input", r());
-	document.getElementsByClassName("gt-header-textarea")[0].addEventListener("propertychange", r());
+	setInterval("parse_comment()", 1000);
+	document.getElementsByClassName("gt-header-textarea")[0].onpropertychange = gt_r;
+	document.getElementsByClassName("gt-header-textarea")[0].oninput = gt_r;
 </script>
 </body>
 </html>
