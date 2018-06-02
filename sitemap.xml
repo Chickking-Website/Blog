@@ -44,7 +44,7 @@
   </url>
   
   <url>
-    <loc>/posts/exgcd_and_euler_sieve_template.html</loc>
+    <loc>/posts/prime_table_maker/</loc>
     
     <lastmod>2018-04-06T11:06:53.000Z</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>/posts/prime_table_maker/</loc>
+    <loc>/posts/exgcd_and_euler_sieve_template.html</loc>
     
     <lastmod>2018-04-06T11:06:53.000Z</lastmod>
     
@@ -114,13 +114,6 @@
   </url>
   
   <url>
-    <loc>/posts/stack-and-queue-basic.html</loc>
-    
-    <lastmod>2018-02-01T23:55:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/stack-and-queue-basic/</loc>
     
     <lastmod>2018-02-01T23:55:49.000Z</lastmod>
@@ -128,14 +121,21 @@
   </url>
   
   <url>
-    <loc>/posts/make-your-own-ubuntu-to-go/</loc>
+    <loc>/posts/stack-and-queue-basic.html</loc>
+    
+    <lastmod>2018-02-01T23:55:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/make-your-own-ubuntu-to-go.html</loc>
     
     <lastmod>2018-01-14T05:11:13.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/make-your-own-ubuntu-to-go.html</loc>
+    <loc>/posts/make-your-own-ubuntu-to-go/</loc>
     
     <lastmod>2018-01-14T05:11:13.000Z</lastmod>
     
@@ -156,14 +156,14 @@
   </url>
   
   <url>
-    <loc>/posts/variable-as-array-s-initial-length/</loc>
+    <loc>/posts/variable-as-array-s-initial-length.html</loc>
     
     <lastmod>2017-12-21T14:29:50.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/variable-as-array-s-initial-length.html</loc>
+    <loc>/posts/variable-as-array-s-initial-length/</loc>
     
     <lastmod>2017-12-21T14:29:50.000Z</lastmod>
     
@@ -212,14 +212,14 @@
   </url>
   
   <url>
-    <loc>/posts/enable-CX-20751-2-by-AppleALC.html</loc>
+    <loc>/posts/a-better-solution-of-markdown-support-for-emlog.html</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/tech-of-jobs-remembering/</loc>
+    <loc>/posts/tech-of-jobs-remembering.html</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -233,7 +233,7 @@
   </url>
   
   <url>
-    <loc>/posts/turn-an-old-iPhone-into-a-server/</loc>
+    <loc>/posts/add-markdown-support-to-emlog/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -261,63 +261,21 @@
   </url>
   
   <url>
-    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L/</loc>
+    <loc>/posts/enable-CX-20751-2-by-AppleALC.html</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/enable-CX-20751-2-by-AppleALC/</loc>
+    <loc>/posts/tech-of-jobs-remembering/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/emlog-variables-dev-of-keypad-and-acme-sh/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/drcom-auto-login-script/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/changing-website's-architecture/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/simulation-of-ppc-macos-via-qemu/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/add-markdown-support-to-emlog/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L.html</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/simulation-of-ppc-macos-via-qemu.html</loc>
+    <loc>/posts/turn-an-old-iPhone-into-a-server/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -331,14 +289,56 @@
   </url>
   
   <url>
-    <loc>/posts/a-better-solution-of-markdown-support-for-emlog.html</loc>
+    <loc>/posts/changing-website's-architecture/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/tech-of-jobs-remembering.html</loc>
+    <loc>/posts/drcom-auto-login-script/</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L/</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/emlog-variables-dev-of-keypad-and-acme-sh/</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/simulation-of-ppc-macos-via-qemu.html</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/enable-CX-20751-2-by-AppleALC/</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/simulation-of-ppc-macos-via-qemu/</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L.html</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
