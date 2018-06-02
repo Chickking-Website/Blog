@@ -706,13 +706,16 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 			comment_arr[i].setAttribute("parsed", 1);
 		}
 	}
-	while (document.getElementsByClassName("gt-comment-content").length == 0) {
-		setTimeout("void(0)", 1000);
+	var gt_loopcnt = 0;
+	function gt_loop() {
+		gt_loopcnt++;
 		if (document.getElementsByClassName("gt-comment-content").length != 0) {
-			setTimeout("void(0)", 1000);
-			parse_comment();
+			setTimeout("parse_comment()", 1000);
+			clearInterval();
 		}
+		if (gt_loopcnt > 30) clearInterval();
 	}
+	setInterval("gt_loop()", 1000);
 	/*$("#gitalk-container").bind('DOMNodeInserted', function(e) {   
 	    if (comments_count != document.getElementsByClassName("gt-comment-content").length) {
 	    	comments_count = document.getElementsByClassName("gt-comment-content").length;
