@@ -377,6 +377,10 @@ gitalk.render('gitalk-container');
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">苹果</a>
               </li>
              
@@ -393,14 +397,6 @@ gitalk.render('gitalk-container');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">碎碎念</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网站</a>
               </li>
              
@@ -413,15 +409,19 @@ gitalk.render('gitalk-container');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">碎碎念</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数论</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法模板</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -433,11 +433,11 @@ gitalk.render('gitalk-container');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法模板</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -457,15 +457,15 @@ gitalk.render('gitalk-container');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图论</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">线性表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图论</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -678,15 +678,13 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 			comment_arr[i].setAttribute("parsed", 1);
 		}
 	}
-	//var count = 1;
+	var comments_count = document.getElementsByClassName("gt-comment-content").length;
 	$("#gitalk-container").bind('DOMNodeInserted', function(e) {   
-	    /*count++;
-	    if (count > 6)*/	parse_comment();
+	    if (comments_count != document.getElementsByClassName("gt-comment-content").length) {
+	    	comments_count = document.getElementsByClassName("gt-comment-content").length;
+	    	parse_comment();
+		}
 	});  
-	$("#gitalk-container").bind('DOMNodeRemoved', function(e) {   
-	    /*count++;
-	    if (count > 6)*/	parse_comment();
-	});
 </script>
 
 </body>
