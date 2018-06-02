@@ -733,16 +733,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 			comment_arr[i].setAttribute("parsed", 1);
 		}
 	}
-	if (document.getElementById("gitalk-container") != null) {
-		function r(){
-			for (var i = 0; i < document.getElementsByClassName("gt-comment-content").length; i++) {
-				document.getElementsByClassName("gt-comment-content")[i].setAttribute("parsed", 0);
-			}
+	function r(){
+		for (var i = 0; i < document.getElementsByClassName("gt-comment-content").length; i++) {
+			document.getElementsByClassName("gt-comment-content")[i].setAttribute("parsed", 0);
 		}
-		addEventListener(document.getElementsByClassName("gt-header-textarea")[0], "input", r());
-		addEventListener(document.getElementsByClassName("gt-header-textarea")[0], "propertychange", r());
-		setInterval("setTimeout(\"parse_comment()\", 1000);", 1000);
 	}
+	addEventListener(document.getElementsByClassName("gt-header-textarea")[0], "input", r());
+	addEventListener(document.getElementsByClassName("gt-header-textarea")[0], "propertychange", r());
+	setInterval("setTimeout(\"parse_comment()\", 1000);", 1000);
 </script>
 </body>
 </html>
