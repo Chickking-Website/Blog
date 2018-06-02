@@ -622,7 +622,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 
 	function parse_comment() {
 		renderMathInElement(
-		    document.body,
+		    document.getElementById("gitalk-container"),
 		    {
 		        delimiters: [
 		            {left: "$$", right: "$$", display: true},
@@ -632,13 +632,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 		        ]
 		    }
 		);
-		hljs.initHighlighting();
+		var comment_arr = document.getElementsByClassName("gt-comment-content");
+		for (var i = comment_arr.length - 1; i >= 0; i--) {
+			if (comment_arr[i].highlighted != 1) {
+				hljs.highlightBlock(comment_arr[i]);
+			}
+			comment_arr[i].highlighted = 1;
+		}
 	}
 	var count = 1;
 	parse_comment();
 	$("#gitalk-container").bind('DOMNodeInserted', function(e) {   
 	    count++;
-	    if (count > 6)	parse_comment();
+	    parse_comment();
 	});  
 	$("#gitalk-container").bind('DOMNodeRemoved', function(e) {   
 	    count++;
