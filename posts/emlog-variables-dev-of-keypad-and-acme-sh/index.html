@@ -412,7 +412,7 @@ export DP_Key=&quot;KEY0000&quot;
   
 
   
-  <div style="width: 100%; text-align: right;"><button id="parseComment" title=“点击来解析评论区的数学公式、高亮代码等”>解析评论区的内容</button></div>
+  
 <div id="gitalk-container" style="margin-left: 5%; margin-right: 5%;"></div> 
 <link rel="stylesheet" href="https://static.imvictor.tech/lib/gitalk/dist/gitalk.css">
 <script src="https://static.imvictor.tech/lib/gitalk/dist/gitalk.js"></script>
@@ -424,11 +424,11 @@ var gitalk = new Gitalk({
   repo: 'Comment',
   owner: 'Chickking-Website',
   admin: ['Chickking-Website','Chickking'],
-})
+});
 
-gitalk.render('gitalk-container')
+gitalk.render('gitalk-container');
 
-document.getElementById("parseComment").addEventListener("click", function(){
+function parse_comment() {
   renderMathInElement(
       document.getElementById("gitalk-container"),
       {
@@ -441,7 +441,16 @@ document.getElementById("parseComment").addEventListener("click", function(){
       }
   );
   hljs.initHighlightingOnLoad();
-})
+}
+parse_comment();
+
+$("#gitalk-container").bind('DOMNodeInserted', function(e) {  
+    parse_comment();
+});  
+
+$("#gitalk-container").bind('DOMNodeRemoved', function(e) {  
+    parse_comment();
+});  
 </script>
   
 
