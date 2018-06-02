@@ -779,44 +779,26 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
 
 <script type="text/javascript">
-
+	var comments_count = document.getElementsByClassName("gt-comment-content").length;
 	function parse_comment() {
 		var comment_arr = document.getElementsByClassName("gt-comment-content");
 		for (var i = 0; i < comment_arr.length; i++) {
 			if (comment_arr[i].getAttribute("parsed") != 1) {
 				//hljs.highlightBlock(comment_arr[i]);
-				renderMathInElement(
-				    comment_arr[i],
-				    {
-				        delimiters: [
-				            {left: "$$", right: "$$", display: true},
-				            {left: "\\[", right: "\\]", display: true},
-				            {left: "$", right: "$", display: false},
-				            {left: "\\(", right: "\\)", display: false}
-				        ]
-				    }
-				);
+				renderMathInElement(comment_arr[i],{ delimiters: [ {left: "$$", right: "$$", display: true}, {left: "\\[", right: "\\]", display: true}, {left: "$", right: "$", display: false}, {left: "\\(", right: "\\)", display: false} ] } );
 			}
 			comment_arr[i].setAttribute("parsed", 1);
 		}
 	}
-	var gt_loopcnt = 0;
 	function gt_loop() {
-		gt_loopcnt++;
-		if (document.getElementsByClassName("gt-comment-content").length != 0) {
-			setTimeout("parse_comment()", 1000);
-			clearInterval();
+		if (comments_count != document.getElementsByClassName("gt-comment-content").length) {
+			comments_count = document.getElementsByClassName("gt-comment-content").length;
+			setTimeout("parse_comment()", 100);
 		}
-		if (gt_loopcnt > 30) clearInterval();
 	}
-	setInterval("gt_loop()", 1000);
-	/*$("#gitalk-container").bind('DOMNodeInserted', function(e) {   
-	    if (comments_count != document.getElementsByClassName("gt-comment-content").length) {
-	    	comments_count = document.getElementsByClassName("gt-comment-content").length;
-	    	parse_comment();
-		}
-	}); */ 
+	if (document.getElementById("gitalk-container") != null) {
+		setInterval("gt_loop()", 100);
+	}
 </script>
-
 </body>
 </html>
