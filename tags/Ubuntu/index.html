@@ -587,35 +587,35 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 <script type="text/javascript">
 
 	function parse_comment() {
-		renderMathInElement(
-		    document.getElementById("gitalk-container"),
-		    {
-		        delimiters: [
-		            {left: "$$", right: "$$", display: true},
-		            {left: "\\[", right: "\\]", display: true},
-		            {left: "$", right: "$", display: false},
-		            {left: "\\(", right: "\\)", display: false}
-		        ]
-		    }
-		);
 		var comment_arr = document.getElementsByClassName("gt-comment-content");
 		for (var i = 0; i < comment_arr.length; i++) {
-			if (comment_arr[i].dataset["highlighted"] != 1) {
+			if (comment_arr[i].getAttribute("parsed") != 1) {
 				hljs.highlightBlock(comment_arr[i]);
+				renderMathInElement(
+				    comment_arr[i],
+				    {
+				        delimiters: [
+				            {left: "$$", right: "$$", display: true},
+				            {left: "\\[", right: "\\]", display: true},
+				            {left: "$", right: "$", display: false},
+				            {left: "\\(", right: "\\)", display: false}
+				        ]
+				    }
+				);
 			}
-			comment_arr[i].dataset["highlighted"] = 1;
+			comment_arr[i].setAttribute("parsed", 1);
 		}
 	}
-	var count = 1;
-	parse_comment();
+	//var count = 1;
 	$("#gitalk-container").bind('DOMNodeInserted', function(e) {   
-	    count++;
-	    if (count > 6)	parse_comment();
+	    /*count++;
+	    if (count > 6)*/	parse_comment();
 	});  
 	$("#gitalk-container").bind('DOMNodeRemoved', function(e) {   
-	    count++;
-	    if (count > 6)	parse_comment();
+	    /*count++;
+	    if (count > 6)*/	parse_comment();
 	});
 </script>
+
 </body>
 </html>
