@@ -337,30 +337,6 @@ var gitalk = new Gitalk({
 });
 
 gitalk.render('gitalk-container');
-
-function parse_comment() {
-  renderMathInElement(
-      document.getElementById("gitalk-container"),
-      {
-          delimiters: [
-              {left: "$$", right: "$$", display: true},
-              {left: "\\[", right: "\\]", display: true},
-              {left: "$", right: "$", display: false},
-              {left: "\\(", right: "\\)", display: false}
-          ]
-      }
-  );
-  hljs.initHighlightingOnLoad();
-}
-parse_comment();
-
-$("#gitalk-container").bind('DOMNodeInserted', function(e) {  
-    parse_comment();
-});  
-
-$("#gitalk-container").bind('DOMNodeRemoved', function(e) {  
-    parse_comment();
-});  
 </script>
   
 
