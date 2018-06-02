@@ -760,7 +760,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
 
 <script type="text/javascript">
-	var comments_count = document.getElementsByClassName("gt-comment-content").length;
 	function parse_comment() {
 		var comment_arr = document.getElementsByClassName("gt-comment-content");
 		for (var i = 0; i < comment_arr.length; i++) {
@@ -771,14 +770,8 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 			comment_arr[i].setAttribute("parsed", 1);
 		}
 	}
-	function gt_loop() {
-		if (comments_count != document.getElementsByClassName("gt-comment-content").length) {
-			comments_count = document.getElementsByClassName("gt-comment-content").length;
-			setTimeout("parse_comment()", 100);
-		}
-	}
 	if (document.getElementById("gitalk-container") != null) {
-		setInterval("gt_loop()", 100);
+		setInterval("setTimeout("parse_comment()", 1000);", 100);
 	}
 </script>
 </body>
