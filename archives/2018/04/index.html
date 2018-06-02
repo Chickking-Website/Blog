@@ -717,6 +717,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 		}
 	}
 	if (document.getElementById("gitalk-container") != null) {
+		addEventListener(document.getElementsByClassName("gt-header-textarea")[0], "change", function(){
+			for (var i = 0; i < comment_arr.length; i++) {
+				comment_arr[i].setAttribute("parsed", 0);
+			}
+		});
 		setInterval("setTimeout(\"parse_comment()\", 1000);", 1000);
 	}
 </script>
