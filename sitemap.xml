@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/posts/made-an-API-of-parsing-LaTeX-formulas/</loc>
-    
-    <lastmod>2018-04-28T02:28:20.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/made-an-API-of-parsing-LaTeX-formulas.html</loc>
     
     <lastmod>2018-04-28T02:28:20.000Z</lastmod>
@@ -16,9 +9,9 @@
   </url>
   
   <url>
-    <loc>/posts/lemon-mac/</loc>
+    <loc>/posts/made-an-API-of-parsing-LaTeX-formulas/</loc>
     
-    <lastmod>2018-04-27T15:40:31.000Z</lastmod>
+    <lastmod>2018-04-28T02:28:20.000Z</lastmod>
     
   </url>
   
@@ -30,9 +23,9 @@
   </url>
   
   <url>
-    <loc>/posts/save_graph_and_traversal_it.html</loc>
+    <loc>/posts/lemon-mac/</loc>
     
-    <lastmod>2018-04-20T23:53:18.000Z</lastmod>
+    <lastmod>2018-04-27T15:40:31.000Z</lastmod>
     
   </url>
   
@@ -44,7 +37,14 @@
   </url>
   
   <url>
-    <loc>/posts/exgcd_and_euler_sieve_template.html</loc>
+    <loc>/posts/save_graph_and_traversal_it.html</loc>
+    
+    <lastmod>2018-04-20T23:53:18.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/prime_table_maker.html</loc>
     
     <lastmod>2018-04-06T11:06:53.000Z</lastmod>
     
@@ -58,7 +58,7 @@
   </url>
   
   <url>
-    <loc>/posts/prime_table_maker.html</loc>
+    <loc>/posts/exgcd_and_euler_sieve_template.html</loc>
     
     <lastmod>2018-04-06T11:06:53.000Z</lastmod>
     
@@ -114,14 +114,14 @@
   </url>
   
   <url>
-    <loc>/posts/stack-and-queue-basic.html</loc>
+    <loc>/posts/stack-and-queue-basic/</loc>
     
     <lastmod>2018-02-01T23:55:49.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/stack-and-queue-basic/</loc>
+    <loc>/posts/stack-and-queue-basic.html</loc>
     
     <lastmod>2018-02-01T23:55:49.000Z</lastmod>
     
@@ -219,7 +219,7 @@
   </url>
   
   <url>
-    <loc>/posts/tech-of-jobs-remembering/</loc>
+    <loc>/posts/turn-an-old-iPhone-into-a-server/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -233,7 +233,7 @@
   </url>
   
   <url>
-    <loc>/posts/turn-an-old-iPhone-into-a-server/</loc>
+    <loc>/posts/simulation-of-ppc-macos-via-qemu/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -261,7 +261,14 @@
   </url>
   
   <url>
-    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L/</loc>
+    <loc>/posts/tech-of-jobs-remembering/</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/drcom-auto-login-script/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -282,21 +289,7 @@
   </url>
   
   <url>
-    <loc>/posts/drcom-auto-login-script/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/changing-website's-architecture/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/simulation-of-ppc-macos-via-qemu/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -310,7 +303,14 @@
   </url>
   
   <url>
-    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L.html</loc>
+    <loc>//msgboard/index.html</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/a-better-solution-of-markdown-support-for-emlog/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -324,7 +324,7 @@
   </url>
   
   <url>
-    <loc>/posts/a-better-solution-of-markdown-support-for-emlog/</loc>
+    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L.html</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -352,7 +352,7 @@
   </url>
   
   <url>
-    <loc>//msgboard/index.html</loc>
+    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     

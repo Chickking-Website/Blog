@@ -10,7 +10,7 @@
   <title>lemon 在 macOS 上的移植 | 凌风仙鸡的 Blog&amp;Diary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。所以，我去做了一个移植的工作。这里就直接贴项目地址了(其实就是骗 Star):   lemon-mac 在 GitHub 上的内容 lemon-mac 在 Coding.net 上的">
-<meta name="keywords" content="OI,macOS,C++">
+<meta name="keywords" content="macOS,OI,C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="lemon 在 macOS 上的移植">
 <meta property="og:url" content="/posts/lemon-mac/index.html">
@@ -214,11 +214,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">macOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">macOS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -390,10 +390,6 @@ gitalk.render('gitalk-container');
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">苹果</a>
               </li>
              
@@ -410,6 +406,14 @@ gitalk.render('gitalk-container');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">碎碎念</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网站</a>
               </li>
              
@@ -422,19 +426,15 @@ gitalk.render('gitalk-container');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">碎碎念</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTML</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">数论</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法模板</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -446,11 +446,11 @@ gitalk.render('gitalk-container');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数论</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法模板</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,15 +470,15 @@ gitalk.render('gitalk-container');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图论</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">线性表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图论</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -675,7 +675,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 		var comment_arr = document.getElementsByClassName("gt-comment-content");
 		for (var i = 0; i < comment_arr.length; i++) {
 			if (comment_arr[i].getAttribute("parsed") != 1) {
-				hljs.highlightBlock(comment_arr[i]);
+				//hljs.highlightBlock(comment_arr[i]);
 				renderMathInElement(
 				    comment_arr[i],
 				    {
