@@ -22,7 +22,7 @@ toc: true
 - [x] SIP 完全开启~
 - [x] App Store 系统更新
 - [x] VGA 输出
-- [ ] iMessage、FaceTime
+- [x] iMessage、FaceTime (虽然能用但是怕被 Apple 查，不敢用)
 - [ ] CX20751/2 声卡麦克风
 - [ ] 触摸板手势还有一点问题
 - [ ] 黑苹果哪有完美的 
