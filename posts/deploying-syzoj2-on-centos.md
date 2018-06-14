@@ -32,7 +32,8 @@ yum install boost-devel rabbitmq-server redis p7zip p7zip-plugins
 
 ### SYZOJ-Judge
 Judge 端的情况，相对有一些问题。在 CentOS 上，出现了严重的问题，就是 C++ 程序默认是会 RE 的。经过我 chroot 到沙盒排查，这个问题是 `-mx32` 编译参数导致的。所以我们需要修改这个编译参数。  
-进入 Judge 文件夹，修改 `./src/languages/` 下的 `c.ts`、`cpp.ts`、`cpp11.ts`，将 `-mx32` 替换为空即可。  
+进入 Judge 文件夹，修改 `./src/languages/` 下的 `c.ts`、`cpp.ts`、`cpp11.ts`，将 `-mx32` 替换为空。  
+然后，在 Judge 文件夹下，执行 `npm run build` 重新编译评测程序。  
 此时，SYZOJ2 应当已经能够正常运行。  
 此外，给大家看一张图。
 ![准备的大坑](https://static.imvictor.tech/data/201806/syzoj_bincache.jpg)  
