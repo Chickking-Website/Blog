@@ -30,13 +30,6 @@
   </url>
   
   <url>
-    <loc>/posts/made-an-API-of-parsing-LaTeX-formulas/</loc>
-    
-    <lastmod>2018-04-28T02:28:20.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/made-an-API-of-parsing-LaTeX-formulas.html</loc>
     
     <lastmod>2018-04-28T02:28:20.000Z</lastmod>
@@ -44,14 +37,21 @@
   </url>
   
   <url>
-    <loc>/posts/lemon-mac.html</loc>
+    <loc>/posts/made-an-API-of-parsing-LaTeX-formulas/</loc>
+    
+    <lastmod>2018-04-28T02:28:20.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/lemon-mac/</loc>
     
     <lastmod>2018-04-27T15:40:31.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/lemon-mac/</loc>
+    <loc>/posts/lemon-mac.html</loc>
     
     <lastmod>2018-04-27T15:40:31.000Z</lastmod>
     
@@ -79,13 +79,6 @@
   </url>
   
   <url>
-    <loc>/posts/exgcd_and_euler_sieve_template.html</loc>
-    
-    <lastmod>2018-04-06T11:06:53.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/exgcd_and_euler_sieve_template/</loc>
     
     <lastmod>2018-04-06T11:06:53.000Z</lastmod>
@@ -94,6 +87,13 @@
   
   <url>
     <loc>/posts/prime_table_maker/</loc>
+    
+    <lastmod>2018-04-06T11:06:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/exgcd_and_euler_sieve_template.html</loc>
     
     <lastmod>2018-04-06T11:06:53.000Z</lastmod>
     
@@ -128,14 +128,14 @@
   </url>
   
   <url>
-    <loc>/posts/2018-noip-winter-campus-in-qingdao.html</loc>
+    <loc>/posts/2018-noip-winter-campus-in-qingdao/</loc>
     
     <lastmod>2018-02-13T05:29:04.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/2018-noip-winter-campus-in-qingdao/</loc>
+    <loc>/posts/2018-noip-winter-campus-in-qingdao.html</loc>
     
     <lastmod>2018-02-13T05:29:04.000Z</lastmod>
     
@@ -184,14 +184,14 @@
   </url>
   
   <url>
-    <loc>/posts/variable-as-array-s-initial-length.html</loc>
+    <loc>/posts/variable-as-array-s-initial-length/</loc>
     
     <lastmod>2017-12-21T14:29:50.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/variable-as-array-s-initial-length/</loc>
+    <loc>/posts/variable-as-array-s-initial-length.html</loc>
     
     <lastmod>2017-12-21T14:29:50.000Z</lastmod>
     
@@ -310,6 +310,13 @@
   </url>
   
   <url>
+    <loc>/posts/enable-CX-20751-2-by-AppleALC/</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>/posts/emlog-variables-dev-of-keypad-and-acme-sh/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
@@ -324,7 +331,7 @@
   </url>
   
   <url>
-    <loc>/posts/enable-CX-20751-2-by-AppleALC/</loc>
+    <loc>/posts/drcom-auto-login-script/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -346,13 +353,6 @@
   
   <url>
     <loc>/posts/turn-an-old-iPhone-into-a-server.html</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/drcom-auto-login-script/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
