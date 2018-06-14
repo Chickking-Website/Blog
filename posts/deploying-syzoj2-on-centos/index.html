@@ -7,21 +7,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="">
-  <title>Hexo 博客程序初步完善 | 凌风仙鸡的 Blog&amp;Diary</title>
+  <title>SYZOJ2 在 CentOS 上的搭建 | 凌风仙鸡的 Blog&amp;Diary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="切换到 Hexo 之后，首要的任务就是把之前的一些轮子再造一遍。   1. 版权声明和原文链接在旧的博客中，我曾经加入过这样的功能:在 emlog 中，这些非常容易做。而在 Hexo 中，这也不是难事。我使用的是 yilia 主题，在主题的 layout/_partial/article.ejs 中，在 &amp;lt;% post.content %&amp;gt; 之后加入以下代码: &amp;lt;% if (co">
-<meta name="keywords" content="网站">
+  <meta name="description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。本文需要对">
+<meta name="keywords" content="OI,Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo 博客程序初步完善">
-<meta property="og:url" content="/posts/standardly-perfect-hexo-blog/index.html">
+<meta property="og:title" content="SYZOJ2 在 CentOS 上的搭建">
+<meta property="og:url" content="/posts/deploying-syzoj2-on-centos/index.html">
 <meta property="og:site_name" content="凌风仙鸡的 Blog&amp;Diary">
-<meta property="og:description" content="切换到 Hexo 之后，首要的任务就是把之前的一些轮子再造一遍。   1. 版权声明和原文链接在旧的博客中，我曾经加入过这样的功能:在 emlog 中，这些非常容易做。而在 Hexo 中，这也不是难事。我使用的是 yilia 主题，在主题的 layout/_partial/article.ejs 中，在 &amp;lt;% post.content %&amp;gt; 之后加入以下代码: &amp;lt;% if (co">
-<meta property="og:image" content="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201711/sourcemark.png">
-<meta property="og:updated_time" content="2017-11-05T14:18:27.000Z">
+<meta property="og:description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。本文需要对">
+<meta property="og:image" content="https://static.imvictor.tech/data/201806/syzoj_bincache.jpg">
+<meta property="og:updated_time" content="2018-06-14T15:21:07.098Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo 博客程序初步完善">
-<meta name="twitter:description" content="切换到 Hexo 之后，首要的任务就是把之前的一些轮子再造一遍。   1. 版权声明和原文链接在旧的博客中，我曾经加入过这样的功能:在 emlog 中，这些非常容易做。而在 Hexo 中，这也不是难事。我使用的是 yilia 主题，在主题的 layout/_partial/article.ejs 中，在 &amp;lt;% post.content %&amp;gt; 之后加入以下代码: &amp;lt;% if (co">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201711/sourcemark.png">
+<meta name="twitter:title" content="SYZOJ2 在 CentOS 上的搭建">
+<meta name="twitter:description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。本文需要对">
+<meta name="twitter:image" content="https://static.imvictor.tech/data/201806/syzoj_bincache.jpg">
   
     <link rel="alternative" href="/atom.xml" title="凌风仙鸡的 Blog&amp;Diary" type="application/atom+xml">
   
@@ -168,77 +168,47 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>-->
           <div id="js-content" class="content-ll">
-            <article id="post-standardly-perfect-hexo-blog" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-deploying-syzoj2-on-centos" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hexo 博客程序初步完善
+      SYZOJ2 在 CentOS 上的搭建
     </h1>
   
 
         
-        <a href="/posts/standardly-perfect-hexo-blog/" class="archive-article-date">
-  	<time datetime="2017-11-04T08:09:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
+        <a href="/posts/deploying-syzoj2-on-centos/" class="archive-article-date">
+  	<time datetime="2018-06-14T15:12:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>切换到 Hexo 之后，首要的任务就是把之前的一些轮子再造一遍。  </p>
-<h2 id="1-版权声明和原文链接"><a href="#1-版权声明和原文链接" class="headerlink" title="1. 版权声明和原文链接"></a>1. 版权声明和原文链接</h2><p>在旧的博客中，我曾经加入过这样的功能:<br><img src="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201711/sourcemark.png" alt="版权声明和原文链接"><br>在 emlog 中，这些非常容易做。而在 Hexo 中，这也不是难事。<br>我使用的是 yilia 主题，在主题的 <code>layout/_partial/article.ejs</code> 中，在 <code>&lt;% post.content %&gt;</code> 之后加入以下代码:</p>
-<pre><code>&lt;% if (config.copyrights &amp;&amp; page.layout == &quot;post&quot;) { %&gt;
-    &lt;hr&gt;
-    &lt;p&gt;本文著作权归作者所有，允许非商业性转载使用，但请在转载后文末附上原文链接。&lt;/p&gt;
-    &lt;p&gt;原文链接: &lt;a href=&quot;https://&lt;%= config.domain %&gt;&lt;%= post.permalink %&gt;&quot;&gt;https://&lt;%= config.domain %&gt;&lt;%= post.permalink %&gt;&lt;/a&gt;，&lt;a href=&quot;https://&lt;%= config.domain %&gt;&lt;%= post.permalink %&gt;#gitalk-container&quot;&gt;前往原文评论。&lt;/a&gt;&lt;/p&gt;
-&lt;% } %&gt;
-</code></pre><p>前往原文评论部分 URL 的 Hash 值请根据你使用的评论系统的 Container ID 修改。<br>然后在 Hexo 的 <code>_config.yml</code> 文件中加入如下配置:</p>
-<pre><code class="lang-yaml">domain: imvictor.tech # 你的域名
-copyrights: true
+        <p>这一个月倒是干了不少事，只是没找到时机记录下来。<br>前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，于是我就想搭建一个 OJ。<br>由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。<br>但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。<br>本文需要对照官方安装指南查看，详情请阅读 <a href="https://github.com/syzoj/syzoj/" target="_blank" rel="external">syzoj/syzoj on GitHub</a> 和 <a href="https://syzoj-demo.t123yh.xyz:20170/article/1" target="_blank" rel="external">Demo 服务器账号及搭建指南 - 帖子 - Demo</a>。</p>
+<h3 id="SYZOJ-Web"><a href="#SYZOJ-Web" class="headerlink" title="SYZOJ-Web"></a>SYZOJ-Web</h3><p>Web 的搭建相对比较简单。大部分都可以按照 SYZOJ2 官方的教程来做。<br>这里只说明不一样的地方。<br>对于在 Ubuntu 下的这段命令:</p>
+<pre><code>apt install build-essential libboost1.58-all-dev nodejs rabbitmq-server redis-server nginx p7zip-full
+</code></pre><p>在 CentOS 上，首先，不能通过 yum 源安装 nodejs，因为 yum 源中的 nodejs 太古老，需要安装 8.0 版本(可能低一点也可以)。安装脚本如下:</p>
+<pre><code class="lang-bash">curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 </code></pre>
-<p>这样可以灵活控制是否打开这个功能，也方便切换域名。</p>
-<h2 id="2-查看-Markdown-源文件"><a href="#2-查看-Markdown-源文件" class="headerlink" title="2. 查看 Markdown 源文件"></a>2. 查看 Markdown 源文件</h2><p>这个灵感最初是来自 imququ.com，再次致敬。<br>在 emlog 中，这个功能实现起来反而更加复杂，因为 emlog 本身不支持 Markdown，我是通过自己的方式来实现 Markdown 支持的。在 emlog 中，为了输出 Markdown 源文件，我使用了一些比较 trick 的方法，就不说了。<br>现在，我几乎没有动 Hexo 就实现了这个功能，因为 nginx 可以很好地完成这个工作。<br>先对 <code>source/_posts/</code> 进行符号链接到 <code>source/posts/</code>。<br>在 nginx 的 Config 文件中加入以下代码:</p>
-<pre><code>location / {
-    root /home/user/hexo/public/;
-    location ~* \.(md)$ {
-        root /home/user/hexo/source/;
-    }
-}
-</code></pre><p>这样在请求 Markdown 文件时会自动到 source 下寻找。<br>e.g.:</p>
-<pre><code class="lang-dontparse">Query: https://imvictor.tech/posts/simulation-of-ppc-macos-via-qemu.md
-
-Output File: source/posts/simulation-of-ppc-macos-via-qemu.md
-</code></pre>
-<p>可以根据个人情况修改。<br>在主题的 <code>layout/_partial/article.ejs</code> 中，在 <code>&lt;% post.content %&gt;</code> 之后适当位置加入以下代码:</p>
-<pre><code>&lt;% if (config.mdsource &amp;&amp; page.layout == &quot;post&quot;) { %&gt;
-    &lt;div style=&quot;margin-right: 1em; text-align: right;&quot;&gt;&lt;a href=&quot;/posts/&lt;%= post.slug %&gt;.md&quot;&gt;查看本文 Markdown 版本 »&lt;/a&gt;&lt;/div&gt;
-&lt;% } %&gt;
-</code></pre><p>在 Hexo 的 <code>_config.yml</code> 中加入 <code>mdsource: true</code>。<br>这样就完成了 Hexo 的查看 Markdown 源文件。</p>
-<h2 id="3-Hexo-的部署自动化"><a href="#3-Hexo-的部署自动化" class="headerlink" title="3. Hexo 的部署自动化"></a>3. Hexo 的部署自动化</h2><p>由于我们使用 CentOS 服务器，所有的操作都在服务器上完成。<br>首先我希望在 Git Server 上备份我的 Hexo 博客源文件，也希望能在上面部署一份。这些根据很多人的教程都可以做。我还希望服务器每隔 10 分钟重新生成静态文件。这样，我们可以编写一个脚本。</p>
-<pre><code class="lang-bash">#!/bin/bash
-HEXOPATH=&quot;# 你的 Hexo 文件夹绝对路径，末尾不带 /&quot;
-cd $HEXOPATH
-hexo g
-git add $HEXOPATH/* &amp;&amp; git commit -m &quot;Backup at $(date)&quot; &amp;&amp; git push -u origin master
-hexo deploy
-exit 0
-</code></pre>
-<p>在 crontab 中，加入如下代码:</p>
-<pre><code class="lang-cron">*/10 * * * * ~/hexogenerate.sh &gt; /dev/null
-</code></pre>
-<p>这样服务器就会每隔 10 分钟重建一次静态文件。</p>
-<p>还有一些比如 GitHub Issue 评论系统的部署，这些网上教程也是一大把。我在这里只强调一点: 注意在<code>&lt;meta&gt;</code>头里面加入 AJAX 跨域访问的值项，也没什么坑。</p>
+<p>nginx 需要单独加源，方法自行搜索，很多。<br>剩下的包则用接下来的命令安装:</p>
+<pre><code>yum groupinstall &quot;Development Tools&quot;
+yum install boost-devel rabbitmq-server redis p7zip p7zip-plugins
+</code></pre><p>其他步骤可以参照官方教程来进行。<br>另外，不清楚是不是 bug，如果在 config.json 中，将 <code>&quot;hostname&quot;</code> 字段设置为一个域名(这样注册验证电子邮件的地址就是这个域名)，那么必须在 <code>/etc/hosts</code> 中将这个域名的 IP 地址解析到 127.0.0.1，否则会无法启动 Web 端。</p>
+<h3 id="SYZOJ-Judge"><a href="#SYZOJ-Judge" class="headerlink" title="SYZOJ-Judge"></a>SYZOJ-Judge</h3><p>Judge 端的情况，相对有一些问题。在 CentOS 上，出现了严重的问题，就是 C++ 程序默认是会 RE 的。经过我 chroot 到沙盒排查，这个问题是 <code>-mx32</code> 编译参数导致的。所以我们需要修改这个编译参数。<br>进入 Judge 文件夹，修改 <code>./src/languages/</code> 下的 <code>c.ts</code>、<code>cpp.ts</code>、<code>cpp11.ts</code>，将 <code>-mx32</code> 替换为空即可。<br>此时，SYZOJ2 应当已经能够正常运行。<br>此外，给大家看一张图。<br><img src="https://static.imvictor.tech/data/201806/syzoj_bincache.jpg" alt="准备的大坑"><br>当时是在没有去掉 <code>-mx32</code> 的时候提交了一道题，发现无论怎么重新评测，都是 RE。试了一晚上之后还是不行，最后我暴怒删题重加，发现奇迹般的行了。<br>询问 Menci 后得到的答复是，我成功跳进了 tyh 准备的大坑……<br>嗯，这坑很大。</p>
+<hr>
+<p>最后放一下 OJ 链接 <a href="https://mr.imvictor.tech/" target="_blank" rel="external">山河 OJ (Mountain &amp; River Online Judge)</a>。</p>
 
 	    
 			<hr>
 	        <p>本文著作权归作者所有，允许非商业性转载使用，但请在转载后文末附上原文链接。</p>
-	        <p>原文链接: <a href="https://imvictor.tech/posts/standardly-perfect-hexo-blog/">https://imvictor.tech/posts/standardly-perfect-hexo-blog/</a>，<a href="https://imvictor.tech/posts/standardly-perfect-hexo-blog/#gitalk-container">前往原文评论。</a></p>
+	        <p>原文链接: <a href="https://imvictor.tech/posts/deploying-syzoj2-on-centos/">https://imvictor.tech/posts/deploying-syzoj2-on-centos/</a>，<a href="https://imvictor.tech/posts/deploying-syzoj2-on-centos/#gitalk-container">前往原文评论。</a></p>
 	    
 	    
-                <div style="margin-right: 1em; text-align: right;"><a href="/posts/standardly-perfect-hexo-blog.md">查看本文 Markdown 版本 »</a></div>      
+                <div style="margin-right: 1em; text-align: right;"><a href="/posts/deploying-syzoj2-on-centos.md">查看本文 Markdown 版本 »</a></div>      
 	    
 	
       
@@ -251,7 +221,11 @@ exit 0
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网站</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -270,18 +244,9 @@ exit 0
   
 <nav id="article-nav">
   
-    <a href="/posts/asus_pro451l_high_sierra_hackintosh/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ASUS Pro451L 的 High Sierra 安装报告——99% 完美
-        
-      </div>
-    </a>
   
-  
-    <a href="/posts/a-completely-new-beginning/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">新的开始</div>
+    <a href="/posts/lemon-mac/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">lemon 在 macOS 上的移植</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -308,7 +273,7 @@ exit 0
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-版权声明和原文链接"><span class="toc-number">1.</span> <span class="toc-text">1. 版权声明和原文链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-查看-Markdown-源文件"><span class="toc-number">2.</span> <span class="toc-text">2. 查看 Markdown 源文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Hexo-的部署自动化"><span class="toc-number">3.</span> <span class="toc-text">3. Hexo 的部署自动化</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SYZOJ-Web"><span class="toc-number">1.</span> <span class="toc-text">SYZOJ-Web</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SYZOJ-Judge"><span class="toc-number">2.</span> <span class="toc-text">SYZOJ-Judge</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -334,7 +299,7 @@ exit 0
 <script src="https://static.imvictor.tech/lib/gitalk/dist/gitalk.js"></script>
 <script>
 var gitalk = new Gitalk({
-  id: '/posts/standardly-perfect-hexo-blog/',
+  id: '/posts/deploying-syzoj2-on-centos/',
   clientID: 'aa192ece2749d13ce589',
   clientSecret: 'f2310ac26737ea5a1d21aaba9d1f5d91ab27824e',
   repo: 'Comment',
