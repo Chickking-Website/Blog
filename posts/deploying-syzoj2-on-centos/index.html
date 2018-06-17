@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="凌风仙鸡的 Blog&amp;Diary">
 <meta property="og:description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。本文需要对">
 <meta property="og:image" content="https://static.imvictor.tech/data/201806/syzoj_bincache.jpg">
-<meta property="og:updated_time" content="2018-06-17T11:24:14.291Z">
+<meta property="og:updated_time" content="2018-06-17T11:32:41.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SYZOJ2 在 CentOS 上的搭建">
 <meta name="twitter:description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。本文需要对">
@@ -219,6 +219,14 @@ yum install boost-devel rabbitmq-server redis p7zip p7zip-plugins
 }
 </code></pre>
 <p>然后在 SYZOJ-Web 的 <code>config.json</code> 中将 <code>&quot;judge_server_addr&quot;</code> 的值修改为你设置的评测机域名。</p>
+<h3 id="其他改动"><a href="#其他改动" class="headerlink" title="其他改动"></a>其他改动</h3><h4 id="服务文件修改"><a href="#服务文件修改" class="headerlink" title="服务文件修改"></a>服务文件修改</h4><p>你需要在所有 <code>syzoj-*.service</code> 中将 <code>redis-server.service</code> 替换成 <code>redis.service</code>。<br>如果你使用 MariaDB，请不要忘记在所有 <code>syzoj-*.service</code> 中将 <code>mysql.service</code> 替换成 <code>mariadb.service</code>。  </p>
+<h4 id="Web-修改"><a href="#Web-修改" class="headerlink" title="Web 修改"></a>Web 修改</h4><p>默认的，全站管理员可以在 Web 管理后台中，查看和修改配置文件。这是不安全的。因为一旦任何一个全站管理员的 Cookie 或者密码泄露，就可能导致 secret 和 token 等敏感信息被查看。<br>备份一下 <code>[你的 SYZOJ-Web 程序目录]/views/admin_raw.ejs</code>，然后再建立一个新的 <code>admin_raw.ejs</code>，将以下内容写入:</p>
+<pre><code class="lang-ejs">&lt;% this.adminPage = &#39;raw&#39;; %&gt;
+&lt;% include admin_header %&gt;
+&lt;p&gt;系统管理员已禁止从 Web 端修改配置文件.&lt;/p&gt;
+&lt;% include admin_footer %&gt;
+</code></pre>
+<p>这样，配置文件就被限制为仅有拥有服务器 SSH 权限的人才能查看和修改的了。</p>
 <hr>
 <p>最后放一下 OJ 链接 <a href="https://mr.imvictor.tech/" target="_blank" rel="external">山河 OJ (Mountain &amp; River Online Judge)</a>。</p>
 
@@ -293,7 +301,7 @@ yum install boost-devel rabbitmq-server redis p7zip p7zip-plugins
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SYZOJ-Web"><span class="toc-number">1.</span> <span class="toc-text">SYZOJ-Web</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SYZOJ-Judge"><span class="toc-number">2.</span> <span class="toc-text">SYZOJ-Judge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#评测实时状态获取"><span class="toc-number">3.</span> <span class="toc-text">评测实时状态获取</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SYZOJ-Web"><span class="toc-number">1.</span> <span class="toc-text">SYZOJ-Web</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SYZOJ-Judge"><span class="toc-number">2.</span> <span class="toc-text">SYZOJ-Judge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#评测实时状态获取"><span class="toc-number">3.</span> <span class="toc-text">评测实时状态获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他改动"><span class="toc-number">4.</span> <span class="toc-text">其他改动</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#服务文件修改"><span class="toc-number">4.1.</span> <span class="toc-text">服务文件修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Web-修改"><span class="toc-number">4.2.</span> <span class="toc-text">Web 修改</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

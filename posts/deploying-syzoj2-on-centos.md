@@ -65,6 +65,21 @@ server {
 ```
 然后在 SYZOJ-Web 的 `config.json` 中将 `"judge_server_addr"` 的值修改为你设置的评测机域名。
 
+### 其他改动
+#### 服务文件修改
+你需要在所有 `syzoj-*.service` 中将 `redis-server.service` 替换成 `redis.service`。  
+如果你使用 MariaDB，请不要忘记在所有 `syzoj-*.service` 中将 `mysql.service` 替换成 `mariadb.service`。  
+#### Web 修改
+默认的，全站管理员可以在 Web 管理后台中，查看和修改配置文件。这是不安全的。因为一旦任何一个全站管理员的 Cookie 或者密码泄露，就可能导致 secret 和 token 等敏感信息被查看。  
+备份一下 `[你的 SYZOJ-Web 程序目录]/views/admin_raw.ejs`，然后再建立一个新的 `admin_raw.ejs`，将以下内容写入:
+```ejs
+<% this.adminPage = 'raw'; %>
+<% include admin_header %>
+<p>系统管理员已禁止从 Web 端修改配置文件.</p>
+<% include admin_footer %>
+```
+这样，配置文件就被限制为仅有拥有服务器 SSH 权限的人才能查看和修改的了。
+
 ----
 
 最后放一下 OJ 链接 [山河 OJ (Mountain & River Online Judge)](https://mr.imvictor.tech/)。
