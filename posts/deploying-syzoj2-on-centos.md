@@ -78,7 +78,17 @@ server {
 <p>系统管理员已禁止从 Web 端修改配置文件.</p>
 <% include admin_footer %>
 ```
-这样，配置文件就被限制为仅有拥有服务器 SSH 权限的人才能查看和修改的了。
+这样，配置文件就被限制为仅有拥有服务器 SSH 权限的人才能查看和修改的了。  
+如果你的数据库选用 `utf8mb4` 编码，可能遇到 `Unhandled rejection SequelizeDatabaseError: ER_TOO_LONG_KEY: Specified key was too long; max key length is 767 bytes` 的问题，这时你应当先用 root 权限登录 mysql，然后执行:
+```sql
+SET GLOBAL innodb_file_per_table = ON;
+SET GLOBAL innodb_large_prefix = ON;
+```
+然后修改 `/etc/my.cnf` 加入以下语句:
+```plain
+default-storage-engine=INNODB
+innodb_large_prefix=on
+```
 
 ----
 

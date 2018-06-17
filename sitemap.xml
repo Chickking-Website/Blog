@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>//README/index.html</loc>
-    
-    <lastmod>2018-06-17T11:34:24.074Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/deploying-syzoj2-on-centos/</loc>
     
-    <lastmod>2018-06-17T11:32:41.837Z</lastmod>
+    <lastmod>2018-06-17T13:26:15.277Z</lastmod>
     
   </url>
   
   <url>
     <loc>/posts/deploying-syzoj2-on-centos.html</loc>
     
-    <lastmod>2018-06-17T11:32:41.837Z</lastmod>
+    <lastmod>2018-06-17T13:26:15.277Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//README/index.html</loc>
+    
+    <lastmod>2018-06-17T11:34:24.074Z</lastmod>
     
   </url>
   
