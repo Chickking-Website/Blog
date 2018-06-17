@@ -8,7 +8,8 @@ toc: true
 前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，于是我就想搭建一个 OJ。  
 由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。  
 但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。  
-本文需要对照官方安装指南查看，详情请阅读 [syzoj/syzoj on GitHub](https://github.com/syzoj/syzoj/) 和 [Demo 服务器账号及搭建指南 - 帖子 - Demo](https://syzoj-demo.t123yh.xyz:20170/article/1)。
+本文需要对照官方安装指南查看，详情请阅读 [syzoj/syzoj on GitHub](https://github.com/syzoj/syzoj/) 和 [Demo 服务器账号及搭建指南 - 帖子 - Demo](https://syzoj-demo.t123yh.xyz:20170/article/1)。  
+这里还有一篇很详细的 [SYZOJ 部署指南](http://blog.masellum.me/syzoj-setup/)，是 Masellum 写的。值得参考。
 
 ### SYZOJ-Web
 Web 的搭建相对比较简单。大部分都可以按照 SYZOJ2 官方的教程来做。  
@@ -40,6 +41,29 @@ Judge 端的情况，相对有一些问题。在 CentOS 上，出现了严重的
 当时是在没有去掉 `-mx32` 的时候提交了一道题，发现无论怎么重新评测，都是 RE。试了一晚上之后还是不行，最后我暴怒删题重加，发现奇迹般的行了。  
 询问 Menci 后得到的答复是，我成功跳进了 tyh 准备的大坑……  
 嗯，这坑很大。
+### 评测实时状态获取
+在 SYZOJ2 中浏览器在获取评测状态时，会尝试 SYZOJ-Web 的 `config.json` 中定义的 `"judge_server_addr"`。如果按照官方的配置将其配置为 `http://127.0.0.1:5284`，显然用户是不能访问的。  
+如果我们改成 OJ 的地址呢？在 CentOS 7 上，默认打开了防火墙，而防火墙默认会阻断 5284 端口。那么我们就有两种方案，一种是开放 5284 端口，但 SYZOJ-Frontend 监听下的 5284 端口不支持 HTTPS，导致 HTTPS 页面不能建立连接。综合来看，我们应当采用 nginx 反向代理来实现。这里提供配置文件参考。
+```plain
+server {
+        listen 443 ssl http2;
+        listen [::]:443 ssl http2;
+        server_name 评测机域名;
+        location / {
+                proxy_set_header Host $http_host;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_pass http://127.0.0.1:5284;
+                client_max_body_size 0;
+        }
+	#error_page 404 = /404.html; error_page 403 = /403.html;
+        #ssl on;
+        ssl_certificate [cert];
+        ssl_certificate_key [key];
+}
+```
+然后在 SYZOJ-Web 的 `config.json` 中将 `"judge_server_addr"` 的值修改为你设置的评测机域名。
 
 ----
 
