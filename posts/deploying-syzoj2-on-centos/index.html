@@ -9,18 +9,18 @@
   <link rel="dns-prefetch" href="">
   <title>SYZOJ2 在 CentOS 上的搭建 | 凌风仙鸡的 Blog&amp;Diary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。本文需要对">
+  <meta name="description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，现在换成了 Intel(R) Xeon(R)  CPU E5440 @ 2.83GHz，比 BZOJ 好多了。于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ">
 <meta name="keywords" content="OI,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SYZOJ2 在 CentOS 上的搭建">
 <meta property="og:url" content="/posts/deploying-syzoj2-on-centos/index.html">
 <meta property="og:site_name" content="凌风仙鸡的 Blog&amp;Diary">
-<meta property="og:description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。本文需要对">
+<meta property="og:description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，现在换成了 Intel(R) Xeon(R)  CPU E5440 @ 2.83GHz，比 BZOJ 好多了。于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ">
 <meta property="og:image" content="https://static.imvictor.tech/data/201806/syzoj_bincache.jpg">
-<meta property="og:updated_time" content="2018-06-17T13:26:15.277Z">
+<meta property="og:updated_time" content="2018-06-21T09:02:04.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SYZOJ2 在 CentOS 上的搭建">
-<meta name="twitter:description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。本文需要对">
+<meta name="twitter:description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，现在换成了 Intel(R) Xeon(R)  CPU E5440 @ 2.83GHz，比 BZOJ 好多了。于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ">
 <meta name="twitter:image" content="https://static.imvictor.tech/data/201806/syzoj_bincache.jpg">
   
     <link rel="alternative" href="/atom.xml" title="凌风仙鸡的 Blog&amp;Diary" type="application/atom+xml">
@@ -188,7 +188,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这一个月倒是干了不少事，只是没找到时机记录下来。<br>前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，于是我就想搭建一个 OJ。<br>由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。<br>但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。<br>本文需要对照官方安装指南查看，详情请阅读 <a href="https://github.com/syzoj/syzoj/" target="_blank" rel="external">syzoj/syzoj on GitHub</a> 和 <a href="https://syzoj-demo.t123yh.xyz:20170/article/1" target="_blank" rel="external">Demo 服务器账号及搭建指南 - 帖子 - Demo</a>。<br>这里还有一篇很详细的 <a href="http://blog.masellum.me/syzoj-setup/" target="_blank" rel="external">SYZOJ 部署指南</a>，是 Masellum 写的。值得参考。</p>
+        <p>这一个月倒是干了不少事，只是没找到时机记录下来。<br>前不久高爷带我去捡垃圾，弄到一台主机当服务器。<del>CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，</del>现在换成了 Intel(R) Xeon(R)  CPU E5440 @ 2.83GHz，比 BZOJ 好多了。于是我就想搭建一个 OJ。<br>由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。<br>但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。<br>本文需要对照官方安装指南查看，详情请阅读 <a href="https://github.com/syzoj/syzoj/" target="_blank" rel="external">syzoj/syzoj on GitHub</a> 和 <a href="https://syzoj-demo.t123yh.xyz:20170/article/1" target="_blank" rel="external">Demo 服务器账号及搭建指南 - 帖子 - Demo</a>。<br>这里还有一篇很详细的 <a href="http://blog.masellum.me/syzoj-setup/" target="_blank" rel="external">SYZOJ 部署指南</a>，是 Masellum 写的。值得参考。</p>
 <h3 id="SYZOJ-Web"><a href="#SYZOJ-Web" class="headerlink" title="SYZOJ-Web"></a>SYZOJ-Web</h3><p>Web 的搭建相对比较简单。大部分都可以按照 SYZOJ2 官方的教程来做。<br>这里只说明不一样的地方。<br>对于在 Ubuntu 下的这段命令:</p>
 <pre><code>apt install build-essential libboost1.58-all-dev nodejs rabbitmq-server redis-server nginx p7zip-full
 </code></pre><p>在 CentOS 上，首先，不能通过 yum 源安装 nodejs，因为 yum 源中的 nodejs 太古老，需要安装 8.0 版本(可能低一点也可以)。安装脚本如下:</p>

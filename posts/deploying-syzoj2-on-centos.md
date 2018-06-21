@@ -5,7 +5,7 @@ tags: [OI,Linux]
 toc: true
 ---
 这一个月倒是干了不少事，只是没找到时机记录下来。  
-前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，于是我就想搭建一个 OJ。  
+前不久高爷带我去捡垃圾，弄到一台主机当服务器。~~CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，~~现在换成了 Intel(R) Xeon(R)  CPU E5440 @ 2.83GHz，比 BZOJ 好多了。于是我就想搭建一个 OJ。  
 由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。  
 但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。  
 本文需要对照官方安装指南查看，详情请阅读 [syzoj/syzoj on GitHub](https://github.com/syzoj/syzoj/) 和 [Demo 服务器账号及搭建指南 - 帖子 - Demo](https://syzoj-demo.t123yh.xyz:20170/article/1)。  
