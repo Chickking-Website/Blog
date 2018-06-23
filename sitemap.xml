@@ -2,14 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/posts/deploying-syzoj2-on-centos/</loc>
+    <loc>/posts/mirrored-make-girls-moe.html</loc>
+    
+    <lastmod>2018-06-23T14:43:46.172Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/mirrored-make-girls-moe/</loc>
+    
+    <lastmod>2018-06-23T14:43:46.172Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/deploying-syzoj2-on-centos.html</loc>
     
     <lastmod>2018-06-21T09:02:04.775Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/deploying-syzoj2-on-centos.html</loc>
+    <loc>/posts/deploying-syzoj2-on-centos/</loc>
     
     <lastmod>2018-06-21T09:02:04.775Z</lastmod>
     
@@ -23,13 +37,6 @@
   </url>
   
   <url>
-    <loc>/posts/asus_pro451l_high_sierra_hackintosh.html</loc>
-    
-    <lastmod>2018-06-05T16:31:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/asus_pro451l_high_sierra_hackintosh/</loc>
     
     <lastmod>2018-06-05T16:31:02.000Z</lastmod>
@@ -37,14 +44,21 @@
   </url>
   
   <url>
-    <loc>/posts/made-an-API-of-parsing-LaTeX-formulas/</loc>
+    <loc>/posts/asus_pro451l_high_sierra_hackintosh.html</loc>
+    
+    <lastmod>2018-06-05T16:31:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/made-an-API-of-parsing-LaTeX-formulas.html</loc>
     
     <lastmod>2018-04-28T02:28:20.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/made-an-API-of-parsing-LaTeX-formulas.html</loc>
+    <loc>/posts/made-an-API-of-parsing-LaTeX-formulas/</loc>
     
     <lastmod>2018-04-28T02:28:20.000Z</lastmod>
     
@@ -114,14 +128,14 @@
   </url>
   
   <url>
-    <loc>/posts/2018-noip-winter-campus-in-qingdao/</loc>
+    <loc>/posts/2018-noip-winter-campus-in-qingdao.html</loc>
     
     <lastmod>2018-02-13T05:29:04.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/2018-noip-winter-campus-in-qingdao.html</loc>
+    <loc>/posts/2018-noip-winter-campus-in-qingdao/</loc>
     
     <lastmod>2018-02-13T05:29:04.000Z</lastmod>
     
@@ -142,14 +156,14 @@
   </url>
   
   <url>
-    <loc>/posts/make-your-own-ubuntu-to-go/</loc>
+    <loc>/posts/make-your-own-ubuntu-to-go.html</loc>
     
     <lastmod>2018-01-14T05:11:13.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/make-your-own-ubuntu-to-go.html</loc>
+    <loc>/posts/make-your-own-ubuntu-to-go/</loc>
     
     <lastmod>2018-01-14T05:11:13.000Z</lastmod>
     
@@ -212,14 +226,7 @@
   </url>
   
   <url>
-    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/a-better-solution-of-markdown-support-for-emlog.html</loc>
+    <loc>/posts/tech-of-jobs-remembering/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -268,14 +275,28 @@
   </url>
   
   <url>
-    <loc>/posts/drcom-auto-login-script/</loc>
+    <loc>/posts/a-better-solution-of-markdown-support-for-emlog/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/a-better-solution-of-markdown-support-for-emlog/</loc>
+    <loc>/posts/turn-an-old-iPhone-into-a-server/</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L.html</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -289,21 +310,7 @@
   </url>
   
   <url>
-    <loc>/posts/emlog-variables-dev-of-keypad-and-acme-sh/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/enable-CX-20751-2-by-AppleALC/</loc>
-    
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/tech-of-jobs-remembering/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -317,14 +324,14 @@
   </url>
   
   <url>
-    <loc>/posts/changing-website's-architecture/</loc>
+    <loc>/posts/emlog-variables-dev-of-keypad-and-acme-sh/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/turn-an-old-iPhone-into-a-server/</loc>
+    <loc>/posts/a-better-solution-of-markdown-support-for-emlog.html</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
@@ -345,7 +352,14 @@
   </url>
   
   <url>
-    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L.html</loc>
+    <loc>/posts/drcom-auto-login-script/</loc>
+    
+    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/changing-website's-architecture/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     

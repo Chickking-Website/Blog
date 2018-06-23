@@ -166,6 +166,117 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-turn-an-old-iPhone-into-a-server" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/turn-an-old-iPhone-into-a-server/">让旧的 iPhone 成为服务器</a>
+    </h1>
+  
+
+        
+        <a href="/posts/turn-an-old-iPhone-into-a-server/" class="archive-article-date">
+  	<time datetime="2017-04-25T13:21:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近家里的一台服役了 13 年的老笔记本退役了，本来是作为家里校园网 Dr.COM 验证的专用机器 + 内网 Web 服务器的。对于笔记本运行发出的噪音的不满，我决定不使用笔记本电脑或台式机来接替它，而是使用 iPhone。  </p>
+<h2 id="0-Dr-COM-验证程序"><a href="#0-Dr-COM-验证程序" class="headerlink" title="0. Dr.COM 验证程序"></a>0. Dr.COM 验证程序</h2><h3 id="a-程序本身的配置"><a href="#a-程序本身的配置" class="headerlink" title="a. 程序本身的配置"></a>a. 程序本身的配置</h3><p>最近闲逛 GitHub 时发现了一个可以直接用的 Dr.COM 认证的 Python 项目，而且也可以配合路由器使用，叫做 <a href="https://github.com/drcoms/drcom-generic" target="_blank" rel="external">drcom_generic</a>。<br><strong><span style="color: red;">注: 建议大家直接去看该项目的 wiki，这里的 Dr.COM 配置方法不一定适合每一个校园网的网络环境。</span></strong><br>首先我们 Clone 下来这个项目，然后我们不需要别的，先用 Wireshark 抓一下原版客户端登录的包，保存为 dump.pcapang。<br>然后打开 Auto Configure 工具，上传 pcapang 包，即可生成你独有的配置文件。<br>Example:</p>
+<pre><code>server = &#39;192.168.88.66&#39;
+username = &#39;123456&#39;
+password = &#39;pass000&#39;
+CONTROLCHECKSTATUS = &#39;\x20&#39;
+ADAPTERNUM = &#39;\x01&#39;
+host_ip = &#39;127.0.0.1&#39;
+IPDOG = &#39;\x01&#39;
+host_name = &#39;foo&#39;
+PRIMARY_DNS = &#39;192.168.0.1&#39;
+dhcp_server = &#39;0.0.0.0&#39;
+AUTH_VERSION = &#39;\x0f\x00&#39;
+mac = 0x00aabbccddee
+host_os = &#39;Windows 10&#39;
+KEEP_ALIVE_VERSION = &#39;\xdc\x02&#39;
+ror_version = False
+</code></pre><p>这时候我们把项目文件夹下的 latest-wired.py 拷贝出来，并命名为 Drcom.py。<br>找到 <code># CONFIG</code> 和 <code># CONFIG_END</code> 之间的部分，把这一部分换成你自己的配置。(截止到2017年4月25日，这一部分是第13行到第32行)<br>如果这样就运行，会产生 log 文件，长期这样这个文件会很大，我们可以设置 LOG_PATH 来规避这个问题。找到整段代码中两处 LOG_PATH 的值(第81行~第84行)，并设置为:</p>
+<pre><code class="lang-python">LOG_PATH = &#39;/dev/null&#39;
+if IS_TEST:
+    DEBUG = True
+    LOG_PATH = &#39;/dev/null&#39;
+</code></pre>
+<p>注: 如果是用 Windows 的同学想在电脑上跑这个 Python 脚本，可以把 LOG_PATH 设置为 <code>NUL</code>。<br>这样文件本身的修改配置就做完了。</p>
+<h3 id="b-iPhone-环境配置"><a href="#b-iPhone-环境配置" class="headerlink" title="b. iPhone 环境配置"></a>b. iPhone 环境配置</h3><p>首先我们需要一台越狱的 iPhone，版本任意。<br>在 Cydia 里面先安装上 <code>MobileTerminal</code>、<code>MobileTerm Backgrounder</code>、<code>Core Utilities</code>等。<br>Cydia/Telesphoreo 源里面的 Python 不要装，版本比较老，我发现 Linus Yang 大神写了一个 Python 2.7.6 的 deb 插件，可以去 GitHub 上<a href="https://github.com/linusyang/python-for-ios" target="_blank" rel="external">围观</a>一下。我这里也提供直连的<a href="https://github.com/linusyang/python-for-ios/releases/download/v2.7.6-3/python_2.7.6-3_iphoneos-arm.deb" target="_blank" rel="external">下载地址</a>。<br>安装好 Python，就可以把脚本放在这上面跑了。需要注意的是，作为服务器，应当尽可能的使其实现最大化的自动化，而这个脚本一旦断线是不会自动重连的。所以我们可以写一个  Shell 死循环，使其重复执行。<br>这里有同学会提问题: 那么如果我们想关掉它怎么办，<code>killall bash &amp;&amp; killall python</code> 会把我们当前操作的终端也一起关闭啊？这个问题可以简单粗暴地解决，即建立 bash 的软链接，取另一个名字，然后让其解释执行我们的脚本。代码如下:</p>
+        
+          <a class="article-more-a" href="/posts/turn-an-old-iPhone-into-a-server/#more">more >></a>
+        
+      
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">iPhone</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/posts/turn-an-old-iPhone-into-a-server/">继续阅读 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-a-better-solution-of-markdown-support-for-emlog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -555,104 +666,6 @@ applyer.innerText = source.innerHTML;
       
         <p class="article-more-link">
           <a class="article-more-a" href="/posts/emlog-variables-dev-of-keypad-and-acme-sh/">继续阅读 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-changing-website&#39;s-architecture" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/changing-website's-architecture/">【Mixed】网站架构改造</a>
-    </h1>
-  
-
-        
-        <a href="/posts/changing-website's-architecture/" class="archive-article-date">
-  	<time datetime="2017-02-15T13:50:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨天是貌似是情人节？咳咳，别想那些没用的、与自己无关的节日，昨天是 ENIAC 诞生 71 周年，这才是正道。<br>那顺手就给网站做个改造，这次也把之前的那几个改动整理整理，主要分为几个部分。</p>
-<h3 id="Part-1-GitHub-助力-静态资源存放"><a href="#Part-1-GitHub-助力-静态资源存放" class="headerlink" title="Part 1. GitHub 助力, 静态资源存放"></a>Part 1. GitHub 助力, 静态资源存放</h3><p>[Mar 25th 2017 14:17 更新] 静态资源已经存放到了国内的 <a href="https://coding.net/" target="_blank" rel="external">coding.net</a>，只需 CNAME 解析即可。<br><del>我们知道，网站一般要将静态资源存放在单独的服务器上，由于资金原因<em>(其实就是穷)</em>，单独服务器是用不起，纯粹的静态资源比如图片什么的是不怕别人知道目录树的。于是干脆就想到了 GitHub，毕竟 GitHub 的服务可是杠杠的。<br>由于当时想尝试一个评论系统，当时注册了一个新的 GitHub 帐户，创建新的仓库。看起来直接用 GitHub Pages 比较好，但是这样绑定域名后就无法使用 https 功能了，这可比较坑爹了。还好 nginx 可以做反向代理，这样就可以把请求先 https 后转发给 GitHub 了。<br>但是这样有性能瓶颈，我的服务器很渣，所以这样静态资源请求速度很慢。所以不得以在保持了原来反向代理的基础上。设置了请求具体的文件名则直接 rewrite 到 raw.githubusercontent.com 去。<br>先直接上代码:</del></p>
-<pre><code class="lang-config">server {
-    listen 443;
-    server_name static.chickger.pw;
-    index index.html;
-    location / {
-        proxy_pass https://raw.githubusercontent.com/Chickking-Website/Static-Assets/master/;
-                if (!-e $request_filename)
-                {
-                        rewrite ^(.+)$ https://raw.githubusercontent.com/Chickking-Website/Static-Assets/master/$1 last;
-                }
-    }
-}
-
-server {
-        listen 80;
-        rewrite ^(.*)$ https://$host$1 permanent;
-}
-</code></pre>
-<p><del>删节掉了 SSL 证书部分，你懂得。<br>静态资源可以直接上传到 GitHub。</del><br><img src="https://static.chickger.pw/201701/GitHub-asset.png"></p>
-<h3 id="Part-2-Let’s-Encrypt-证书替换"><a href="#Part-2-Let’s-Encrypt-证书替换" class="headerlink" title="Part 2. Let’s Encrypt, 证书替换"></a>Part 2. Let’s Encrypt, 证书替换</h3><p>原来用的沃通感觉药丸，Apple、Mozilla、Google 都不信任它和它的上级 CA —— StartCom 了。所以选择更换到 Let’s Encrypt。这里安利一个网站 <a href="https://sslforfree.com/" target="_blank" rel="external">sslforfree.com</a>，通过 acme.sh 来获取 SSL 证书，我使用的是 TXT DNS 验证，这种办法还算好，不怎么麻烦，但是设置好 DNS 的 TXT 记录后要略等几分钟来验证。以及千万要用 Chrome 打开这个网站，Safari 貌似不支持 blob: 协议，结果无法下载证书……遇到这种情况直接保存页面源码在 Chrome 里打开即可。</p>
-<h3 id="Part-3-Web-网站-UI-小修"><a href="#Part-3-Web-网站-UI-小修" class="headerlink" title="Part 3. Web, 网站 UI 小修"></a>Part 3. Web, 网站 UI 小修</h3><p>UI 部分没有动太多，填自己之前选择用这个模板的坑就不多说了。首先添加了一个提示条，这个是从 <a href="https://imququ.com/" target="_blank" rel="external">Jerry Qu</a> 大神那里看到的，就是对时间较久之前的文章给予提示。用 PHP 可以轻松造这个轮子。<br><img src="https://static.chickger.pw/201701/Time_tips.png"><br>就是这个东西。</p>
-<p>以及还有查看本文 Markdown 版本这个大家也看到了，也是从 Jerry Qu 大神那里看到的。我会在今后展示更好的实现方法。</p>
-        
-          <a class="article-more-a" href="/posts/changing-website's-architecture/#more">more >></a>
-        
-      
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网站</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/changing-website's-architecture/">继续阅读 >></a>
         </p>
       
 
