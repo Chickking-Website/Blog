@@ -621,6 +621,54 @@ cd &amp;quot;$(dirname &amp;quot;$0&amp;quot;)&amp;quot;
   </entry>
   
   <entry>
+    <title>FRP 的配置和使用</title>
+    <link href="/posts/deploying-frp-reverse-proxy/"/>
+    <id>/posts/deploying-frp-reverse-proxy/</id>
+    <published>2017-07-16T14:00:27.000Z</published>
+    <updated>2018-07-16T14:21:01.749Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近发现经常出现 502 Bad Gateway，这让我很不爽，山河 OJ 刚刚火了不久，怎么就闹出这种事情来。<br>后来发现是 ZeroTier One 的锅，于是在 Menci 的建议下，采用 FRP 转发流量到家里的服务器。现在稍作记录，以备今后我自己查看和他人配置需要。</p><h3 id="双边配置"><a href="#双边配置" class="headerlink" title="双边配置"></a>双边配置</h3><p>首先执行 <code>wget https://github.com/fatedier/frp/releases/download/v0.20.0/frp_0.20.0_linux_amd64.tar.gz</code>，下载 frp。并解压。这里我们假定你的 frp 程序在 <code>/opt/frp/</code> 路径。</p><h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>首先服务器必须是有公网 IP 的。<br>修改 frps.ini 或者 frps_full.ini，这两个模板根据自己的情况修改，full 的那个更模板全一点。我的配置文件为 frps_full.ini。<br>下面详解一下常用各项的意思:</p><ul><li>bind_port 绑定的交流端口，和客户端一致即可。</li><li>bind_udp_port 打洞端口，没被占用、和 bind_port 不一致即可。</li><li>kcp_bind_port KCP 协议端口，可以和 bind_port 一致。</li><li>token 保证客户端和服务端一致，切勿泄露。</li><li>tcp_mux TCP 连接复用，建议设置为 <code>true</code>。</li></ul><p>在 <code>/etc/systemd/system/</code> 下创建 <code>frps.service</code>，内容请根据自己的实际情况修改:</p><pre><code>[Unit]Description=frps[Service]Type=simpleWorkingDirectory=/opt/frpExecStart=/opt/frp/frps -c /opt/frp/frps_full.iniStandardOutput=nullRestart=on-failure[Install]WantedBy=multi-user.target</code></pre><p>然后执行 <code>sudo systemctl enable frps.service &amp;&amp; sudo systemctl start frps.service</code>。</p><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>修改 frpc.ini 或者 frpc_full.ini，这两个模板根据自己的情况修改，full 的那个更模板全一点。我的配置文件为 frpc_full.ini。<br>下面详解一下常用各项的意思:</p><ul><li>server_addr 服务器地址，域名或 IP 都可。</li><li>server_port 与服务器的 bind_port 一致即可。</li><li>token 验证，与服务器的 token 一致即可。</li><li>tcp_mux 与服务器端效果相同</li><li>protocol 协议，默认 TCP。</li></ul><p>下面添加配置块，配置块的基本格式如下:</p><pre><code>[备注]type = 连接类型 (tcp / kcp)local_ip = 本地 IP (一般填写 127.0.0.1)local_port = 本地端口remote_port = 远程端口</code></pre><p>例如:</p><pre><code>[https]type = tcplocal_ip = 127.0.0.1local_port = 443remote_port = 443</code></pre><p>在 <code>/etc/systemd/system/</code> 下创建 <code>frpc.service</code>，内容请根据自己的实际情况修改:</p><pre><code>[Unit]Description=frpc[Service]Type=simpleWorkingDirectory=/opt/frpExecStart=/opt/frp/frpc -c /opt/frp/frpc_full.iniStandardOutput=nullRestart=on-failure[Install]WantedBy=multi-user.target</code></pre><p>然后执行 <code>sudo systemctl enable frpc.service &amp;&amp; sudo systemctl start frpc.service</code>。<br>这样，FRP 基本上就能充当一个合格的前端代理了。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近发现经常出现 502 Bad Gateway，这让我很不爽，山河 OJ 刚刚火了不久，怎么就闹出这种事情来。&lt;br&gt;后来发现是 ZeroTier One 的锅，于是在 Menci 的建议下，采用 FRP 转发流量到家里的服务器。现在稍作记录，以备今后我自己查看和他人配置需要。&lt;/p&gt;
+&lt;h3 id=&quot;双边配置&quot;&gt;&lt;a href=&quot;#双边配置&quot; class=&quot;headerlink&quot; title=&quot;双边配置&quot;&gt;&lt;/a&gt;双边配置&lt;/h3&gt;&lt;p&gt;首先执行 &lt;code&gt;wget https://github.com/fatedier/frp/releases/download/v0.20.0/frp_0.20.0_linux_amd64.tar.gz&lt;/code&gt;，下载 frp。并解压。这里我们假定你的 frp 程序在 &lt;code&gt;/opt/frp/&lt;/code&gt; 路径。&lt;/p&gt;
+&lt;h3 id=&quot;服务端&quot;&gt;&lt;a href=&quot;#服务端&quot; class=&quot;headerlink&quot; title=&quot;服务端&quot;&gt;&lt;/a&gt;服务端&lt;/h3&gt;&lt;p&gt;首先服务器必须是有公网 IP 的。&lt;br&gt;修改 frps.ini 或者 frps_full.ini，这两个模板根据自己的情况修改，full 的那个更模板全一点。我的配置文件为 frps_full.ini。&lt;br&gt;下面详解一下常用各项的意思:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bind_port 绑定的交流端口，和客户端一致即可。&lt;/li&gt;
+&lt;li&gt;bind_udp_port 打洞端口，没被占用、和 bind_port 不一致即可。&lt;/li&gt;
+&lt;li&gt;kcp_bind_port KCP 协议端口，可以和 bind_port 一致。&lt;/li&gt;
+&lt;li&gt;token 保证客户端和服务端一致，切勿泄露。&lt;/li&gt;
+&lt;li&gt;tcp_mux TCP 连接复用，建议设置为 &lt;code&gt;true&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在 &lt;code&gt;/etc/systemd/system/&lt;/code&gt; 下创建 &lt;code&gt;frps.service&lt;/code&gt;，内容请根据自己的实际情况修改:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[Unit]
+Description=frps
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/frp
+ExecStart=/opt/frp/frps -c /opt/frp/frps_full.ini
+StandardOutput=null
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后执行 &lt;code&gt;sudo systemctl enable frps.service &amp;amp;&amp;amp; sudo systemctl start frps.service&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&quot;客户端&quot;&gt;&lt;a href=&quot;#客户端&quot; class=&quot;headerlink&quot; title=&quot;客户端&quot;&gt;&lt;/a&gt;客户端&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="/tags/Linux/"/>
+    
+      <category term="网站" scheme="/tags/%E7%BD%91%E7%AB%99/"/>
+    
+      <category term="网络" scheme="/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>让旧的 iPhone 成为服务器</title>
     <link href="/posts/turn-an-old-iPhone-into-a-server/"/>
     <id>/posts/turn-an-old-iPhone-into-a-server/</id>
@@ -784,7 +832,7 @@ applyer.innerText = source.innerHTML;
     <link href="/posts/made-an-API-of-parsing-LaTeX-formulas/"/>
     <id>/posts/made-an-API-of-parsing-LaTeX-formulas/</id>
     <published>2017-03-19T05:33:27.000Z</published>
-    <updated>2018-04-28T02:28:20.000Z</updated>
+    <updated>2018-07-16T14:24:20.967Z</updated>
     
     <content type="html"><![CDATA[<p>做了一个 Parse LaTeX 公式的 API，大家悠着点用。</p><h2 id="API-名称"><a href="#API-名称" class="headerlink" title="API 名称"></a>API 名称</h2><p>Equation</p><h2 id="API-说明"><a href="#API-说明" class="headerlink" title="API 说明"></a>API 说明</h2><p>传入 LaTeX 公式，返回指定格式的返回值。 </p><h2 id="API-版本"><a href="#API-版本" class="headerlink" title="API 版本"></a>API 版本</h2><p>见<a href="https://api.imvictor.tech/php-api/v5/equation?changelog" target="_blank" rel="external">更新日志</a>。</p><h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://api.imvictor.tech/php-api/v5/equation" target="_blank" rel="external">https://api.imvictor.tech/php-api/v5/equation</a>  </p><h2 id="HTTP-请求方式"><a href="#HTTP-请求方式" class="headerlink" title="HTTP 请求方式"></a>HTTP 请求方式</h2><p>GET</p><h2 id="请求参数"><a href="#请求参数" class="headerlink" title="请求参数"></a>请求参数</h2><h3 id="type-可选"><a href="#type-可选" class="headerlink" title="type 可选"></a><code>type</code> 可选</h3><p>指定返回格式，请按下列要求填写，若不填写，则默认为 SVG:</p><ul><li>SVG : <code>svg</code></li><li>PNG : <code>png</code></li><li>纯 HTML : <code>html</code></li><li>HTML + CSS : <code>htmlcss</code></li><li>MathML : <code>mml</code>  </li><li>PDF: <code>pdf</code></li><li>PostScript: <code>ps</code></li><li>Windows 增强型图元文件: <code>emf</code></li></ul><h3 id="dpi-可选"><a href="#dpi-可选" class="headerlink" title="dpi 可选"></a><code>dpi</code> 可选</h3><p>仅在<code>type</code>为<code>png</code>时需要传入，可选，若不填写默认为 128，最大为 512.</p><h3 id="tex-必需"><a href="#tex-必需" class="headerlink" title="tex 必需"></a><code>tex</code> 必需</h3><p>传入经过 escape 后的 TeX 代码。</p><h3 id="inline-可选"><a href="#inline-可选" class="headerlink" title="inline 可选"></a><code>inline</code> 可选</h3><p>您可以选择使用 inline 模式来渲染公式。<br>传入 inline 的值为 <code>1</code> 时，表示 inline 打开。<br>默认情况下，inline 模式为关闭状态。<br>在 inline 模式下，类似求和公式等会被渲染成这样:<br><img src="https://api.imvictor.tech/php-api/v5/equation?tex=%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Ba_i%7D&amp;type=svg&amp;dpi=128&amp;inline=1" alt="inline 模式"><br>而非 inline 即行间公式模式时是:<br><img src="https://api.imvictor.tech/php-api/v5/equation?tex=%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Ba_i%7D&amp;type=svg" alt="非 inline">  </p><h3 id="特殊指令"><a href="#特殊指令" class="headerlink" title="特殊指令"></a>特殊指令</h3><p>调用方法: 在请求参数中直接附加特殊指令即可，注意不要附加其他内容。</p><ul><li>version : 查看当前 API 版本。</li><li>changelog : 查看 API 更新日志。</li><li>license : 查看许可协议。</li></ul><h2 id="请求示例"><a href="#请求示例" class="headerlink" title="请求示例"></a>请求示例</h2><p>请求公式 $E = mc^2$:<br>Request URL:<a href="https://api.imvictor.tech/php-api/v5/equation?tex=E%3Dmc%5E2&amp;type=svg" target="_blank" rel="external">https://api.imvictor.tech/php-api/v5/equation?tex=E%3Dmc%5E2&amp;type=svg</a><br>Request Method:GET<br>Status Code:200 OK  </p><h2 id="返回数据示例"><a href="#返回数据示例" class="headerlink" title="返回数据示例"></a>返回数据示例</h2><pre><code class="lang-xml">&lt;svg xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; width=&quot;8.976ex&quot; height=&quot;2.676ex&quot; style=&quot;vertical-align: -0.338ex;&quot; viewBox=&quot;0 -1006.6 3864.5 1152.1&quot; role=&quot;img&quot; focusable=&quot;false&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;defs&gt;&lt;path stroke-width=&quot;1&quot; id=&quot;E1-MJMATHI-45&quot; d=&quot;M492 213Q472 213 472 226Q472 230 477 250T482 285Q482 316 461 323T364 330H312Q311 328 277 192T243 52Q243 48 254 48T334 46Q428 46 458 48T518 61Q567 77 599 117T670 248Q680 270 683 272Q690 274 698 274Q718 274 718 261Q613 7 608 2Q605 0 322 0H133Q31 0 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H757Q764 676 764 669Q764 664 751 557T737 447Q735 440 717 440H705Q698 445 698 453L701 476Q704 500 704 528Q704 558 697 578T678 609T643 625T596 632T532 634H485Q397 633 392 631Q388 629 386 622Q385 619 355 499T324 377Q347 376 372 376H398Q464 376 489 391T534 472Q538 488 540 490T557 493Q562 493 565 493T570 492T572 491T574 487T577 483L544 351Q511 218 508 216Q505 213 492 213Z&quot;&gt;&lt;/path&gt;&lt;path stroke-width=&quot;1&quot; id=&quot;E1-MJMAIN-3D&quot; d=&quot;M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z&quot;&gt;&lt;/path&gt;&lt;path stroke-width=&quot;1&quot; id=&quot;E1-MJMATHI-6D&quot; d=&quot;M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z&quot;&gt;&lt;/path&gt;&lt;path stroke-width=&quot;1&quot; id=&quot;E1-MJMATHI-63&quot; d=&quot;M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z&quot;&gt;&lt;/path&gt;&lt;path stroke-width=&quot;1&quot; id=&quot;E1-MJMAIN-32&quot; d=&quot;M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z&quot;&gt;&lt;/path&gt;&lt;/defs&gt;&lt;g stroke=&quot;currentColor&quot; fill=&quot;currentColor&quot; stroke-width=&quot;0&quot; transform=&quot;matrix(1 0 0 -1 0 0)&quot;&gt; &lt;use xlink:href=&quot;#E1-MJMATHI-45&quot; x=&quot;0&quot; y=&quot;0&quot;&gt;&lt;/use&gt; &lt;use xlink:href=&quot;#E1-MJMAIN-3D&quot; x=&quot;1042&quot; y=&quot;0&quot;&gt;&lt;/use&gt; &lt;use xlink:href=&quot;#E1-MJMATHI-6D&quot; x=&quot;2098&quot; y=&quot;0&quot;&gt;&lt;/use&gt;&lt;g transform=&quot;translate(2977,0)&quot;&gt; &lt;use xlink:href=&quot;#E1-MJMATHI-63&quot; x=&quot;0&quot; y=&quot;0&quot;&gt;&lt;/use&gt; &lt;use transform=&quot;scale(0.707)&quot; xlink:href=&quot;#E1-MJMAIN-32&quot; x=&quot;613&quot; y=&quot;583&quot;&gt;&lt;/use&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;</code></pre><p><b style="color: red;">请大家注意，不要无节制地使用。因为服务器的资源有限，谢谢。</b></p>]]></content>
     
@@ -803,48 +851,6 @@ applyer.innerText = source.innerHTML;
       <category term="php" scheme="/tags/php/"/>
     
       <category term="API" scheme="/tags/API/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Mixed】Emlog 变量剖析+Keypad 开发心得+acme.sh</title>
-    <link href="/posts/emlog-variables-dev-of-keypad-and-acme-sh/"/>
-    <id>/posts/emlog-variables-dev-of-keypad-and-acme-sh/</id>
-    <published>2017-03-12T08:43:59.000Z</published>
-    <updated>2017-11-04T06:00:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这个博文写之前完全不知道怎么起标题……最近的技术学习比较杂乱，在这里略作笔记。</p><h2 id="1-EMLOG-常用变量"><a href="#1-EMLOG-常用变量" class="headerlink" title="1. EMLOG 常用变量"></a>1. EMLOG 常用变量</h2><p>最近萨德事件升温，之前对韩国没啥好感也恶感不多，这次实在是怒了，于是 Livere 直接成为祭品。之前一直没有换评论系统的原因是多说要根据每个网页修改 data-thread-key、data-title 和 data-url，之前还没找好解决方案。后来灵机一动，EMLOG 不是基于 PHP 的吗？扒一下 EMLOG 的变量不就 OK 了？于是前往了 EMLOG 的<a href="http://wiki.emlog.net/doku.php?id=tpldev" target="_blank" rel="external">官方 wiki</a>，发现了不少变量，但是似乎没同步更新，已经 out of date 了。扒了下程序代码，整理出了常用变量。如下表:<br><img src="https://static.chickger.pw/201703/Table_Of_EMLOGs_Variables.png" alt="Emlog 变量表"><br>这样，在多说的三个区域均输出相关三个变量的值即可。  </p><pre><code class="lang-html">&lt;div class=&quot;ds-thread&quot; data-thread-key=&quot;&lt;?php echo $logid ?&gt;&quot; data-title=&quot;&lt;?php echo $log_title; ?&gt;&quot; data-url=&quot;&lt;?php echo &#39;https://&#39;.$_SERVER[&#39;HTTP_HOST&#39;].$_SERVER[&#39;REQUEST_URI&#39;]; ?&gt;&quot;&gt;&lt;/div&gt;</code></pre><h2 id="2-Hello-Electron-from-Keypad"><a href="#2-Hello-Electron-from-Keypad" class="headerlink" title="2. Hello Electron, from Keypad!"></a>2. Hello Electron, from Keypad!</h2><p>项目的确是可以提升人的。我的第一个 electron 项目——<a href="https://github.com/Chickking/Keypad" target="_blank" rel="external">Keypad</a> 参上。目前还属于 Pre-beta 阶段，截止到3月12日最新版本为 0.9.1。Keypad 是基于 GPLv3 协议发布的，你可以在协议允许的范围内随意使用，目前没有 release 包。<br>经过这个项目，我练习了表格布局，也真正接触到了日常前端开发需要的东西。这次我最大的收获是对 HTML DOM 的练习。也见识到了一些很棒的项目如 QRCode.js 等等。<br>简单来说，这次的收获有:</p><ul><li>表格布局的练习</li><li>阴影层、浮动 div</li><li>CSS 的大量练习</li><li>electron API 的学习</li><li>HTML DOM 的使用</li><li>JavaScript 的练习</li></ul><p>我就挑主要的来介绍一下:  </p><h3 id="a-HTML-DOM"><a href="#a-HTML-DOM" class="headerlink" title="a) HTML DOM"></a>a) HTML DOM</h3><p>这次编写 Keypad 对我来说受益匪浅，HTML DOM 的学习无疑是我最大的收获。下面主要讲讲 Keypad 中 HTML DOM 的应用。</p><p style="color:red">推荐大家对照代码阅读。</p><h4 id="I-Substring"><a href="#I-Substring" class="headerlink" title="I. Substring"></a>I. Substring</h4><p>Keypad 的数字输入比较简单，而删除可以使用截取字符串的方式。Talk is cheap, show code:</p><pre><code class="lang-javascript">strNum.substring(0,strNum.length - 1);</code></pre><h4 id="II-window-location-hash"><a href="#II-window-location-hash" class="headerlink" title="II. window.location.hash"></a>II. window.location.hash</h4><p>对于静态网页，而不是 php、asp 等动态网页等等，想获取输入就只能靠 URL 中 # 号后面的内容。而 DOM 恰好提供了函数来获取，那就是<code>window.location.hash</code>。<br>因为这个代码中制作二维码完成后需要重置掉相关 div，我选择了使用重载网页的方式来重置，但是这样上方文本框中的号码也会不见。而通过 window.location.hash 即可传递电话号码。<br>index.html 中需要重载时的代码:</p><pre><code class="lang-html">&lt;input class=&quot;closeBtn&quot; type=&quot;submit&quot; name=&quot;X&quot; value=&quot;X&quot; onclick=&quot;window.location.hash = document.getElementById(&#39;NumberShow&#39;).value;window.location.reload();&quot;&gt;&lt;/input&gt;</code></pre><p>main.js 中在重载后获取号码的代码:</p><pre><code class="lang-javascript">//index.html 中将 &lt;body&gt; 的 onload 属性设置为 &quot;getNumber()&quot;function getNumber() {  var numSharp = window.location.hash;  if (numSharp != null) {      numSharp = numSharp.substring(1,numSharp.length);      var field = document.getElementById(&#39;NumberShow&#39;);      field.value = numSharp;  }}</code></pre><p></p><p style="font-weight: bold; color: red;">注意: window.location.hash 获取的数据是带 # 的，需要用 substring 截取字符串或通过正则匹配来获取参数。</p><p></p><h4 id="III-JavaScript-条件判断句"><a href="#III-JavaScript-条件判断句" class="headerlink" title="III. JavaScript 条件判断句"></a>III. JavaScript 条件判断句</h4><p>Keypad 中使用的 JavaScript 条件判断句型有 if……else 和 switch case。if……else 的用法比较简单:</p><pre><code class="lang-javascript">if (expression1 &gt; &lt; &gt;= &lt;= != == === expression2) {    exec_if;}else {    exec_else;}</code></pre><p>也可组合 if 和 else 组成 elseif 语句，即在 if 的判断为否时再判断。<br>switch case 的用法也很简单:</p><pre><code class="lang-javascript">switch (i) {    case 1:        exec_1;        break;    case &#39;apple&#39;:        exec_2;        break;    default:        exec_other;        break;}</code></pre><p>相信我无须解释了，这个是不是太过简单了些。  </p><h4 id="IV-CSS-混合讲解"><a href="#IV-CSS-混合讲解" class="headerlink" title="IV. CSS 混合讲解"></a>IV. CSS 混合讲解</h4><p></p><p style="color: orange;">高能预警: 下面代码很多。</p><br>首先，如果我们创建了一个悬浮窗，一般我们需要一个阴影背景，可以创建一个 div，在它的 CSS 里面加入如下代码:<p></p><pre><code class="lang-css">  /* 为了 JavaScript 的动态控制，我将 display: none; 写在了 div 的 style 属性里面。 */  position: fixed;  top: 0;  right: 0;  bottom: 0;  left: 0;  z-index: 1040;  background-color: #000;  opacity: 0.7;</code></pre><p>在 electron 中，为了让我们的 app 更像原生 app，可以加入<code>-webkit-user-select: none;</code>使得文字无法被选中。<br>为了让我的 app 和 Mac 更搭调，我设置了背景半透明，在 app.js 里面设置好 <code>mainWindow = new BrowserWindow({transparent: true, frame: true})</code>后，加入一个 div，设置 class 为 background，根据网上的实现方法，在 css 文件夹下放入一个 SVG 文件叫做 blur.svg。加入以下代码:</p><pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt;&lt;svg version=&quot;1.1&quot;     xmlns=&quot;http://www.w3.org/2000/svg&quot;     xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;     xmlns:ev=&quot;http://www.w3.org/2001/xml-events&quot;     baseProfile=&quot;full&quot;&gt;    &lt;defs&gt;        &lt;filter id=&quot;blur&quot;&gt;            &lt;feGaussianBlur stdDeviation=&quot;14&quot; /&gt;        &lt;/filter&gt;    &lt;/defs&gt;&lt;/svg&gt;</code></pre><p>在 main.css 中加入了以下代码来实现背景图层:</p><pre><code class="lang-css">.background {  background-color: #ededed;  width: 100%;  height: 100%;  position: fixed;  top: 0;  right: 0;  bottom: 0;  left: 0;  z-index: -1;  opacity: 0.9;  filter: url(css/blur.svg#blur);}</code></pre><p>效果如下:<br><img src="https://static.chickger.pw/201703/Keypad_blur.png" alt="半透明效果"></p><p>那个，electron 怎么打包来着？谁教教我啊，prebuilt  装不了，packager 又需要 prebuilt……</p><h2 id="3-acme-sh"><a href="#3-acme-sh" class="headerlink" title="3. acme.sh"></a>3. acme.sh</h2><p>之前用 <a href="https://sslforfree.com" target="_blank" rel="external">sslforfree.com</a> 实现了获取证书，但我不满意，通过 acme.sh+cron 可以实现定时更新证书。<br>首先我在 DNSPod 获取了 token，写了个脚本。贴上来了:</p><pre><code class="lang-bash">#!/bin/bashexport DP_Id=&quot;1234&quot;export DP_Key=&quot;KEY0000&quot;~/acme.sh/acme.sh --renew --force --dns dns_dp -d example.com -d a.example.com</code></pre><p>通过 cron，可以令他 60 天 renew 一次。</p><pre><code class="lang-cron">0 0 1 */2 * &quot;~/getssl.sh&quot; &gt; /dev/null</code></pre><p>先闪了，回头在写一些有的没的。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这个博文写之前完全不知道怎么起标题……最近的技术学习比较杂乱，在这里略作笔记。&lt;/p&gt;
-&lt;h2 id=&quot;1-EMLOG-常用变量&quot;&gt;&lt;a href=&quot;#1-EMLOG-常用变量&quot; class=&quot;headerlink&quot; title=&quot;1. EMLOG 常用变量&quot;&gt;&lt;/a&gt;1. EMLOG 常用变量&lt;/h2&gt;&lt;p&gt;最近萨德事件升温，之前对韩国没啥好感也恶感不多，这次实在是怒了，于是 Livere 直接成为祭品。之前一直没有换评论系统的原因是多说要根据每个网页修改 data-thread-key、data-title 和 data-url，之前还没找好解决方案。后来灵机一动，EMLOG 不是基于 PHP 的吗？扒一下 EMLOG 的变量不就 OK 了？于是前往了 EMLOG 的&lt;a href=&quot;http://wiki.emlog.net/doku.php?id=tpldev&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方 wiki&lt;/a&gt;，发现了不少变量，但是似乎没同步更新，已经 out of date 了。扒了下程序代码，整理出了常用变量。如下表:&lt;br&gt;&lt;img src=&quot;https://static.chickger.pw/201703/Table_Of_EMLOGs_Variables.png&quot; alt=&quot;Emlog 变量表&quot;&gt;&lt;br&gt;这样，在多说的三个区域均输出相关三个变量的值即可。  &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-html&quot;&gt;&amp;lt;div class=&amp;quot;ds-thread&amp;quot; data-thread-key=&amp;quot;&amp;lt;?php echo $logid ?&amp;gt;&amp;quot; data-title=&amp;quot;&amp;lt;?php echo $log_title; ?&amp;gt;&amp;quot; data-url=&amp;quot;&amp;lt;?php echo &amp;#39;https://&amp;#39;.$_SERVER[&amp;#39;HTTP_HOST&amp;#39;].$_SERVER[&amp;#39;REQUEST_URI&amp;#39;]; ?&amp;gt;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;2-Hello-Electron-from-Keypad&quot;&gt;&lt;a href=&quot;#2-Hello-Electron-from-Keypad&quot; class=&quot;headerlink&quot; title=&quot;2. Hello Electron, from Keypad!&quot;&gt;&lt;/a&gt;2. Hello Electron, from Keypad!&lt;/h2&gt;&lt;p&gt;项目的确是可以提升人的。我的第一个 electron 项目——&lt;a href=&quot;https://github.com/Chickking/Keypad&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Keypad&lt;/a&gt; 参上。目前还属于 Pre-beta 阶段，截止到3月12日最新版本为 0.9.1。Keypad 是基于 GPLv3 协议发布的，你可以在协议允许的范围内随意使用，目前没有 release 包。&lt;br&gt;经过这个项目，我练习了表格布局，也真正接触到了日常前端开发需要的东西。这次我最大的收获是对 HTML DOM 的练习。也见识到了一些很棒的项目如 QRCode.js 等等。&lt;br&gt;简单来说，这次的收获有:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;表格布局的练习&lt;/li&gt;
-&lt;li&gt;阴影层、浮动 div&lt;/li&gt;
-&lt;li&gt;CSS 的大量练习&lt;/li&gt;
-&lt;li&gt;electron API 的学习&lt;/li&gt;
-&lt;li&gt;HTML DOM 的使用&lt;/li&gt;
-&lt;li&gt;JavaScript 的练习&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;我就挑主要的来介绍一下:  &lt;/p&gt;
-&lt;h3 id=&quot;a-HTML-DOM&quot;&gt;&lt;a href=&quot;#a-HTML-DOM&quot; class=&quot;headerlink&quot; title=&quot;a) HTML DOM&quot;&gt;&lt;/a&gt;a) HTML DOM&lt;/h3&gt;&lt;p&gt;这次编写 Keypad 对我来说受益匪浅，HTML DOM 的学习无疑是我最大的收获。下面主要讲讲 Keypad 中 HTML DOM 的应用。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="JavaScript" scheme="/tags/JavaScript/"/>
-    
-      <category term="php" scheme="/tags/php/"/>
-    
-      <category term="HTML" scheme="/tags/HTML/"/>
-    
-      <category term="CSS" scheme="/tags/CSS/"/>
-    
-      <category term="electron" scheme="/tags/electron/"/>
     
   </entry>
   

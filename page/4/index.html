@@ -166,6 +166,113 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-deploying-frp-reverse-proxy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/deploying-frp-reverse-proxy/">FRP 的配置和使用</a>
+    </h1>
+  
+
+        
+        <a href="/posts/deploying-frp-reverse-proxy/" class="archive-article-date">
+  	<time datetime="2017-07-16T14:00:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近发现经常出现 502 Bad Gateway，这让我很不爽，山河 OJ 刚刚火了不久，怎么就闹出这种事情来。<br>后来发现是 ZeroTier One 的锅，于是在 Menci 的建议下，采用 FRP 转发流量到家里的服务器。现在稍作记录，以备今后我自己查看和他人配置需要。</p>
+<h3 id="双边配置"><a href="#双边配置" class="headerlink" title="双边配置"></a>双边配置</h3><p>首先执行 <code>wget https://github.com/fatedier/frp/releases/download/v0.20.0/frp_0.20.0_linux_amd64.tar.gz</code>，下载 frp。并解压。这里我们假定你的 frp 程序在 <code>/opt/frp/</code> 路径。</p>
+<h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>首先服务器必须是有公网 IP 的。<br>修改 frps.ini 或者 frps_full.ini，这两个模板根据自己的情况修改，full 的那个更模板全一点。我的配置文件为 frps_full.ini。<br>下面详解一下常用各项的意思:</p>
+<ul>
+<li>bind_port 绑定的交流端口，和客户端一致即可。</li>
+<li>bind_udp_port 打洞端口，没被占用、和 bind_port 不一致即可。</li>
+<li>kcp_bind_port KCP 协议端口，可以和 bind_port 一致。</li>
+<li>token 保证客户端和服务端一致，切勿泄露。</li>
+<li>tcp_mux TCP 连接复用，建议设置为 <code>true</code>。</li>
+</ul>
+<p>在 <code>/etc/systemd/system/</code> 下创建 <code>frps.service</code>，内容请根据自己的实际情况修改:</p>
+<pre><code>[Unit]
+Description=frps
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/frp
+ExecStart=/opt/frp/frps -c /opt/frp/frps_full.ini
+StandardOutput=null
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre><p>然后执行 <code>sudo systemctl enable frps.service &amp;&amp; sudo systemctl start frps.service</code>。</p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3>
+        
+          <a class="article-more-a" href="/posts/deploying-frp-reverse-proxy/#more">more >></a>
+        
+      
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网站</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/posts/deploying-frp-reverse-proxy/">继续阅读 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-turn-an-old-iPhone-into-a-server" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -590,111 +697,6 @@ applyer.innerText = source.innerHTML;
 
 
   
-    <article id="post-emlog-variables-dev-of-keypad-and-acme-sh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/emlog-variables-dev-of-keypad-and-acme-sh/">【Mixed】Emlog 变量剖析+Keypad 开发心得+acme.sh</a>
-    </h1>
-  
-
-        
-        <a href="/posts/emlog-variables-dev-of-keypad-and-acme-sh/" class="archive-article-date">
-  	<time datetime="2017-03-12T08:43:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这个博文写之前完全不知道怎么起标题……最近的技术学习比较杂乱，在这里略作笔记。</p>
-<h2 id="1-EMLOG-常用变量"><a href="#1-EMLOG-常用变量" class="headerlink" title="1. EMLOG 常用变量"></a>1. EMLOG 常用变量</h2><p>最近萨德事件升温，之前对韩国没啥好感也恶感不多，这次实在是怒了，于是 Livere 直接成为祭品。之前一直没有换评论系统的原因是多说要根据每个网页修改 data-thread-key、data-title 和 data-url，之前还没找好解决方案。后来灵机一动，EMLOG 不是基于 PHP 的吗？扒一下 EMLOG 的变量不就 OK 了？于是前往了 EMLOG 的<a href="http://wiki.emlog.net/doku.php?id=tpldev" target="_blank" rel="external">官方 wiki</a>，发现了不少变量，但是似乎没同步更新，已经 out of date 了。扒了下程序代码，整理出了常用变量。如下表:<br><img src="https://static.chickger.pw/201703/Table_Of_EMLOGs_Variables.png" alt="Emlog 变量表"><br>这样，在多说的三个区域均输出相关三个变量的值即可。  </p>
-<pre><code class="lang-html">&lt;div class=&quot;ds-thread&quot; data-thread-key=&quot;&lt;?php echo $logid ?&gt;&quot; data-title=&quot;&lt;?php echo $log_title; ?&gt;&quot; data-url=&quot;&lt;?php echo &#39;https://&#39;.$_SERVER[&#39;HTTP_HOST&#39;].$_SERVER[&#39;REQUEST_URI&#39;]; ?&gt;&quot;&gt;&lt;/div&gt;
-</code></pre>
-<h2 id="2-Hello-Electron-from-Keypad"><a href="#2-Hello-Electron-from-Keypad" class="headerlink" title="2. Hello Electron, from Keypad!"></a>2. Hello Electron, from Keypad!</h2><p>项目的确是可以提升人的。我的第一个 electron 项目——<a href="https://github.com/Chickking/Keypad" target="_blank" rel="external">Keypad</a> 参上。目前还属于 Pre-beta 阶段，截止到3月12日最新版本为 0.9.1。Keypad 是基于 GPLv3 协议发布的，你可以在协议允许的范围内随意使用，目前没有 release 包。<br>经过这个项目，我练习了表格布局，也真正接触到了日常前端开发需要的东西。这次我最大的收获是对 HTML DOM 的练习。也见识到了一些很棒的项目如 QRCode.js 等等。<br>简单来说，这次的收获有:</p>
-<ul>
-<li>表格布局的练习</li>
-<li>阴影层、浮动 div</li>
-<li>CSS 的大量练习</li>
-<li>electron API 的学习</li>
-<li>HTML DOM 的使用</li>
-<li>JavaScript 的练习</li>
-</ul>
-<p>我就挑主要的来介绍一下:  </p>
-<h3 id="a-HTML-DOM"><a href="#a-HTML-DOM" class="headerlink" title="a) HTML DOM"></a>a) HTML DOM</h3><p>这次编写 Keypad 对我来说受益匪浅，HTML DOM 的学习无疑是我最大的收获。下面主要讲讲 Keypad 中 HTML DOM 的应用。</p>
-        
-          <a class="article-more-a" href="/posts/emlog-variables-dev-of-keypad-and-acme-sh/#more">more >></a>
-        
-      
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">electron</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/emlog-variables-dev-of-keypad-and-acme-sh/">继续阅读 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -880,6 +882,10 @@ applyer.innerText = source.innerHTML;
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
             
             <div class="clearfix"></div>

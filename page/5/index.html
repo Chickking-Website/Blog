@@ -166,6 +166,111 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-emlog-variables-dev-of-keypad-and-acme-sh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/emlog-variables-dev-of-keypad-and-acme-sh/">【Mixed】Emlog 变量剖析+Keypad 开发心得+acme.sh</a>
+    </h1>
+  
+
+        
+        <a href="/posts/emlog-variables-dev-of-keypad-and-acme-sh/" class="archive-article-date">
+  	<time datetime="2017-03-12T08:43:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这个博文写之前完全不知道怎么起标题……最近的技术学习比较杂乱，在这里略作笔记。</p>
+<h2 id="1-EMLOG-常用变量"><a href="#1-EMLOG-常用变量" class="headerlink" title="1. EMLOG 常用变量"></a>1. EMLOG 常用变量</h2><p>最近萨德事件升温，之前对韩国没啥好感也恶感不多，这次实在是怒了，于是 Livere 直接成为祭品。之前一直没有换评论系统的原因是多说要根据每个网页修改 data-thread-key、data-title 和 data-url，之前还没找好解决方案。后来灵机一动，EMLOG 不是基于 PHP 的吗？扒一下 EMLOG 的变量不就 OK 了？于是前往了 EMLOG 的<a href="http://wiki.emlog.net/doku.php?id=tpldev" target="_blank" rel="external">官方 wiki</a>，发现了不少变量，但是似乎没同步更新，已经 out of date 了。扒了下程序代码，整理出了常用变量。如下表:<br><img src="https://static.chickger.pw/201703/Table_Of_EMLOGs_Variables.png" alt="Emlog 变量表"><br>这样，在多说的三个区域均输出相关三个变量的值即可。  </p>
+<pre><code class="lang-html">&lt;div class=&quot;ds-thread&quot; data-thread-key=&quot;&lt;?php echo $logid ?&gt;&quot; data-title=&quot;&lt;?php echo $log_title; ?&gt;&quot; data-url=&quot;&lt;?php echo &#39;https://&#39;.$_SERVER[&#39;HTTP_HOST&#39;].$_SERVER[&#39;REQUEST_URI&#39;]; ?&gt;&quot;&gt;&lt;/div&gt;
+</code></pre>
+<h2 id="2-Hello-Electron-from-Keypad"><a href="#2-Hello-Electron-from-Keypad" class="headerlink" title="2. Hello Electron, from Keypad!"></a>2. Hello Electron, from Keypad!</h2><p>项目的确是可以提升人的。我的第一个 electron 项目——<a href="https://github.com/Chickking/Keypad" target="_blank" rel="external">Keypad</a> 参上。目前还属于 Pre-beta 阶段，截止到3月12日最新版本为 0.9.1。Keypad 是基于 GPLv3 协议发布的，你可以在协议允许的范围内随意使用，目前没有 release 包。<br>经过这个项目，我练习了表格布局，也真正接触到了日常前端开发需要的东西。这次我最大的收获是对 HTML DOM 的练习。也见识到了一些很棒的项目如 QRCode.js 等等。<br>简单来说，这次的收获有:</p>
+<ul>
+<li>表格布局的练习</li>
+<li>阴影层、浮动 div</li>
+<li>CSS 的大量练习</li>
+<li>electron API 的学习</li>
+<li>HTML DOM 的使用</li>
+<li>JavaScript 的练习</li>
+</ul>
+<p>我就挑主要的来介绍一下:  </p>
+<h3 id="a-HTML-DOM"><a href="#a-HTML-DOM" class="headerlink" title="a) HTML DOM"></a>a) HTML DOM</h3><p>这次编写 Keypad 对我来说受益匪浅，HTML DOM 的学习无疑是我最大的收获。下面主要讲讲 Keypad 中 HTML DOM 的应用。</p>
+        
+          <a class="article-more-a" href="/posts/emlog-variables-dev-of-keypad-and-acme-sh/#more">more >></a>
+        
+      
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTML</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">electron</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/posts/emlog-variables-dev-of-keypad-and-acme-sh/">继续阅读 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-changing-website&#39;s-architecture" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -745,6 +850,10 @@ server {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
             
             <div class="clearfix"></div>
