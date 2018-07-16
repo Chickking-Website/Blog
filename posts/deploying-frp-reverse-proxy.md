@@ -37,6 +37,7 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 ```
+**请注意，frps 应当使用 root 用户启动。因为，在类 Unix 系统中，非 root 帐户不能绑定 1000 以下的端口。**  
 然后执行 `sudo systemctl enable frps.service && sudo systemctl start frps.service`。
 
 ### 客户端

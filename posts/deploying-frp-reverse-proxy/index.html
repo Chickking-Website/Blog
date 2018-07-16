@@ -16,7 +16,7 @@
 <meta property="og:url" content="/posts/deploying-frp-reverse-proxy/index.html">
 <meta property="og:site_name" content="凌风仙鸡的 Blog&amp;Diary">
 <meta property="og:description" content="最近发现经常出现 502 Bad Gateway，这让我很不爽，山河 OJ 刚刚火了不久，怎么就闹出这种事情来。后来发现是 ZeroTier One 的锅，于是在 Menci 的建议下，采用 FRP 转发流量到家里的服务器。现在稍作记录，以备今后我自己查看和他人配置需要。 双边配置首先执行 wget https://github.com/fatedier/frp/releases/download">
-<meta property="og:updated_time" content="2018-07-16T15:30:27.951Z">
+<meta property="og:updated_time" content="2018-07-16T22:59:28.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FRP 的配置和使用">
 <meta name="twitter:description" content="最近发现经常出现 502 Bad Gateway，这让我很不爽，山河 OJ 刚刚火了不久，怎么就闹出这种事情来。后来发现是 ZeroTier One 的锅，于是在 Menci 的建议下，采用 FRP 转发流量到家里的服务器。现在稍作记录，以备今后我自己查看和他人配置需要。 双边配置首先执行 wget https://github.com/fatedier/frp/releases/download">
@@ -209,7 +209,7 @@ Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
-</code></pre><p>然后执行 <code>sudo systemctl enable frps.service &amp;&amp; sudo systemctl start frps.service</code>。</p>
+</code></pre><p><strong>请注意，frps 应当使用 root 用户启动。因为，在类 Unix 系统中，非 root 帐户不能绑定 1000 以下的端口。</strong><br>然后执行 <code>sudo systemctl enable frps.service &amp;&amp; sudo systemctl start frps.service</code>。</p>
 <h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>修改 frpc.ini 或者 frpc_full.ini，这两个模板根据自己的情况修改，full 的那个更模板全一点。我的配置文件为 frpc_full.ini。<br>下面详解一下常用各项的意思:</p>
 <ul>
 <li>server_addr 服务器地址，域名或 IP 都可。</li>

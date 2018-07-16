@@ -209,7 +209,7 @@ Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
-</code></pre><p>然后执行 <code>sudo systemctl enable frps.service &amp;&amp; sudo systemctl start frps.service</code>。</p>
+</code></pre><p><strong>请注意，frps 应当使用 root 用户启动。因为，在类 Unix 系统中，非 root 帐户不能绑定 1000 以下的端口。</strong><br>然后执行 <code>sudo systemctl enable frps.service &amp;&amp; sudo systemctl start frps.service</code>。</p>
 <h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3>
         
           <a class="article-more-a" href="/posts/deploying-frp-reverse-proxy/#more">more >></a>
