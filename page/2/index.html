@@ -166,6 +166,130 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-exgcd_and_euler_sieve_template" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/exgcd_and_euler_sieve_template/">欧几里得算法、欧拉筛模板</a>
+    </h1>
+  
+
+        
+        <a href="/posts/exgcd_and_euler_sieve_template/" class="archive-article-date">
+  	<time datetime="2018-04-06T11:02:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="扩展欧几里得"><a href="#扩展欧几里得" class="headerlink" title="扩展欧几里得"></a>扩展欧几里得</h2><pre><code class="lang-cpp">int gcd(int const a, int const b) {
+    return !b ? a : gcd(b, a % b);
+}
+
+int lcm(int const a, int const b) {
+    return a / gcd(a, b) * b;
+}
+
+int exgcd(int const a, int const b, int &amp;x, int &amp;y) {
+    int ans = a;
+    if (b == 0) {
+        x = 1, y = 0;
+        return ans;
+    }
+    else {
+        ans = exgcd(b, a % b, y, x);
+        y -= x * (a / b);
+        return ans;
+    }
+}
+</code></pre>
+<h2 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h2><pre><code class="lang-cpp">bool is_prime[MAXN];
+int primes[MAXN], query[MAXM];
+int n, m, p;
+
+void sieve(int const n) {
+    memset(primes, 0, sizeof(primes));
+    memset(is_prime, 1, sizeof(is_prime));
+    is_prime[1] = false;
+    for (int i = 2; i &lt;= n; i++) {
+        if (is_prime[i]) {
+            primes[p++] = i;
+        }
+        for (int j = 0; j &lt; p &amp;&amp; i * primes[j] &lt;= n; j++) {
+            is_prime[ i * primes[j] ] = false;
+            if (! (i % primes[j]) )
+                break;
+        }
+    }
+}
+</code></pre>
+
+        
+          <a class="article-more-a" href="/posts/exgcd_and_euler_sieve_template/#more">more >></a>
+        
+      
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">算法模板</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/posts/exgcd_and_euler_sieve_template/">继续阅读 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2018-noip-winter-campus-in-qingdao" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -503,89 +627,6 @@ cp $dir/EFI/ubuntu/grubx64.efi $dir/EFI/CLOVER/CLOVERX64.EFI
       
         <p class="article-more-link">
           <a class="article-more-a" href="/posts/noip2015_magic_square/">继续阅读 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-variable-as-array-s-initial-length" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/variable-as-array-s-initial-length/">数组初始化长度问题</a>
-    </h1>
-  
-
-        
-        <a href="/posts/variable-as-array-s-initial-length/" class="archive-article-date">
-  	<time datetime="2017-12-21T05:33:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近正在 studying OI，今天中午闲的没事写了个冒泡排序。</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>输入整数进行升序排序。</p>
-<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>共两行，第一行输入数字 $n$，第二行输入 $n$ 个数字。</p>
-<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出排序完成的数据。</p>
-<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><h4 id="输入样例"><a href="#输入样例" class="headerlink" title="输入样例"></a>输入样例</h4>
-        
-          <a class="article-more-a" href="/posts/variable-as-array-s-initial-length/#more">more >></a>
-        
-      
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/variable-as-array-s-initial-length/">继续阅读 >></a>
         </p>
       
 

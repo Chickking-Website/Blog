@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>/posts/deploying-frp-reverse-proxy.html</loc>
+    
+    <lastmod>2018-07-16T15:30:27.951Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/deploying-frp-reverse-proxy/</loc>
+    
+    <lastmod>2018-07-16T15:30:27.951Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>/posts/made-an-API-of-parsing-LaTeX-formulas.html</loc>
     
     <lastmod>2018-07-16T14:24:20.967Z</lastmod>
@@ -12,20 +26,6 @@
     <loc>/posts/made-an-API-of-parsing-LaTeX-formulas/</loc>
     
     <lastmod>2018-07-16T14:24:20.967Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/deploying-frp-reverse-proxy.html</loc>
-    
-    <lastmod>2018-07-16T14:21:01.749Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/deploying-frp-reverse-proxy/</loc>
-    
-    <lastmod>2018-07-16T14:21:01.749Z</lastmod>
     
   </url>
   
