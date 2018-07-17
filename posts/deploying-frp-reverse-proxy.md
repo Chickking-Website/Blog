@@ -1,6 +1,6 @@
 ---
 layout: post
-title: FRP 的配置和使用
+title: FRP 作为 TCP 反向代理的部署
 date: 2018-07-16 22:00:27
 tags: [Linux,网络,网站]
 toc: true
