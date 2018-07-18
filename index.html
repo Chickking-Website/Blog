@@ -15,6 +15,7 @@
 <meta property="og:url" content="/index.html">
 <meta property="og:site_name" content="凌风仙鸡的 Blog&amp;Diary">
 <meta property="og:description" content="我的网上家园。">
+<meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="凌风仙鸡的 Blog&amp;Diary">
 <meta name="twitter:description" content="我的网上家园。">
@@ -294,7 +295,7 @@ WantedBy=multi-user.target
     <div class="article-entry" itemprop="articleBody">
       
         <p>之前就看到了这个前端生成萌妹子头像的 WebApp，然后现在发现被 wall 了。那么我就尽一点绵薄之力，做个 Mirror。 ( 虽然我似乎没换过头像~</p>
-<h3 id="地址-MakeGirlsMoe-镜像"><a href="#地址-MakeGirlsMoe-镜像" class="headerlink" title="地址: MakeGirlsMoe 镜像"></a>地址: <a href="https://make-girls.imvictor.tech" target="_blank" rel="external">MakeGirlsMoe 镜像</a></h3>
+<h3 id="地址-MakeGirlsMoe-镜像"><a href="#地址-MakeGirlsMoe-镜像" class="headerlink" title="地址: MakeGirlsMoe 镜像"></a>地址: <a href="https://make-girls.imvictor.tech" target="_blank" rel="noopener">MakeGirlsMoe 镜像</a></h3>
         
           <a class="article-more-a" href="/posts/mirrored-make-girls-moe/#more">more >></a>
         
@@ -358,11 +359,11 @@ WantedBy=multi-user.target
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这一个月倒是干了不少事，只是没找到时机记录下来。<br>前不久高爷带我去捡垃圾，弄到一台主机当服务器。<del>CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，</del>现在换成了 Intel(R) Xeon(R)  CPU E5440 @ 2.83GHz，比 BZOJ 好多了。于是我就想搭建一个 OJ。<br>由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。<br>但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。<br>本文需要对照官方安装指南查看，详情请阅读 <a href="https://github.com/syzoj/syzoj/" target="_blank" rel="external">syzoj/syzoj on GitHub</a> 和 <a href="https://syzoj-demo.t123yh.xyz:20170/article/1" target="_blank" rel="external">Demo 服务器账号及搭建指南 - 帖子 - Demo</a>。<br>这里还有一篇很详细的 <a href="http://blog.masellum.me/syzoj-setup/" target="_blank" rel="external">SYZOJ 部署指南</a>，是 Masellum 写的。值得参考。</p>
+        <p>这一个月倒是干了不少事，只是没找到时机记录下来。<br>前不久高爷带我去捡垃圾，弄到一台主机当服务器。<del>CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，</del>现在换成了 Intel(R) Xeon(R)  CPU E5440 @ 2.83GHz，比 BZOJ 好多了。于是我就想搭建一个 OJ。<br>由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。<br>但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。<br>本文需要对照官方安装指南查看，详情请阅读 <a href="https://github.com/syzoj/syzoj/" target="_blank" rel="noopener">syzoj/syzoj on GitHub</a> 和 <a href="https://syzoj-demo.t123yh.xyz:20170/article/1" target="_blank" rel="noopener">Demo 服务器账号及搭建指南 - 帖子 - Demo</a>。<br>这里还有一篇很详细的 <a href="http://blog.masellum.me/syzoj-setup/" target="_blank" rel="noopener">SYZOJ 部署指南</a>，是 Masellum 写的。值得参考。</p>
 <h3 id="SYZOJ-Web"><a href="#SYZOJ-Web" class="headerlink" title="SYZOJ-Web"></a>SYZOJ-Web</h3><p>Web 的搭建相对比较简单。大部分都可以按照 SYZOJ2 官方的教程来做。<br>这里只说明不一样的地方。<br>对于在 Ubuntu 下的这段命令:</p>
 <pre><code>apt install build-essential libboost1.58-all-dev nodejs rabbitmq-server redis-server nginx p7zip-full
 </code></pre><p>在 CentOS 上，首先，不能通过 yum 源安装 nodejs，因为 yum 源中的 nodejs 太古老，需要安装 8.0 版本(可能低一点也可以)。安装脚本如下:</p>
-<pre><code class="lang-bash">curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+<pre><code class="bash">curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 </code></pre>
 <p>nginx 需要单独加源，方法自行搜索，很多。<br>剩下的包则用接下来的命令安装:</p>
 <pre><code>yum groupinstall &quot;Development Tools&quot;
