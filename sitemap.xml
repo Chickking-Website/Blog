@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>/posts/deploying-syzoj2-on-centos/</loc>
+    
+    <lastmod>2018-07-30T11:42:51.924Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/deploying-syzoj2-on-centos.html</loc>
+    
+    <lastmod>2018-07-30T11:42:51.924Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>/posts/deploying-frp-reverse-proxy.html</loc>
     
     <lastmod>2018-07-17T03:29:02.469Z</lastmod>
@@ -40,20 +54,6 @@
     <loc>/posts/mirrored-make-girls-moe/</loc>
     
     <lastmod>2018-06-23T14:43:46.172Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/deploying-syzoj2-on-centos.html</loc>
-    
-    <lastmod>2018-06-21T09:02:04.775Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/deploying-syzoj2-on-centos/</loc>
-    
-    <lastmod>2018-06-21T09:02:04.775Z</lastmod>
     
   </url>
   

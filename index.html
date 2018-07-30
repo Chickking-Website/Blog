@@ -363,7 +363,7 @@ WantedBy=multi-user.target
 <h3 id="SYZOJ-Web"><a href="#SYZOJ-Web" class="headerlink" title="SYZOJ-Web"></a>SYZOJ-Web</h3><p>Web 的搭建相对比较简单。大部分都可以按照 SYZOJ2 官方的教程来做。<br>这里只说明不一样的地方。<br>对于在 Ubuntu 下的这段命令:</p>
 <pre><code>apt install build-essential libboost1.58-all-dev nodejs rabbitmq-server redis-server nginx p7zip-full
 </code></pre><p>在 CentOS 上，首先，不能通过 yum 源安装 nodejs，因为 yum 源中的 nodejs 太古老，需要安装 8.0 版本(可能低一点也可以)。安装脚本如下:</p>
-<pre><code class="bash">curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+<pre><code class="lang-bash">curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 </code></pre>
 <p>nginx 需要单独加源，方法自行搜索，很多。<br>剩下的包则用接下来的命令安装:</p>
 <pre><code>yum groupinstall &quot;Development Tools&quot;
@@ -1039,8 +1039,7 @@ void traversal(int amount_of_vertexes) {    // 遍历，传入参数为点数
       background-size:auto;
     }
   </style>
-  
-<!-- Google Analytics -->
+  <!-- Google Analytics -->
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97026057-2"></script>
 <script>
@@ -1050,7 +1049,6 @@ void traversal(int amount_of_vertexes) {    // 遍历，传入参数为点数
   gtag('config', 'UA-97026057-2');
 </script>
 <!-- End Google Analytics -->
-
 
   
 

@@ -44,7 +44,7 @@ Judge 端的情况，相对有一些问题。在 CentOS 上，出现了严重的
 ### 评测实时状态获取
 在 SYZOJ2 中浏览器在获取评测状态时，会尝试 SYZOJ-Web 的 `config.json` 中定义的 `"judge_server_addr"`。如果按照官方的配置将其配置为 `http://127.0.0.1:5284`，显然用户是不能访问的。  
 如果我们改成 OJ 的地址呢？在 CentOS 7 上，默认打开了防火墙，而防火墙默认会阻断 5284 端口。那么我们就有两种方案，一种是开放 5284 端口，但 SYZOJ-Frontend 监听下的 5284 端口不支持 HTTPS，导致 HTTPS 页面不能建立连接。综合来看，我们应当采用 nginx 反向代理来实现。这里提供配置文件参考。
-```plain
+```nginx
 server {
         listen 443 ssl http2;
         listen [::]:443 ssl http2;
