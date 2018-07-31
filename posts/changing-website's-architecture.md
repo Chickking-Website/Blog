@@ -15,7 +15,7 @@ toc: true
 由于当时想尝试一个评论系统，当时注册了一个新的 GitHub 帐户，创建新的仓库。看起来直接用 GitHub Pages 比较好，但是这样绑定域名后就无法使用 https 功能了，这可比较坑爹了。还好 nginx 可以做反向代理，这样就可以把请求先 https 后转发给 GitHub 了。  
 但是这样有性能瓶颈，我的服务器很渣，所以这样静态资源请求速度很慢。所以不得以在保持了原来反向代理的基础上。设置了请求具体的文件名则直接 rewrite 到 raw.githubusercontent.com 去。  
 先直接上代码:~~
-```config
+~~~ config
 server {
     listen 443;
     server_name static.chickger.pw;
@@ -33,7 +33,7 @@ server {
         listen 80;
         rewrite ^(.*)$ https://$host$1 permanent;
 }
-```
+~~~ 
 ~~删节掉了 SSL 证书部分，你懂得。  
 静态资源可以直接上传到 GitHub。~~  
 <img src="https://static.chickger.pw/201701/GitHub-asset.png"></img>

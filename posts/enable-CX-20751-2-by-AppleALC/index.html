@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.chickger.pw/content/uploadfile/201701/37d01483277857.png">
 <meta property="og:image" content="https://blog.chickger.pw/content/uploadfile/201701/63841483281442.png">
-<meta property="og:updated_time" content="2017-11-04T06:00:32.000Z">
+<meta property="og:updated_time" content="2018-07-31T02:18:14.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Hack】AppleALC 驱动 CX20751&#x2F;2 声卡实战">
 <meta name="twitter:description" content="2017 了哈，新年新气象。趁着 1 月 1 日，一番捣鼓把一度以为无解的 Mom’s 电脑上的声卡 CX20751/2 驱动了。感觉心里的一块大石头落地了呢，毕竟给她装了黑苹果却让她无法使用声卡怎么说也不是个事啊，愧疚感终于消除了！！ 1. 准备工作首先我们需要去下载一个 macOS 下的 App 叫做 AppleHDA Patcher.app，点击蓝链可以去 GitHub 下载。 然后在老妈的">
@@ -191,7 +191,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>2017 了哈，新年新气象。趁着 1 月 1 日，一番捣鼓把一度以为无解的 Mom’s 电脑上的声卡 CX20751/2 驱动了。感觉心里的一块大石头落地了呢，毕竟给她装了黑苹果却让她无法使用声卡怎么说也不是个事啊，愧疚感终于消除了！！</p>
-<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><p>首先我们需要去下载一个 macOS 下的 App 叫做 <a href="https://github.com/Mirone/AppleHDAPatcher" target="_blank" rel="external">AppleHDA Patcher.app</a>，点击蓝链可以去 GitHub 下载。</p>
+<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><p>首先我们需要去下载一个 macOS 下的 App 叫做 <a href="https://github.com/Mirone/AppleHDAPatcher" target="_blank" rel="noopener">AppleHDA Patcher.app</a>，点击蓝链可以去 GitHub 下载。</p>
 <p>然后在老妈的电脑上运行 AppleHDA Patcher.app，我选择右侧 Laptop 栏中的  Conexant CX20752（CX20751/2 声卡和 CX20752 声卡使用同一芯片）。泥萌就选择自己的声卡吧。</p>
 <p><img src="https://blog.chickger.pw/content/uploadfile/201701/37d01483277857.png" alt="MironeAudio"></p>
 <p>然后点击 patch AppleHDA，会在桌面上生成一个文件夹叫做 MironeAudio。我为了不让 Mom’s 电脑多一些她不需要的东西就没在她的电脑上装 Xcode。所以下面的步骤都是在我自己的电脑上进行的。</p>
@@ -261,7 +261,7 @@
 <p>当然某些 DSDT 大神们也可以把这个注入 Layout ID 和防止唤醒无声的补丁都在 DSDT 里面解决了，效果会更好。不过我等蒟蒻还是算了，除了除错 DSDT 啥也不会~~我是不是废了……</p>
 <h3 id="Step-4-重启看效果"><a href="#Step-4-重启看效果" class="headerlink" title="Step 4. 重启看效果"></a>Step 4. 重启看效果</h3><p>明眼人一看这就是在讲(còu)玄(zì)学(shù)。不过重启一下看到音量图标一下子出来了，按下 Fn+F12 也能听见音量调节的嘟嘟声也是蛮令人激动的有木有。如果没有驱动上请赶紧检查上面的步骤有没有做错 or 面壁思过想想 2016 自己怎么搞的 RP— :)</p>
 <h2 id="3-评价"><a href="#3-评价" class="headerlink" title="3. 评价"></a>3. 评价</h2><p>不得不说 vit9696 大神放出的 AppleALC 实在是声卡驱动界的一颗重磅炸弹。有了 AppleALC+AppleHDAPatcher 简直就是天下声卡任我驱的组合了。目前貌似声卡没什么是这个无法驱动的了。关键是这个不怕系统升级，只要 Clover 还能注入 kext 并关闭 SIP（其实不能注入也可以装到系统里面，不过如果不能关 SIP 就麻烦了……不过那样连系统也进不去），AppleHDA 基本就能永久驱动。</p>
-<p>还有 @Menci，你的 <a href="https://moeditor.org/" target="_blank" rel="external">Moeditor</a> 出奇的好用。</p>
+<p>还有 @Menci，你的 <a href="https://moeditor.org/" target="_blank" rel="noopener">Moeditor</a> 出奇的好用。</p>
 
 	    
 			<hr>

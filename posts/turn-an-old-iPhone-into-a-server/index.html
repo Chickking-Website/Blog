@@ -18,7 +18,7 @@
 <meta property="og:description" content="最近家里的一台服役了 13 年的老笔记本退役了，本来是作为家里校园网 Dr.COM 验证的专用机器 + 内网 Web 服务器的。对于笔记本运行发出的噪音的不满，我决定不使用笔记本电脑或台式机来接替它，而是使用 iPhone。   0. Dr.COM 验证程序a. 程序本身的配置最近闲逛 GitHub 时发现了一个可以直接用的 Dr.COM 认证的 Python 项目，而且也可以配合路由器使用，叫做">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://static.chickger.pw/201704/iPhoneVeency.png">
-<meta property="og:updated_time" content="2017-11-04T06:00:32.000Z">
+<meta property="og:updated_time" content="2018-07-31T02:16:57.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="让旧的 iPhone 成为服务器">
 <meta name="twitter:description" content="最近家里的一台服役了 13 年的老笔记本退役了，本来是作为家里校园网 Dr.COM 验证的专用机器 + 内网 Web 服务器的。对于笔记本运行发出的噪音的不满，我决定不使用笔记本电脑或台式机来接替它，而是使用 iPhone。   0. Dr.COM 验证程序a. 程序本身的配置最近闲逛 GitHub 时发现了一个可以直接用的 Dr.COM 认证的 Python 项目，而且也可以配合路由器使用，叫做">
@@ -190,7 +190,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>最近家里的一台服役了 13 年的老笔记本退役了，本来是作为家里校园网 Dr.COM 验证的专用机器 + 内网 Web 服务器的。对于笔记本运行发出的噪音的不满，我决定不使用笔记本电脑或台式机来接替它，而是使用 iPhone。  </p>
-<h2 id="0-Dr-COM-验证程序"><a href="#0-Dr-COM-验证程序" class="headerlink" title="0. Dr.COM 验证程序"></a>0. Dr.COM 验证程序</h2><h3 id="a-程序本身的配置"><a href="#a-程序本身的配置" class="headerlink" title="a. 程序本身的配置"></a>a. 程序本身的配置</h3><p>最近闲逛 GitHub 时发现了一个可以直接用的 Dr.COM 认证的 Python 项目，而且也可以配合路由器使用，叫做 <a href="https://github.com/drcoms/drcom-generic" target="_blank" rel="external">drcom_generic</a>。<br><strong><span style="color: red;">注: 建议大家直接去看该项目的 wiki，这里的 Dr.COM 配置方法不一定适合每一个校园网的网络环境。</span></strong><br>首先我们 Clone 下来这个项目，然后我们不需要别的，先用 Wireshark 抓一下原版客户端登录的包，保存为 dump.pcapang。<br>然后打开 Auto Configure 工具，上传 pcapang 包，即可生成你独有的配置文件。<br>Example:</p>
+<h2 id="0-Dr-COM-验证程序"><a href="#0-Dr-COM-验证程序" class="headerlink" title="0. Dr.COM 验证程序"></a>0. Dr.COM 验证程序</h2><h3 id="a-程序本身的配置"><a href="#a-程序本身的配置" class="headerlink" title="a. 程序本身的配置"></a>a. 程序本身的配置</h3><p>最近闲逛 GitHub 时发现了一个可以直接用的 Dr.COM 认证的 Python 项目，而且也可以配合路由器使用，叫做 <a href="https://github.com/drcoms/drcom-generic" target="_blank" rel="noopener">drcom_generic</a>。<br><strong><span style="color: red;">注: 建议大家直接去看该项目的 wiki，这里的 Dr.COM 配置方法不一定适合每一个校园网的网络环境。</span></strong><br>首先我们 Clone 下来这个项目，然后我们不需要别的，先用 Wireshark 抓一下原版客户端登录的包，保存为 dump.pcapang。<br>然后打开 Auto Configure 工具，上传 pcapang 包，即可生成你独有的配置文件。<br>Example:</p>
 <pre><code>server = &#39;192.168.88.66&#39;
 username = &#39;123456&#39;
 password = &#39;pass000&#39;
@@ -213,7 +213,7 @@ if IS_TEST:
     LOG_PATH = &#39;/dev/null&#39;
 </code></pre>
 <p>注: 如果是用 Windows 的同学想在电脑上跑这个 Python 脚本，可以把 LOG_PATH 设置为 <code>NUL</code>。<br>这样文件本身的修改配置就做完了。</p>
-<h3 id="b-iPhone-环境配置"><a href="#b-iPhone-环境配置" class="headerlink" title="b. iPhone 环境配置"></a>b. iPhone 环境配置</h3><p>首先我们需要一台越狱的 iPhone，版本任意。<br>在 Cydia 里面先安装上 <code>MobileTerminal</code>、<code>MobileTerm Backgrounder</code>、<code>Core Utilities</code>等。<br>Cydia/Telesphoreo 源里面的 Python 不要装，版本比较老，我发现 Linus Yang 大神写了一个 Python 2.7.6 的 deb 插件，可以去 GitHub 上<a href="https://github.com/linusyang/python-for-ios" target="_blank" rel="external">围观</a>一下。我这里也提供直连的<a href="https://github.com/linusyang/python-for-ios/releases/download/v2.7.6-3/python_2.7.6-3_iphoneos-arm.deb" target="_blank" rel="external">下载地址</a>。<br>安装好 Python，就可以把脚本放在这上面跑了。需要注意的是，作为服务器，应当尽可能的使其实现最大化的自动化，而这个脚本一旦断线是不会自动重连的。所以我们可以写一个  Shell 死循环，使其重复执行。<br>这里有同学会提问题: 那么如果我们想关掉它怎么办，<code>killall bash &amp;&amp; killall python</code> 会把我们当前操作的终端也一起关闭啊？这个问题可以简单粗暴地解决，即建立 bash 的软链接，取另一个名字，然后让其解释执行我们的脚本。代码如下:</p>
+<h3 id="b-iPhone-环境配置"><a href="#b-iPhone-环境配置" class="headerlink" title="b. iPhone 环境配置"></a>b. iPhone 环境配置</h3><p>首先我们需要一台越狱的 iPhone，版本任意。<br>在 Cydia 里面先安装上 <code>MobileTerminal</code>、<code>MobileTerm Backgrounder</code>、<code>Core Utilities</code>等。<br>Cydia/Telesphoreo 源里面的 Python 不要装，版本比较老，我发现 Linus Yang 大神写了一个 Python 2.7.6 的 deb 插件，可以去 GitHub 上<a href="https://github.com/linusyang/python-for-ios" target="_blank" rel="noopener">围观</a>一下。我这里也提供直连的<a href="https://github.com/linusyang/python-for-ios/releases/download/v2.7.6-3/python_2.7.6-3_iphoneos-arm.deb" target="_blank" rel="noopener">下载地址</a>。<br>安装好 Python，就可以把脚本放在这上面跑了。需要注意的是，作为服务器，应当尽可能的使其实现最大化的自动化，而这个脚本一旦断线是不会自动重连的。所以我们可以写一个  Shell 死循环，使其重复执行。<br>这里有同学会提问题: 那么如果我们想关掉它怎么办，<code>killall bash &amp;&amp; killall python</code> 会把我们当前操作的终端也一起关闭啊？这个问题可以简单粗暴地解决，即建立 bash 的软链接，取另一个名字，然后让其解释执行我们的脚本。代码如下:</p>
 <pre><code class="lang-bash">#!/bin/abcsh
 
 for((i=1;i&lt;=10;i=i));

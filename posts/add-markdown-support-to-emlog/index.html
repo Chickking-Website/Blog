@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="凌风仙鸡的 Blog&amp;Diary">
 <meta property="og:description" content="更新: 通过 Editor.md 可以获得更好的 Parse 效果，所以 Markdown Parser 部分已经弃用。现在很多博客系统比如 Typecho、Hexo 等等都支持 Markdown 写作，然而 emlog 竟然不支持，这不够科学，不够优雅，所以我们要让它优雅起来。接下来就要实战解决 Markdown 的问题。 删除自带编辑器emlog 自带的 KindEditor 不实用，首先功能">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2017-11-04T06:00:32.000Z">
+<meta property="og:updated_time" content="2018-07-31T02:16:57.585Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="让 emlog 支持 Markdown">
 <meta name="twitter:description" content="更新: 通过 Editor.md 可以获得更好的 Parse 效果，所以 Markdown Parser 部分已经弃用。现在很多博客系统比如 Typecho、Hexo 等等都支持 Markdown 写作，然而 emlog 竟然不支持，这不够科学，不够优雅，所以我们要让它优雅起来。接下来就要实战解决 Markdown 的问题。 删除自带编辑器emlog 自带的 KindEditor 不实用，首先功能">
@@ -192,7 +192,7 @@
 <pre><code class="lang-html">&lt;script charset=&quot;utf-8&quot; src=&quot;./editor/kindeditor.js?v=&lt;?php echo Option::EMLOG_VERSION; ?&gt;&quot;&gt;&lt;/script&gt;
 &lt;script charset=&quot;utf-8&quot; src=&quot;./editor/lang/zh_CN.js?v=&lt;?php echo Option::EMLOG_VERSION; ?&gt;&quot;&gt;&lt;/script&gt;
 </code></pre>
-<p>这样再修改文章、页面时，你就只会看到一个<code>&lt;textarea&gt;</code>，而不会看到编辑器的界面了。<br>这个文本框只会原封不动地显示博文的 HTML 代码，所以基本不可能用这个直接写作。<br>如果你希望简便一些，可以装个插件“Markdown for emlog”，不过有 bug，如果一般的写文字，这个插件就足够了，做 《EMLOG 大前端》模板的“小草”封装的，封装了一个 Editor.md，<a href="http://www.emlog.net/plugin/download/269" target="_blank" rel="external">下载链接 »</a>。但是如果代码多，并且 <code>h1-h6</code> 如果连续且中间没有任何内容，就会无法解析。BUG 复现例子:</p>
+<p>这样再修改文章、页面时，你就只会看到一个<code>&lt;textarea&gt;</code>，而不会看到编辑器的界面了。<br>这个文本框只会原封不动地显示博文的 HTML 代码，所以基本不可能用这个直接写作。<br>如果你希望简便一些，可以装个插件“Markdown for emlog”，不过有 bug，如果一般的写文字，这个插件就足够了，做 《EMLOG 大前端》模板的“小草”封装的，封装了一个 Editor.md，<a href="http://www.emlog.net/plugin/download/269" target="_blank" rel="noopener">下载链接 »</a>。但是如果代码多，并且 <code>h1-h6</code> 如果连续且中间没有任何内容，就会无法解析。BUG 复现例子:</p>
 <pre><code class="lang-markdown">## 12345
 ### 67890
 </code></pre>
@@ -217,15 +217,15 @@
         });
     });
 &lt;/script&gt;
-</code></pre><p>这样 Editor.md 就可以展示我们的代码了，但是它不会成为 Markdown Parser。它仅仅是作为预览 Markdown 代码并将 Markdown 代码原样提交的编辑器，而 Parse Markdown 将会在下一个部分提到。<br>虽然 Editor.md 可以使用，但是我并不建议仅使用它，因为我们下面的 Markdown Parser 在 Parse 后不会保留 Markdown 源码，所以推荐大家选择一个适合自己的编辑器。此处推荐 <a href="https://moeditor.org" target="_blank" rel="external">Moeditor</a>。</p>
-<h2 id="Markdown-Parser"><a href="#Markdown-Parser" class="headerlink" title="Markdown Parser"></a>Markdown Parser</h2><p>上面我们说到 Editor.md 只是原样提交 Markdown 源文件，而 emlog 本身并不支持 Markdown，所以需要一个 Parser 插件。<br>我发现 “Mike” 写的 Markdown 增强插件很好，但是我们需要配合代码高亮，所以需要做一些修改，由于比较杂乱，我就不再一一叙述，大家可以下载我修改的版本和原版作对照。<br>我的版本的<a href="http://static.chickger.pw/201703/advancemarkdown.tar.gz" target="_blank" rel="external">下载链接 »</a>，原版的<a href="http://www.emlog.net/plugin/download/160" target="_blank" rel="external">下载链接 »</a>。<br>但是仅仅 Parse 之后是不够的，因为不够好看，我比较喜欢 GitHub Flavored 的主题，我是直接提取了 Moeditor 的 CSS 应用到我模板的样式中的。</p>
-<h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p>用“Markdown 增强” Parse 出来的代码块是不会有代码高亮的。所以需要使用代码高亮模块，我选择的是 <a href="http://highlightjs.org" target="_blank" rel="external">Highlight.js</a>。<br>首先要对“Markdown 增强”进行修改，在 <code>博客目录/content/plugins/advancemarkdown/lib/</code> 下找到 <code>parsedown.php</code>。查找内容<code>language-</code>并替换为空。<br>现在就可以加载 Highlight.js 了，在模板的 <code>header.php</code> 中 <code>&lt;head&gt;</code> 加入以下代码(我使用了 GitHub CDN，大家自己随意，把代码里的<code>!!</code>括起来内容换成自己的 CDN 路径即可):</p>
+</code></pre><p>这样 Editor.md 就可以展示我们的代码了，但是它不会成为 Markdown Parser。它仅仅是作为预览 Markdown 代码并将 Markdown 代码原样提交的编辑器，而 Parse Markdown 将会在下一个部分提到。<br>虽然 Editor.md 可以使用，但是我并不建议仅使用它，因为我们下面的 Markdown Parser 在 Parse 后不会保留 Markdown 源码，所以推荐大家选择一个适合自己的编辑器。此处推荐 <a href="https://moeditor.org" target="_blank" rel="noopener">Moeditor</a>。</p>
+<h2 id="Markdown-Parser"><a href="#Markdown-Parser" class="headerlink" title="Markdown Parser"></a>Markdown Parser</h2><p>上面我们说到 Editor.md 只是原样提交 Markdown 源文件，而 emlog 本身并不支持 Markdown，所以需要一个 Parser 插件。<br>我发现 “Mike” 写的 Markdown 增强插件很好，但是我们需要配合代码高亮，所以需要做一些修改，由于比较杂乱，我就不再一一叙述，大家可以下载我修改的版本和原版作对照。<br>我的版本的<a href="http://static.chickger.pw/201703/advancemarkdown.tar.gz" target="_blank" rel="noopener">下载链接 »</a>，原版的<a href="http://www.emlog.net/plugin/download/160" target="_blank" rel="noopener">下载链接 »</a>。<br>但是仅仅 Parse 之后是不够的，因为不够好看，我比较喜欢 GitHub Flavored 的主题，我是直接提取了 Moeditor 的 CSS 应用到我模板的样式中的。</p>
+<h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p>用“Markdown 增强” Parse 出来的代码块是不会有代码高亮的。所以需要使用代码高亮模块，我选择的是 <a href="http://highlightjs.org" target="_blank" rel="noopener">Highlight.js</a>。<br>首先要对“Markdown 增强”进行修改，在 <code>博客目录/content/plugins/advancemarkdown/lib/</code> 下找到 <code>parsedown.php</code>。查找内容<code>language-</code>并替换为空。<br>现在就可以加载 Highlight.js 了，在模板的 <code>header.php</code> 中 <code>&lt;head&gt;</code> 加入以下代码(我使用了 GitHub CDN，大家自己随意，把代码里的<code>!!</code>括起来内容换成自己的 CDN 路径即可):</p>
 <pre><code class="lang-html">&lt;link href=&quot;!!CDN_PATH_HLJS!!/styles/github.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
 &lt;script src=&quot;!!CDN_PATH_HLJS!!/highlight.pack.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
 &lt;script&gt;hljs.initHighlightingOnLoad();&lt;/script&gt;
 </code></pre>
 <p>这样就可以实现代码块的高亮了。</p>
-<h2 id="Parse-TeX-公式"><a href="#Parse-TeX-公式" class="headerlink" title="Parse TeX 公式"></a>Parse TeX 公式</h2><p>很多 Markdown 编辑器比如 Moeditor 都支持 TeX 公式的 Parse，虽然我有一个 API，但是没有必要用 API 解决这个问题，JavaScript 库就可以又快又好地完美解决。<br>行业内解析 TeX 公式并排版的常见的两个 JavaScript 库是 <a href="http://mathjax.org" target="_blank" rel="external">MathJax</a> 和 <a href="http://khan.github.io/KaTeX/" target="_blank" rel="external">KaTeX</a>。我对比了一下，老牌的 MathJax 虽然功能强大但是速度太慢，我的博客又不需要过于强大的功能，所以 KaTeX 就足矣。<br>KaTeX 内置有一个扩展 Auto-Render，可以方便的解决这个问题。自然是要加载的。<br>如果需要加载 KaTeX 是非常简单的，在模板的 <code>header.php</code> 的 <code>&lt;head&gt;</code> 标签最后加入以下几行代码:  </p>
+<h2 id="Parse-TeX-公式"><a href="#Parse-TeX-公式" class="headerlink" title="Parse TeX 公式"></a>Parse TeX 公式</h2><p>很多 Markdown 编辑器比如 Moeditor 都支持 TeX 公式的 Parse，虽然我有一个 API，但是没有必要用 API 解决这个问题，JavaScript 库就可以又快又好地完美解决。<br>行业内解析 TeX 公式并排版的常见的两个 JavaScript 库是 <a href="http://mathjax.org" target="_blank" rel="noopener">MathJax</a> 和 <a href="http://khan.github.io/KaTeX/" target="_blank" rel="noopener">KaTeX</a>。我对比了一下，老牌的 MathJax 虽然功能强大但是速度太慢，我的博客又不需要过于强大的功能，所以 KaTeX 就足矣。<br>KaTeX 内置有一个扩展 Auto-Render，可以方便的解决这个问题。自然是要加载的。<br>如果需要加载 KaTeX 是非常简单的，在模板的 <code>header.php</code> 的 <code>&lt;head&gt;</code> 标签最后加入以下几行代码:  </p>
 <pre><code class="lang-html">&lt;script src=&quot;!!CDN_PATH_KATEX!!/katex.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;!!CDN_PATH_KATEX!!/contrib/auto-render.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>

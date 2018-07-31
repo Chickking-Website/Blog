@@ -28,12 +28,12 @@ toc: true
 ## 2. 显卡及显示器
 前面已经说了，这台 ASUS Pro451L 使用了 Intel HD Graphics 4400，而这个显卡并不是那么好驱动。不过当时我驱动时 RehabMan 大神已经写出了 FakePCIID，可以到 <a href="https://bitbucket.org/RehabMan/os-x-fake-pci-id/downloads">BitBucket</a> 下载，FakePCIID 还可以帮助驱动 Broadcom 网卡蓝牙等，这里不再细说。安装好 FakePCIID 后再 Clover 里面注入 ig-platform-id
 我当时还顺便把 EDID 给注入了(ig-platform-id 和 EDID 的具体注入方法远景一堆堆)，
-```plist
+~~~ plist
 <key>CustomEDID</key>
 <data><!-- BASE64 ENCODED DATA --></data>
 <key>ig-platform-id</key>
 <string>0x0a260006</string>
-```
+~~~ 
 当时还没有显现什么，但就在期末考试前，我通过 <a href="https://bitbucket.org/RehabMan/os-x-intel-backlight/downloads">IntelBacklight.kext</a> 驱动了亮度调节。该驱动还内建了显示器。这样，当我插入 VGA 或 HDMI 外置显示器时，能够自动识别外置显示器。(HDMI 音频没有条件，未测试)
 
 ## 3. 电池检测的迂回方法
@@ -43,9 +43,9 @@ toc: true
 <span style="font-size: 8pt; color: grey;">电池剩余时间显示</span>
 </figure>
 但是对于这台电脑，系统会自动认为不插电时就是低电量电池，可能是因为始终识别为 0% 电池百分比。可以通过删除报警提示程序来掩盖这个问题。
-```bash
+~~~ bash
 sudo rm -f /System/Library/CoreServices/Menu Extras/Battery.menu/Contents/Resources/lowBatteryWarning # 前提请关闭 SIP 的文件系统保护
-```
+~~~ 
 
 ## 4. 触摸板手势高仿
 终于说到大头了，这是今天刚刚做到的。我们知道 Mac 之所以令人喜爱，有一个重要的地方就是它的触摸板。而 ASUS Pro451L 所使用的 ELAN 触摸板算是上天眷顾的幸运儿。这种触摸板驱动的开发文档和第三方 Linux 开发者历史经验比较多，所以很快被移植到了 Mac 上。主要使用的驱动为 ApplePS2SmartTouchPad.kext。安装了这个驱动后，多指手势已然实现。但是这里面的手势和白苹果的手势基本不相同。要知道搞黑苹果的用惯了 macOS 是迟早要入果坑的。不能把我妈的习惯给搞坏了。我们知道在白苹果上：

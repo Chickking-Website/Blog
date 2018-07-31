@@ -5,7 +5,7 @@ tags: [OI,数论,算法模板]
 toc: true
 ---
 ## 扩展欧几里得
-```cpp
+~~~ cpp
 int gcd(int const a, int const b) {
     return !b ? a : gcd(b, a % b);
 }
@@ -26,10 +26,10 @@ int exgcd(int const a, int const b, int &x, int &y) {
         return ans;
     }
 }
-```
+~~~ 
 
 ## 欧拉筛
-```cpp
+~~~ cpp
 bool is_prime[MAXN];
 int primes[MAXN], query[MAXM];
 int n, m, p;
@@ -49,4 +49,4 @@ void sieve(int const n) {
         }
     }
 }
-```
+~~~ 

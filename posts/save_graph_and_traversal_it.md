@@ -8,7 +8,7 @@ toc: true
 本文全文使用这个图来进行演示。  
 ![图示](https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/graph_test.png)  
 我们规定，一共有 $n$ 个点，$m$ 条边。输入数据的格式为 “起点”、“终点”、“边权”。则这个图的输入数据为: 
-```plain
+~~~ plain
 1 2 2
 1 4 3
 2 3 1
@@ -16,7 +16,7 @@ toc: true
 3 1 2
 5 3 2
 5 4 4
-```
+~~~ 
 ### 邻接矩阵
 由于邻接矩阵空间消耗巨大，一般不使用。
 邻接矩阵初始化时，我们使用无穷。  
@@ -29,7 +29,7 @@ $\begin{bmatrix} 0 & 2 & \infty & 3 & \infty \\ \infty & 0 & 1 & \infty & 3 \\ 2
 建图、存储的时间复杂度为 $\text{O}(n^2)$ (若初始化为 $0$ 则为 $O(m)$ 的时间复杂度)，空间复杂度为 $\text{O}(n^2)$。  
 遍历的时间复杂度为 $\text{O}(n^2)$。  
 模板如下： 
-```cpp
+~~~ cpp
 #define INF LLONG_MAX
 typedef long long ll;
 const int MAXN = 1000 + 1;
@@ -66,7 +66,7 @@ void traversal(int amount_of_vertexes) {    // 遍历，传入参数为点数
             if (adj_matrix[i][j] != INF) ;  //操作一下
         }
 }
-```
+~~~ 
 下面我们将介绍一种更加优越的存储方式。
 ### 邻接表
 邻接表，是一种十分神奇的东西，它的基本组成是节点数组和边链表。  
@@ -80,7 +80,7 @@ void traversal(int amount_of_vertexes) {    // 遍历，传入参数为点数
 遍历的时间复杂度为 $\text{O}(m)$。  
 可以看出，因为邻接表使用了链表，因此内存管理是一个大问题，而且写起来也略微麻烦。
 模板如下： 
-```cpp
+~~~ cpp
 typedef long long ll;
 const int MAXN = 1000 + 1;
 
@@ -121,7 +121,7 @@ void traversal(int amount_of_vertexes) {    // 遍历，传入参数为点数
         }
     }
 }
-```
+~~~ 
 前方高能预警。
 ### 链式前向星
 链式前向星是一种更加~~神奇~~优越的存储方式。  
@@ -131,12 +131,12 @@ void traversal(int amount_of_vertexes) {    // 遍历，传入参数为点数
 显然，由于读入完成则建图完成，建图的时间复杂度为 $\text{O}(m)$，存储的空间复杂度为 $\text{O}(n+m)$。  
 遍历的时间复杂度应该为 $\text{O}(m)$ (个人分析，如有误请指正)。  
 根据我们的输入，点信息数组 head 的值为：  
-```plain
+~~~ plain
 下标：1 2 3 4 5
 数据：2 4 5 0 7
-```
+~~~ 
 边信息数组中的信息如下： 
-```cpp
+~~~ cpp
 edges[1].next = 2 ; edges[1].w = 2 ; edges[1].nextEdge = 0
 edges[2].next = 4 ; edges[2].w = 3 ; edges[2].nextEdge = 1
 edges[3].next = 3 ; edges[3].w = 1 ; edges[3].nextEdge = 0
@@ -144,9 +144,9 @@ edges[4].next = 5 ; edges[4].w = 3 ; edges[4].nextEdge = 3
 edges[5].next = 1 ; edges[5].w = 2 ; edges[5].nextEdge = 0
 edges[6].next = 3 ; edges[6].w = 2 ; edges[6].nextEdge = 0
 edges[7].next = 4 ; edges[7].w = 4 ; edges[7].nextEdge = 6
-```
+~~~ 
 模板如下： 
-```cpp
+~~~ cpp
 const int MAXN = 1000, MAXM = 2000;
 int head[MAXN];     // 存储点的信息
 int edge_count;     // 当前处理的边的编号
@@ -181,6 +181,6 @@ void traversal(int const n) {               // n 为点数
         }
     }
 }
-```
+~~~ 
 事实上，除了不能像邻接矩阵那样直接判断两个点之间是否连通，链式前向星几乎是完美的。  
 在实际应用中，也可以根据题目读入的数据，通过动态数组来做，能够进一步优化空间开销。

@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="凌风仙鸡的 Blog&amp;Diary">
 <meta property="og:description" content="1. 序言相信大家已经都看到 10 月 5 日的 Steve Jobs 纪念网页了。Steve 是一位天才，他逝世 5 周年，我们没有理由不去纪念他。 于是我就已经把纪念网页放上去了，为什么直到 10 天后才写关于网页的内容呢？主要是当时比较忙。那么我就梳理梳理在网页中使用的东西。 友情提示，最好先打开纪念页，对照代码来阅读这篇博文，以取得最佳效果。 2. 全站变灰纪念伟人嘛，总是要有点哀悼的气氛">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2017-11-04T06:00:32.000Z">
+<meta property="og:updated_time" content="2018-07-31T02:18:14.852Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅析乔布斯纪念页面">
 <meta name="twitter:description" content="1. 序言相信大家已经都看到 10 月 5 日的 Steve Jobs 纪念网页了。Steve 是一位天才，他逝世 5 周年，我们没有理由不去纪念他。 于是我就已经把纪念网页放上去了，为什么直到 10 天后才写关于网页的内容呢？主要是当时比较忙。那么我就梳理梳理在网页中使用的东西。 友情提示，最好先打开纪念页，对照代码来阅读这篇博文，以取得最佳效果。 2. 全站变灰纪念伟人嘛，总是要有点哀悼的气氛">
@@ -189,7 +189,7 @@
       
         <h2 id="1-序言"><a href="#1-序言" class="headerlink" title="1. 序言"></a>1. 序言</h2><p>相信大家已经都看到 10 月 5 日的 Steve Jobs 纪念网页了。Steve 是一位天才，他逝世 5 周年，我们没有理由不去纪念他。</p>
 <p>于是我就已经把纪念网页放上去了，为什么直到 10 天后才写关于网页的内容呢？主要是当时比较忙。那么我就梳理梳理在网页中使用的东西。</p>
-<p>友情提示，最好先打开<a href="http://www.chickger.pw/HomePage/2016/Steve%20Jobs/" target="_blank" rel="external">纪念页</a>，对照代码来阅读这篇博文，以取得最佳效果。</p>
+<p>友情提示，最好先打开<a href="http://www.chickger.pw/HomePage/2016/Steve%20Jobs/" target="_blank" rel="noopener">纪念页</a>，对照代码来阅读这篇博文，以取得最佳效果。</p>
 <h2 id="2-全站变灰"><a href="#2-全站变灰" class="headerlink" title="2. 全站变灰"></a>2. 全站变灰</h2><p>纪念伟人嘛，总是要有点哀悼的气氛。全站变灰是少不了的了。针对全站变灰，我们可以设置一个单独的 CSS 文件，然后在 index.html 和博客模板的 header.php 里面都引入这个文件，我是将这个文件放在了 www 站点下面，然后在 blog 站下面建立软链接。这样就可以通过一个 / 来全部搞定了。<br>Code:</p>
 <pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/special.css&quot; /&gt;
 </code></pre>
@@ -210,7 +210,7 @@
 }
 </code></pre>
 <p>当可视区域小于 540px 时，CSS 会自动加载移动版本的图片。</p>
-<p>在页面中我加入了背景音乐。但是众所周知，在移动设备上不会自动加载背景音乐，而这不是我希望的。我在网络上寻找了许久，发现 github 上有一个 gist 可以达到 fake-autoplay 的效果，<a href="https://gist.github.com/ufologist/50b4f2768126089c3e11" target="_blank" rel="external">传送门</a>。</p>
+<p>在页面中我加入了背景音乐。但是众所周知，在移动设备上不会自动加载背景音乐，而这不是我希望的。我在网络上寻找了许久，发现 github 上有一个 gist 可以达到 fake-autoplay 的效果，<a href="https://gist.github.com/ufologist/50b4f2768126089c3e11" target="_blank" rel="noopener">传送门</a>。</p>
 <h3 id="iii-第-2、4、5、6、7、8-屏"><a href="#iii-第-2、4、5、6、7、8-屏" class="headerlink" title="iii.第 2、4、5、6、7、8 屏"></a>iii.第 2、4、5、6、7、8 屏</h3><p>这几屏中使用的技术大同小异。主要是一些关于乔布斯的资料等等，如名人的悼念等。而这些我选择使用 iframe 来显示。</p>
 <p>为了实现 iframe 自适应高度，偶在 &lt;iframe&gt; 标签的 onload 中加入了 js 代码来实现 iframe 的高度自适应。以第五屏为例。Code:</p>
 <pre><code class="lang-html">&lt;iframe name=&quot;famouspeople&quot; id=&quot;famouspeople&quot; onload=&quot;this.height=famouspeople.document.body.scrollHeight&quot; width=80% src=&quot;data:text/html;base64,PCFET...tbD4K&quot;&gt;&lt;/iframe&gt;
@@ -237,7 +237,7 @@ document.getElementById(&#39;hdvideo&#39;).addEventListener(&quot;pause&quot;, f
 </code></pre>
 <p>打开网页一测试，发现果然可以了，这样整个网页就基本做完了。剩下的事情就是打包上传到服务器。</p>
 <h2 id="5-后记"><a href="#5-后记" class="headerlink" title="5. 后记"></a>5. 后记</h2><p>事实证明，为自己的偶像做事情的确是效率极高的（手动滑稽），这也算是我这么懒的人少有的如此疯狂地做一件事。不过越做这些就越会发现自己的不足，从而得到提升。所以想锻炼自己写代码的能力就自己找个项目做做吧。一而能提升代码水平，二来也能增强自信。许多伟大的项目都是在不经意间诞生的。</p>
-<p>这篇是我第一篇用 Markdown 写成的博文。使用的编辑器为 Menci 写的 <a href="https://moeditor.org" target="_blank" rel="external">Moeditor</a>，如果有兴趣可以去看看。</p>
+<p>这篇是我第一篇用 Markdown 写成的博文。使用的编辑器为 Menci 写的 <a href="https://moeditor.org" target="_blank" rel="noopener">Moeditor</a>，如果有兴趣可以去看看。</p>
 <p>[更新于 18:55] 我去，Moeditor 输出的 HTML 的 CSS 会覆盖部分博客原有的 CSS。吓得我赶紧把源码 clone 下来改了一份……</p>
 
 	    

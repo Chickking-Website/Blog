@@ -15,19 +15,19 @@ toc: true
 Web 的搭建相对比较简单。大部分都可以按照 SYZOJ2 官方的教程来做。  
 这里只说明不一样的地方。  
 对于在 Ubuntu 下的这段命令:
-```
+~~~ 
 apt install build-essential libboost1.58-all-dev nodejs rabbitmq-server redis-server nginx p7zip-full
-```
+~~~ 
 在 CentOS 上，首先，不能通过 yum 源安装 nodejs，因为 yum 源中的 nodejs 太古老，需要安装 8.0 版本(可能低一点也可以)。安装脚本如下:
-```bash
+~~~ bash
 curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
-```
+~~~ 
 nginx 需要单独加源，方法自行搜索，很多。  
 剩下的包则用接下来的命令安装:
-```
+~~~ 
 yum groupinstall "Development Tools"
 yum install boost-devel rabbitmq-server redis p7zip p7zip-plugins
-```
+~~~ 
 其他步骤可以参照官方教程来进行。  
 另外，不清楚是不是 bug，如果在 config.json 中，将 `"hostname"` 字段设置为一个域名(这样注册验证电子邮件的地址就是这个域名)，那么必须在 `/etc/hosts` 中将这个域名的 IP 地址解析到 127.0.0.1，否则会无法启动 Web 端。
 
@@ -44,7 +44,7 @@ Judge 端的情况，相对有一些问题。在 CentOS 上，出现了严重的
 ### 评测实时状态获取
 在 SYZOJ2 中浏览器在获取评测状态时，会尝试 SYZOJ-Web 的 `config.json` 中定义的 `"judge_server_addr"`。如果按照官方的配置将其配置为 `http://127.0.0.1:5284`，显然用户是不能访问的。  
 如果我们改成 OJ 的地址呢？在 CentOS 7 上，默认打开了防火墙，而防火墙默认会阻断 5284 端口。那么我们就有两种方案，一种是开放 5284 端口，但 SYZOJ-Frontend 监听下的 5284 端口不支持 HTTPS，导致 HTTPS 页面不能建立连接。综合来看，我们应当采用 nginx 反向代理来实现。这里提供配置文件参考。
-```nginx
+~~~ nginx
 server {
         listen 443 ssl http2;
         listen [::]:443 ssl http2;
@@ -62,7 +62,7 @@ server {
         ssl_certificate [cert];
         ssl_certificate_key [key];
 }
-```
+~~~ 
 然后在 SYZOJ-Web 的 `config.json` 中将 `"judge_server_addr"` 的值修改为你设置的评测机域名。
 
 ### 其他改动
@@ -72,23 +72,23 @@ server {
 #### Web 修改
 默认的，全站管理员可以在 Web 管理后台中，查看和修改配置文件。这是不安全的。因为一旦任何一个全站管理员的 Cookie 或者密码泄露，就可能导致 secret 和 token 等敏感信息被查看。  
 备份一下 `[你的 SYZOJ-Web 程序目录]/views/admin_raw.ejs`，然后再建立一个新的 `admin_raw.ejs`，将以下内容写入:
-```ejs
+~~~ ejs
 <% this.adminPage = 'raw'; %>
 <% include admin_header %>
 <p>系统管理员已禁止从 Web 端修改配置文件.</p>
 <% include admin_footer %>
-```
+~~~ 
 这样，配置文件就被限制为仅有拥有服务器 SSH 权限的人才能查看和修改的了。  
 如果你的数据库选用 `utf8mb4` 编码，可能遇到 `Unhandled rejection SequelizeDatabaseError: ER_TOO_LONG_KEY: Specified key was too long; max key length is 767 bytes` 的问题，这时你应当先用 root 权限登录 mysql，然后执行:
-```sql
+~~~ sql
 SET GLOBAL innodb_file_per_table = ON;
 SET GLOBAL innodb_large_prefix = ON;
-```
+~~~ 
 然后修改 `/etc/my.cnf` 加入以下语句:
-```plain
+~~~ plain
 default-storage-engine=INNODB
 innodb_large_prefix=on
-```
+~~~ 
 
 ----
 

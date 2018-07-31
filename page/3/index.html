@@ -557,13 +557,13 @@ copyrights: true
     <div class="article-entry" itemprop="articleBody">
       
         <p>首先要说声抱歉，由于我已经升入高中并且主打文化课，博文可能很难保持长期的更新。这篇博文涉及的东西早在一周前就已经做完，但一直拖着直到今天才开始写。话不多说，进入主题吧。</p>
-<h2 id="1-准备镜像"><a href="#1-准备镜像" class="headerlink" title="1. 准备镜像"></a>1. 准备镜像</h2><p>我们要模拟 PowerPC 版本的 Mac OS X，所以要准备好对应版本的 Mac OS X 的镜像。我发现有一个叫做 <a href="http://macintoshgarden.org/" target="_blank" rel="external">MacintoshGarden.org</a> 的网站，收集了许多旧版本 Mac OS X / Classic Mac OS 的资源。大家可以先下载着。</p>
-<h2 id="2-QEMU-版本下载"><a href="#2-QEMU-版本下载" class="headerlink" title="2. QEMU 版本下载"></a>2. QEMU 版本下载</h2><p>模拟 Mac OS X 10.4 之前的版本，只需要下载标准版本的  qemu-system-ppc 即可。只需要通过 brew 安装即可。这里给出 Emaculation.com 提供的 QEMU 的 <a href="http://www.emaculation.com/forum/viewtopic.php?f=34&amp;t=9028" target="_blank" rel="external">Windows 版本</a>和 <a href="http://www.emaculation.com/forum/viewtopic.php?f=34&amp;t=8848" target="_blank" rel="external">macOS 版本</a>。只需要安装置顶的版本即可。qemu.command 可配置如下 (Windows 用户请根据实际使用 Shell 情况修改):</p>
+<h2 id="1-准备镜像"><a href="#1-准备镜像" class="headerlink" title="1. 准备镜像"></a>1. 准备镜像</h2><p>我们要模拟 PowerPC 版本的 Mac OS X，所以要准备好对应版本的 Mac OS X 的镜像。我发现有一个叫做 <a href="http://macintoshgarden.org/" target="_blank" rel="noopener">MacintoshGarden.org</a> 的网站，收集了许多旧版本 Mac OS X / Classic Mac OS 的资源。大家可以先下载着。</p>
+<h2 id="2-QEMU-版本下载"><a href="#2-QEMU-版本下载" class="headerlink" title="2. QEMU 版本下载"></a>2. QEMU 版本下载</h2><p>模拟 Mac OS X 10.4 之前的版本，只需要下载标准版本的  qemu-system-ppc 即可。只需要通过 brew 安装即可。这里给出 Emaculation.com 提供的 QEMU 的 <a href="http://www.emaculation.com/forum/viewtopic.php?f=34&amp;t=9028" target="_blank" rel="noopener">Windows 版本</a>和 <a href="http://www.emaculation.com/forum/viewtopic.php?f=34&amp;t=8848" target="_blank" rel="noopener">macOS 版本</a>。只需要安装置顶的版本即可。qemu.command 可配置如下 (Windows 用户请根据实际使用 Shell 情况修改):</p>
 <pre><code class="lang-bash">#!/bin/bash
 cd &quot;$(dirname &quot;$0&quot;)&quot;
 ./qemu-system-ppc -hda osx_cheetah.qcow2 -hdb swap.img -cdrom cheetah.iso -m 512 -boot c -net nic,model=e1000 -net user
 </code></pre>
-<p>其中，-hda、-hdb 设置的是内置硬盘的镜像，-cdrom 是设置光盘镜像的路径。-m 是 RAM 的大小(以 MB 为单位)。而 -boot 则是第一启动项设置，c 为硬盘，d 为光盘。后面的 -net 是指网络配置，无需修改。<br>而对于 Mac OS X 10.4 以及以上版本，我们需要一个特殊版本的支持 mac99p 机型的 QEMU，由于我使用的是 macOS，故无法提供 Windows 版本。Mac 版本的下载我已经上传 CDN 了。下载地址在<a href="https://static.chickger.pw/201709/qemu-mac99p.zip" target="_blank" rel="external">这里</a>。<br>这个版本我没有内置 qemu.command，需要进行如下配置:</p>
+<p>其中，-hda、-hdb 设置的是内置硬盘的镜像，-cdrom 是设置光盘镜像的路径。-m 是 RAM 的大小(以 MB 为单位)。而 -boot 则是第一启动项设置，c 为硬盘，d 为光盘。后面的 -net 是指网络配置，无需修改。<br>而对于 Mac OS X 10.4 以及以上版本，我们需要一个特殊版本的支持 mac99p 机型的 QEMU，由于我使用的是 macOS，故无法提供 Windows 版本。Mac 版本的下载我已经上传 CDN 了。下载地址在<a href="https://static.chickger.pw/201709/qemu-mac99p.zip" target="_blank" rel="noopener">这里</a>。<br>这个版本我没有内置 qemu.command，需要进行如下配置:</p>
 <pre><code class="lang-bash">#!/bin/bash
 cd &quot;$(dirname &quot;$0&quot;)&quot;
 ./qemu-system-ppc-wip -bios openbios-qemu-wip.elf -L pc-bios -boot c -m 1024 -M mac99p -prom-env &quot;auto-boot?=true&quot; -net nic,model=e1000 -net user -hda osx_tiger.qcow2 -hdb swap.img

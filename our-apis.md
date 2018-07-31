@@ -14,7 +14,7 @@ comments: true
 
 <hr>
 #### 许可协议: 
-```plain
+~~~ plain
 阁下您好！
 
 欢迎阁下使用 “凌风仙鸡的 Blog&Diary 开放 API 服务”(下称“本站 API”)，在使用之前，阁下应当接受许可协议。
@@ -36,4 +36,4 @@ comments: true
 凌风仙鸡的 Blog&Diary
 
 2018 年 2 月 2 日
-```
+~~~ 

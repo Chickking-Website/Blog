@@ -188,10 +188,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这个博文写之前完全不知道怎么起标题……最近的技术学习比较杂乱，在这里略作笔记。</p>
-<h2 id="1-EMLOG-常用变量"><a href="#1-EMLOG-常用变量" class="headerlink" title="1. EMLOG 常用变量"></a>1. EMLOG 常用变量</h2><p>最近萨德事件升温，之前对韩国没啥好感也恶感不多，这次实在是怒了，于是 Livere 直接成为祭品。之前一直没有换评论系统的原因是多说要根据每个网页修改 data-thread-key、data-title 和 data-url，之前还没找好解决方案。后来灵机一动，EMLOG 不是基于 PHP 的吗？扒一下 EMLOG 的变量不就 OK 了？于是前往了 EMLOG 的<a href="http://wiki.emlog.net/doku.php?id=tpldev" target="_blank" rel="external">官方 wiki</a>，发现了不少变量，但是似乎没同步更新，已经 out of date 了。扒了下程序代码，整理出了常用变量。如下表:<br><img src="https://static.chickger.pw/201703/Table_Of_EMLOGs_Variables.png" alt="Emlog 变量表"><br>这样，在多说的三个区域均输出相关三个变量的值即可。  </p>
-<pre><code class="lang-html">&lt;div class=&quot;ds-thread&quot; data-thread-key=&quot;&lt;?php echo $logid ?&gt;&quot; data-title=&quot;&lt;?php echo $log_title; ?&gt;&quot; data-url=&quot;&lt;?php echo &#39;https://&#39;.$_SERVER[&#39;HTTP_HOST&#39;].$_SERVER[&#39;REQUEST_URI&#39;]; ?&gt;&quot;&gt;&lt;/div&gt;
-</code></pre>
-<h2 id="2-Hello-Electron-from-Keypad"><a href="#2-Hello-Electron-from-Keypad" class="headerlink" title="2. Hello Electron, from Keypad!"></a>2. Hello Electron, from Keypad!</h2><p>项目的确是可以提升人的。我的第一个 electron 项目——<a href="https://github.com/Chickking/Keypad" target="_blank" rel="external">Keypad</a> 参上。目前还属于 Pre-beta 阶段，截止到3月12日最新版本为 0.9.1。Keypad 是基于 GPLv3 协议发布的，你可以在协议允许的范围内随意使用，目前没有 release 包。<br>经过这个项目，我练习了表格布局，也真正接触到了日常前端开发需要的东西。这次我最大的收获是对 HTML DOM 的练习。也见识到了一些很棒的项目如 QRCode.js 等等。<br>简单来说，这次的收获有:</p>
+<h2 id="1-EMLOG-常用变量"><a href="#1-EMLOG-常用变量" class="headerlink" title="1. EMLOG 常用变量"></a>1. EMLOG 常用变量</h2><p>最近萨德事件升温，之前对韩国没啥好感也恶感不多，这次实在是怒了，于是 Livere 直接成为祭品。之前一直没有换评论系统的原因是多说要根据每个网页修改 data-thread-key、data-title 和 data-url，之前还没找好解决方案。后来灵机一动，EMLOG 不是基于 PHP 的吗？扒一下 EMLOG 的变量不就 OK 了？于是前往了 EMLOG 的<a href="http://wiki.emlog.net/doku.php?id=tpldev" target="_blank" rel="noopener">官方 wiki</a>，发现了不少变量，但是似乎没同步更新，已经 out of date 了。扒了下程序代码，整理出了常用变量。如下表:<br><img src="https://static.chickger.pw/201703/Table_Of_EMLOGs_Variables.png" alt="Emlog 变量表"><br>这样，在多说的三个区域均输出相关三个变量的值即可。<br>~~~ `html</p>
+<p><div class="ds-thread" data-thread-key="<?php echo $logid ?>" data-title="<?php echo $log_title; ?>" data-url="<?php echo 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>"></div><br>~~~ `</p>
+<h2 id="2-Hello-Electron-from-Keypad"><a href="#2-Hello-Electron-from-Keypad" class="headerlink" title="2. Hello Electron, from Keypad!"></a>2. Hello Electron, from Keypad!</h2><p>项目的确是可以提升人的。我的第一个 electron 项目——<a href="https://github.com/Chickking/Keypad" target="_blank" rel="noopener">Keypad</a> 参上。目前还属于 Pre-beta 阶段，截止到3月12日最新版本为 0.9.1。Keypad 是基于 GPLv3 协议发布的，你可以在协议允许的范围内随意使用，目前没有 release 包。<br>经过这个项目，我练习了表格布局，也真正接触到了日常前端开发需要的东西。这次我最大的收获是对 HTML DOM 的练习。也见识到了一些很棒的项目如 QRCode.js 等等。<br>简单来说，这次的收获有:</p>
 <ul>
 <li>表格布局的练习</li>
 <li>阴影层、浮动 div</li>
@@ -293,7 +292,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>昨天是貌似是情人节？咳咳，别想那些没用的、与自己无关的节日，昨天是 ENIAC 诞生 71 周年，这才是正道。<br>那顺手就给网站做个改造，这次也把之前的那几个改动整理整理，主要分为几个部分。</p>
-<h3 id="Part-1-GitHub-助力-静态资源存放"><a href="#Part-1-GitHub-助力-静态资源存放" class="headerlink" title="Part 1. GitHub 助力, 静态资源存放"></a>Part 1. GitHub 助力, 静态资源存放</h3><p>[Mar 25th 2017 14:17 更新] 静态资源已经存放到了国内的 <a href="https://coding.net/" target="_blank" rel="external">coding.net</a>，只需 CNAME 解析即可。<br><del>我们知道，网站一般要将静态资源存放在单独的服务器上，由于资金原因<em>(其实就是穷)</em>，单独服务器是用不起，纯粹的静态资源比如图片什么的是不怕别人知道目录树的。于是干脆就想到了 GitHub，毕竟 GitHub 的服务可是杠杠的。<br>由于当时想尝试一个评论系统，当时注册了一个新的 GitHub 帐户，创建新的仓库。看起来直接用 GitHub Pages 比较好，但是这样绑定域名后就无法使用 https 功能了，这可比较坑爹了。还好 nginx 可以做反向代理，这样就可以把请求先 https 后转发给 GitHub 了。<br>但是这样有性能瓶颈，我的服务器很渣，所以这样静态资源请求速度很慢。所以不得以在保持了原来反向代理的基础上。设置了请求具体的文件名则直接 rewrite 到 raw.githubusercontent.com 去。<br>先直接上代码:</del></p>
+<h3 id="Part-1-GitHub-助力-静态资源存放"><a href="#Part-1-GitHub-助力-静态资源存放" class="headerlink" title="Part 1. GitHub 助力, 静态资源存放"></a>Part 1. GitHub 助力, 静态资源存放</h3><p>[Mar 25th 2017 14:17 更新] 静态资源已经存放到了国内的 <a href="https://coding.net/" target="_blank" rel="noopener">coding.net</a>，只需 CNAME 解析即可。<br><del>我们知道，网站一般要将静态资源存放在单独的服务器上，由于资金原因<em>(其实就是穷)</em>，单独服务器是用不起，纯粹的静态资源比如图片什么的是不怕别人知道目录树的。于是干脆就想到了 GitHub，毕竟 GitHub 的服务可是杠杠的。<br>由于当时想尝试一个评论系统，当时注册了一个新的 GitHub 帐户，创建新的仓库。看起来直接用 GitHub Pages 比较好，但是这样绑定域名后就无法使用 https 功能了，这可比较坑爹了。还好 nginx 可以做反向代理，这样就可以把请求先 https 后转发给 GitHub 了。<br>但是这样有性能瓶颈，我的服务器很渣，所以这样静态资源请求速度很慢。所以不得以在保持了原来反向代理的基础上。设置了请求具体的文件名则直接 rewrite 到 raw.githubusercontent.com 去。<br>先直接上代码:</del></p>
 <pre><code class="lang-config">server {
     listen 443;
     server_name static.chickger.pw;
@@ -313,8 +312,8 @@ server {
 }
 </code></pre>
 <p><del>删节掉了 SSL 证书部分，你懂得。<br>静态资源可以直接上传到 GitHub。</del><br><img src="https://static.chickger.pw/201701/GitHub-asset.png"></p>
-<h3 id="Part-2-Let’s-Encrypt-证书替换"><a href="#Part-2-Let’s-Encrypt-证书替换" class="headerlink" title="Part 2. Let’s Encrypt, 证书替换"></a>Part 2. Let’s Encrypt, 证书替换</h3><p>原来用的沃通感觉药丸，Apple、Mozilla、Google 都不信任它和它的上级 CA —— StartCom 了。所以选择更换到 Let’s Encrypt。这里安利一个网站 <a href="https://sslforfree.com/" target="_blank" rel="external">sslforfree.com</a>，通过 acme.sh 来获取 SSL 证书，我使用的是 TXT DNS 验证，这种办法还算好，不怎么麻烦，但是设置好 DNS 的 TXT 记录后要略等几分钟来验证。以及千万要用 Chrome 打开这个网站，Safari 貌似不支持 blob: 协议，结果无法下载证书……遇到这种情况直接保存页面源码在 Chrome 里打开即可。</p>
-<h3 id="Part-3-Web-网站-UI-小修"><a href="#Part-3-Web-网站-UI-小修" class="headerlink" title="Part 3. Web, 网站 UI 小修"></a>Part 3. Web, 网站 UI 小修</h3><p>UI 部分没有动太多，填自己之前选择用这个模板的坑就不多说了。首先添加了一个提示条，这个是从 <a href="https://imququ.com/" target="_blank" rel="external">Jerry Qu</a> 大神那里看到的，就是对时间较久之前的文章给予提示。用 PHP 可以轻松造这个轮子。<br><img src="https://static.chickger.pw/201701/Time_tips.png"><br>就是这个东西。</p>
+<h3 id="Part-2-Let’s-Encrypt-证书替换"><a href="#Part-2-Let’s-Encrypt-证书替换" class="headerlink" title="Part 2. Let’s Encrypt, 证书替换"></a>Part 2. Let’s Encrypt, 证书替换</h3><p>原来用的沃通感觉药丸，Apple、Mozilla、Google 都不信任它和它的上级 CA —— StartCom 了。所以选择更换到 Let’s Encrypt。这里安利一个网站 <a href="https://sslforfree.com/" target="_blank" rel="noopener">sslforfree.com</a>，通过 acme.sh 来获取 SSL 证书，我使用的是 TXT DNS 验证，这种办法还算好，不怎么麻烦，但是设置好 DNS 的 TXT 记录后要略等几分钟来验证。以及千万要用 Chrome 打开这个网站，Safari 貌似不支持 blob: 协议，结果无法下载证书……遇到这种情况直接保存页面源码在 Chrome 里打开即可。</p>
+<h3 id="Part-3-Web-网站-UI-小修"><a href="#Part-3-Web-网站-UI-小修" class="headerlink" title="Part 3. Web, 网站 UI 小修"></a>Part 3. Web, 网站 UI 小修</h3><p>UI 部分没有动太多，填自己之前选择用这个模板的坑就不多说了。首先添加了一个提示条，这个是从 <a href="https://imququ.com/" target="_blank" rel="noopener">Jerry Qu</a> 大神那里看到的，就是对时间较久之前的文章给予提示。用 PHP 可以轻松造这个轮子。<br><img src="https://static.chickger.pw/201701/Time_tips.png"><br>就是这个东西。</p>
 <p>以及还有查看本文 Markdown 版本这个大家也看到了，也是从 Jerry Qu 大神那里看到的。我会在今后展示更好的实现方法。</p>
         
           <a class="article-more-a" href="/posts/changing-website's-architecture/#more">... </a>
@@ -407,7 +406,7 @@ server {
 <li>iMessage、FaceTime 和其他白果专用服务、硬件(如无痛升级)无法使用，以及时不时 iCloud 弹窗恶心人 0.55%</li>
 <li>黑苹果哪有完美的 233333333 0.01%</li>
 </ul>
-<h2 id="2-显卡及显示器"><a href="#2-显卡及显示器" class="headerlink" title="2. 显卡及显示器"></a>2. 显卡及显示器</h2><p>前面已经说了，这台 ASUS Pro451L 使用了 Intel HD Graphics 4400，而这个显卡并不是那么好驱动。不过当时我驱动时 RehabMan 大神已经写出了 FakePCIID，可以到 <a href="https://bitbucket.org/RehabMan/os-x-fake-pci-id/downloads" target="_blank" rel="external">BitBucket</a> 下载，FakePCIID 还可以帮助驱动 Broadcom 网卡蓝牙等，这里不再细说。安装好 FakePCIID 后再 Clover 里面注入 ig-platform-id<br>我当时还顺便把 EDID 给注入了(ig-platform-id 和 EDID 的具体注入方法远景一堆堆)，</p>
+<h2 id="2-显卡及显示器"><a href="#2-显卡及显示器" class="headerlink" title="2. 显卡及显示器"></a>2. 显卡及显示器</h2><p>前面已经说了，这台 ASUS Pro451L 使用了 Intel HD Graphics 4400，而这个显卡并不是那么好驱动。不过当时我驱动时 RehabMan 大神已经写出了 FakePCIID，可以到 <a href="https://bitbucket.org/RehabMan/os-x-fake-pci-id/downloads" target="_blank" rel="noopener">BitBucket</a> 下载，FakePCIID 还可以帮助驱动 Broadcom 网卡蓝牙等，这里不再细说。安装好 FakePCIID 后再 Clover 里面注入 ig-platform-id<br>我当时还顺便把 EDID 给注入了(ig-platform-id 和 EDID 的具体注入方法远景一堆堆)，</p>
 <pre><code class="lang-plist">&lt;key&gt;CustomEDID&lt;/key&gt;
 &lt;data&gt;&lt;!-- BASE64 ENCODED DATA --&gt;&lt;/data&gt;
 &lt;key&gt;ig-platform-id&lt;/key&gt;
@@ -500,7 +499,7 @@ server {
     <div class="article-entry" itemprop="articleBody">
       
         <p>2017 了哈，新年新气象。趁着 1 月 1 日，一番捣鼓把一度以为无解的 Mom’s 电脑上的声卡 CX20751/2 驱动了。感觉心里的一块大石头落地了呢，毕竟给她装了黑苹果却让她无法使用声卡怎么说也不是个事啊，愧疚感终于消除了！！</p>
-<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><p>首先我们需要去下载一个 macOS 下的 App 叫做 <a href="https://github.com/Mirone/AppleHDAPatcher" target="_blank" rel="external">AppleHDA Patcher.app</a>，点击蓝链可以去 GitHub 下载。</p>
+<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><p>首先我们需要去下载一个 macOS 下的 App 叫做 <a href="https://github.com/Mirone/AppleHDAPatcher" target="_blank" rel="noopener">AppleHDA Patcher.app</a>，点击蓝链可以去 GitHub 下载。</p>
 <p>然后在老妈的电脑上运行 AppleHDA Patcher.app，我选择右侧 Laptop 栏中的  Conexant CX20752（CX20751/2 声卡和 CX20752 声卡使用同一芯片）。泥萌就选择自己的声卡吧。</p>
 <p><img src="https://blog.chickger.pw/content/uploadfile/201701/37d01483277857.png" alt="MironeAudio"></p>
 <p>然后点击 patch AppleHDA，会在桌面上生成一个文件夹叫做 MironeAudio。我为了不让 Mom’s 电脑多一些她不需要的东西就没在她的电脑上装 Xcode。所以下面的步骤都是在我自己的电脑上进行的。</p>
@@ -596,7 +595,7 @@ server {
       
         <h2 id="1-序言"><a href="#1-序言" class="headerlink" title="1. 序言"></a>1. 序言</h2><p>相信大家已经都看到 10 月 5 日的 Steve Jobs 纪念网页了。Steve 是一位天才，他逝世 5 周年，我们没有理由不去纪念他。</p>
 <p>于是我就已经把纪念网页放上去了，为什么直到 10 天后才写关于网页的内容呢？主要是当时比较忙。那么我就梳理梳理在网页中使用的东西。</p>
-<p>友情提示，最好先打开<a href="http://www.chickger.pw/HomePage/2016/Steve%20Jobs/" target="_blank" rel="external">纪念页</a>，对照代码来阅读这篇博文，以取得最佳效果。</p>
+<p>友情提示，最好先打开<a href="http://www.chickger.pw/HomePage/2016/Steve%20Jobs/" target="_blank" rel="noopener">纪念页</a>，对照代码来阅读这篇博文，以取得最佳效果。</p>
 <h2 id="2-全站变灰"><a href="#2-全站变灰" class="headerlink" title="2. 全站变灰"></a>2. 全站变灰</h2><p>纪念伟人嘛，总是要有点哀悼的气氛。全站变灰是少不了的了。针对全站变灰，我们可以设置一个单独的 CSS 文件，然后在 index.html 和博客模板的 header.php 里面都引入这个文件，我是将这个文件放在了 www 站点下面，然后在 blog 站下面建立软链接。这样就可以通过一个 / 来全部搞定了。<br>Code:</p>
 <pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/special.css&quot; /&gt;
 </code></pre>

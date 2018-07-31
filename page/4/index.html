@@ -279,7 +279,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>最近家里的一台服役了 13 年的老笔记本退役了，本来是作为家里校园网 Dr.COM 验证的专用机器 + 内网 Web 服务器的。对于笔记本运行发出的噪音的不满，我决定不使用笔记本电脑或台式机来接替它，而是使用 iPhone。  </p>
-<h2 id="0-Dr-COM-验证程序"><a href="#0-Dr-COM-验证程序" class="headerlink" title="0. Dr.COM 验证程序"></a>0. Dr.COM 验证程序</h2><h3 id="a-程序本身的配置"><a href="#a-程序本身的配置" class="headerlink" title="a. 程序本身的配置"></a>a. 程序本身的配置</h3><p>最近闲逛 GitHub 时发现了一个可以直接用的 Dr.COM 认证的 Python 项目，而且也可以配合路由器使用，叫做 <a href="https://github.com/drcoms/drcom-generic" target="_blank" rel="external">drcom_generic</a>。<br><strong><span style="color: red;">注: 建议大家直接去看该项目的 wiki，这里的 Dr.COM 配置方法不一定适合每一个校园网的网络环境。</span></strong><br>首先我们 Clone 下来这个项目，然后我们不需要别的，先用 Wireshark 抓一下原版客户端登录的包，保存为 dump.pcapang。<br>然后打开 Auto Configure 工具，上传 pcapang 包，即可生成你独有的配置文件。<br>Example:</p>
+<h2 id="0-Dr-COM-验证程序"><a href="#0-Dr-COM-验证程序" class="headerlink" title="0. Dr.COM 验证程序"></a>0. Dr.COM 验证程序</h2><h3 id="a-程序本身的配置"><a href="#a-程序本身的配置" class="headerlink" title="a. 程序本身的配置"></a>a. 程序本身的配置</h3><p>最近闲逛 GitHub 时发现了一个可以直接用的 Dr.COM 认证的 Python 项目，而且也可以配合路由器使用，叫做 <a href="https://github.com/drcoms/drcom-generic" target="_blank" rel="noopener">drcom_generic</a>。<br><strong><span style="color: red;">注: 建议大家直接去看该项目的 wiki，这里的 Dr.COM 配置方法不一定适合每一个校园网的网络环境。</span></strong><br>首先我们 Clone 下来这个项目，然后我们不需要别的，先用 Wireshark 抓一下原版客户端登录的包，保存为 dump.pcapang。<br>然后打开 Auto Configure 工具，上传 pcapang 包，即可生成你独有的配置文件。<br>Example:</p>
 <pre><code>server = &#39;192.168.88.66&#39;
 username = &#39;123456&#39;
 password = &#39;pass000&#39;
@@ -302,7 +302,7 @@ if IS_TEST:
     LOG_PATH = &#39;/dev/null&#39;
 </code></pre>
 <p>注: 如果是用 Windows 的同学想在电脑上跑这个 Python 脚本，可以把 LOG_PATH 设置为 <code>NUL</code>。<br>这样文件本身的修改配置就做完了。</p>
-<h3 id="b-iPhone-环境配置"><a href="#b-iPhone-环境配置" class="headerlink" title="b. iPhone 环境配置"></a>b. iPhone 环境配置</h3><p>首先我们需要一台越狱的 iPhone，版本任意。<br>在 Cydia 里面先安装上 <code>MobileTerminal</code>、<code>MobileTerm Backgrounder</code>、<code>Core Utilities</code>等。<br>Cydia/Telesphoreo 源里面的 Python 不要装，版本比较老，我发现 Linus Yang 大神写了一个 Python 2.7.6 的 deb 插件，可以去 GitHub 上<a href="https://github.com/linusyang/python-for-ios" target="_blank" rel="external">围观</a>一下。我这里也提供直连的<a href="https://github.com/linusyang/python-for-ios/releases/download/v2.7.6-3/python_2.7.6-3_iphoneos-arm.deb" target="_blank" rel="external">下载地址</a>。<br>安装好 Python，就可以把脚本放在这上面跑了。需要注意的是，作为服务器，应当尽可能的使其实现最大化的自动化，而这个脚本一旦断线是不会自动重连的。所以我们可以写一个  Shell 死循环，使其重复执行。<br>这里有同学会提问题: 那么如果我们想关掉它怎么办，<code>killall bash &amp;&amp; killall python</code> 会把我们当前操作的终端也一起关闭啊？这个问题可以简单粗暴地解决，即建立 bash 的软链接，取另一个名字，然后让其解释执行我们的脚本。代码如下:</p>
+<h3 id="b-iPhone-环境配置"><a href="#b-iPhone-环境配置" class="headerlink" title="b. iPhone 环境配置"></a>b. iPhone 环境配置</h3><p>首先我们需要一台越狱的 iPhone，版本任意。<br>在 Cydia 里面先安装上 <code>MobileTerminal</code>、<code>MobileTerm Backgrounder</code>、<code>Core Utilities</code>等。<br>Cydia/Telesphoreo 源里面的 Python 不要装，版本比较老，我发现 Linus Yang 大神写了一个 Python 2.7.6 的 deb 插件，可以去 GitHub 上<a href="https://github.com/linusyang/python-for-ios" target="_blank" rel="noopener">围观</a>一下。我这里也提供直连的<a href="https://github.com/linusyang/python-for-ios/releases/download/v2.7.6-3/python_2.7.6-3_iphoneos-arm.deb" target="_blank" rel="noopener">下载地址</a>。<br>安装好 Python，就可以把脚本放在这上面跑了。需要注意的是，作为服务器，应当尽可能的使其实现最大化的自动化，而这个脚本一旦断线是不会自动重连的。所以我们可以写一个  Shell 死循环，使其重复执行。<br>这里有同学会提问题: 那么如果我们想关掉它怎么办，<code>killall bash &amp;&amp; killall python</code> 会把我们当前操作的终端也一起关闭啊？这个问题可以简单粗暴地解决，即建立 bash 的软链接，取另一个名字，然后让其解释执行我们的脚本。代码如下:</p>
         
           <a class="article-more-a" href="/posts/turn-an-old-iPhone-into-a-server/#more">... </a>
         
@@ -390,7 +390,7 @@ if IS_TEST:
     <div class="article-entry" itemprop="articleBody">
       
         <p>上一篇博文说到了让 emlog 支持 Markdown，但是在实际应用中我发现效果并不是非常理想，如在文章中输入<code>\r</code>会换行，以及不支持页面的 Markdown Parse。于是想去改进一下，读了 Editor.md 的文档，我决定基于 Editor.md 实现 Markdown 的 Parser。</p>
-<h2 id="1-安装并配置-Editor-md"><a href="#1-安装并配置-Editor-md" class="headerlink" title="1.安装并配置 Editor.md"></a>1.安装并配置 Editor.md</h2><p>安装 Editor.md 十分简单，我就不多说了，大家都会的。<br>重点在于配置 Editor.md，如何配置呢？这取决于你需要怎样的功能，这里推荐你去看看它的 <a href="https://pandao.github.io/editor.md/examples/index.html" target="_blank" rel="external">Examples</a>。<br>我的需求是 HTML in Markdown、TOC、以及输出 HTML，流程图和时序图以后恐怕也会用到。我的配置如下:</p>
+<h2 id="1-安装并配置-Editor-md"><a href="#1-安装并配置-Editor-md" class="headerlink" title="1.安装并配置 Editor.md"></a>1.安装并配置 Editor.md</h2><p>安装 Editor.md 十分简单，我就不多说了，大家都会的。<br>重点在于配置 Editor.md，如何配置呢？这取决于你需要怎样的功能，这里推荐你去看看它的 <a href="https://pandao.github.io/editor.md/examples/index.html" target="_blank" rel="noopener">Examples</a>。<br>我的需求是 HTML in Markdown、TOC、以及输出 HTML，流程图和时序图以后恐怕也会用到。我的配置如下:</p>
 <pre><code class="lang-html">        &lt;script type=&quot;text/javascript&quot;&gt;
             var testEditor;
 
@@ -506,7 +506,7 @@ applyer.innerText = source.innerHTML;
 <pre><code class="lang-html">&lt;script charset=&quot;utf-8&quot; src=&quot;./editor/kindeditor.js?v=&lt;?php echo Option::EMLOG_VERSION; ?&gt;&quot;&gt;&lt;/script&gt;
 &lt;script charset=&quot;utf-8&quot; src=&quot;./editor/lang/zh_CN.js?v=&lt;?php echo Option::EMLOG_VERSION; ?&gt;&quot;&gt;&lt;/script&gt;
 </code></pre>
-<p>这样再修改文章、页面时，你就只会看到一个<code>&lt;textarea&gt;</code>，而不会看到编辑器的界面了。<br>这个文本框只会原封不动地显示博文的 HTML 代码，所以基本不可能用这个直接写作。<br>如果你希望简便一些，可以装个插件“Markdown for emlog”，不过有 bug，如果一般的写文字，这个插件就足够了，做 《EMLOG 大前端》模板的“小草”封装的，封装了一个 Editor.md，<a href="http://www.emlog.net/plugin/download/269" target="_blank" rel="external">下载链接 »</a>。但是如果代码多，并且 <code>h1-h6</code> 如果连续且中间没有任何内容，就会无法解析。BUG 复现例子:</p>
+<p>这样再修改文章、页面时，你就只会看到一个<code>&lt;textarea&gt;</code>，而不会看到编辑器的界面了。<br>这个文本框只会原封不动地显示博文的 HTML 代码，所以基本不可能用这个直接写作。<br>如果你希望简便一些，可以装个插件“Markdown for emlog”，不过有 bug，如果一般的写文字，这个插件就足够了，做 《EMLOG 大前端》模板的“小草”封装的，封装了一个 Editor.md，<a href="http://www.emlog.net/plugin/download/269" target="_blank" rel="noopener">下载链接 »</a>。但是如果代码多，并且 <code>h1-h6</code> 如果连续且中间没有任何内容，就会无法解析。BUG 复现例子:</p>
 <pre><code class="lang-markdown">## 12345
 ### 67890
 </code></pre>
