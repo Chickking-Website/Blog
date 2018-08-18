@@ -23,7 +23,7 @@ toc: true
 - tcp_mux TCP 连接复用，建议设置为 `true`。
 
 在 `/etc/systemd/system/` 下创建 `frps.service`，内容请根据自己的实际情况修改:
-~~~ 
+```
 [Unit]
 Description=frps
 
@@ -36,7 +36,7 @@ Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
-~~~ 
+```
 **请注意，frps 应当使用 root 用户启动。因为，在类 Unix 系统中，非 root 帐户不能绑定 1000 以下的端口。**  
 然后执行 `sudo systemctl enable frps.service && sudo systemctl start frps.service`。
 
@@ -50,23 +50,23 @@ WantedBy=multi-user.target
 - protocol 协议，默认 TCP。
 
 下面添加配置块，配置块的基本格式如下:
-~~~ 
+```
 [备注]
 type = 连接类型 (tcp / kcp)
 local_ip = 本地 IP (一般填写 127.0.0.1)
 local_port = 本地端口
 remote_port = 远程端口
-~~~ 
+```
 例如:
-~~~ 
+```
 [https]
 type = tcp
 local_ip = 127.0.0.1
 local_port = 443
 remote_port = 443
-~~~ 
+```
 在 `/etc/systemd/system/` 下创建 `frpc.service`，内容请根据自己的实际情况修改:
-~~~ 
+```
 [Unit]
 Description=frpc
 
@@ -79,6 +79,6 @@ Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
-~~~ 
+```
 然后执行 `sudo systemctl enable frpc.service && sudo systemctl start frpc.service`。  
 这样，FRP 基本上就能充当一个合格的前端代理了。
