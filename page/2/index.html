@@ -167,6 +167,179 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-save_graph_and_traversal_it" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/save_graph_and_traversal_it/">图的存储与遍历</a>
+    </h1>
+  
+
+        
+        <a href="/posts/save_graph_and_traversal_it/" class="archive-article-date">
+  	<time datetime="2018-04-15T09:44:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>图的存储与一般有三种形式，邻接矩阵、邻接表、链式前向星（邻接表的一种）。<br>本文全文使用这个图来进行演示。<br><img src="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/graph_test.png" alt="图示"><br>我们规定，一共有 $n$ 个点，$m$ 条边。输入数据的格式为 “起点”、“终点”、“边权”。则这个图的输入数据为: </p>
+<pre><code class="lang-plain">1 2 2
+1 4 3
+2 3 1
+2 5 3
+3 1 2
+5 3 2
+5 4 4
+</code></pre>
+<h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><p>由于邻接矩阵空间消耗巨大，一般不使用。<br>邻接矩阵初始化时，我们使用无穷。<br>$\begin{bmatrix} \infty &amp; \infty &amp; \infty &amp; \infty &amp; \infty \\ \infty &amp; \infty &amp; \infty &amp; \infty &amp; \infty \\ \infty &amp; \infty &amp; \infty &amp; \infty &amp; \infty \\ \infty &amp; \infty &amp; \infty &amp; \infty &amp; \infty \\ \infty &amp; \infty &amp; \infty &amp; \infty &amp; \infty \end{bmatrix}$<br>因为对于有些题目，存在瞬移术，可以将某个权重的边跳过，这时可以把它的边权设为 0，这样就和不连通的情况产生了冲突，因此，就不能使用 0 为初值，当然，对于不存在这种情况的题目，仍可使用 0。<br>对于这个图，其邻接矩阵为：<br>$\begin{bmatrix} 0 &amp; 2 &amp; \infty &amp; 3 &amp; \infty \\ \infty &amp; 0 &amp; 1 &amp; \infty &amp; 3 \\ 2 &amp; \infty &amp; 0 &amp; \infty &amp; \infty \\ \infty &amp; \infty &amp; \infty &amp; 0 &amp; \infty \\ \infty &amp; \infty &amp; 2 &amp; 4 &amp; 0 \end{bmatrix}$<br>邻接矩阵的实质，就是用元素的有无来判断两个点是否连通。<br>因此，邻接矩阵的遍历效率很低，空间开销也很大，而且不能存储重边，可以存储自环(不过好像用处不大)。<br>建图、存储的时间复杂度为 $\text{O}(n^2)$ (若初始化为 $0$ 则为 $O(m)$ 的时间复杂度)，空间复杂度为 $\text{O}(n^2)$。<br>遍历的时间复杂度为 $\text{O}(n^2)$。<br>模板如下： </p>
+<pre><code class="lang-cpp">#define INF LLONG_MAX
+typedef long long ll;
+const int MAXN = 1000 + 1;
+
+ll adj_matrix[MAXN][MAXN]; // 邻接矩阵声明，若为不带权图，则可以将 long long 改为 bool.
+
+inline void addEdge(int prev, int next, ll w = 1) {   // 加边，默认为有向图，边权默认为 1，便于使用不带权图
+    adj_matrix[prev][next] = w;
+}
+
+void init(int maxn, bool is_zero = false) {     // 初始化
+    if (is_zero) return;                        // 若初始化为 0 则直接退出
+    for (int i = 1; i &lt;= maxn; i++)             // 外循环
+        for (int j = 1; j &lt;= maxn; j++) {       // 内循环
+            if (i == j) continue;               // 若起点终点则初始化为 0 
+            adj_matrix[i][j] = INF;             // 否则初始化为无穷大
+        }
+}
+
+void read(int const m, bool directed = true, bool have_weight = true) { // m 为数据组数，即边数，directed 为是否有向，have_weight 为是否带权
+    int a = 0, b = 0, w = 1;                // 声明变量
+    for (int i = 1; i &lt;= m; i++) {          // 开始读入数据
+        scanf(&quot;%d %d&quot;, &amp;a, &amp;b);             // 读入
+        if (have_weight) scanf(&quot;%d&quot;, &amp;w);   // 若带权，就读入权值
+        addEdge(a, b, w);                   // 加边
+        if (!directed) addEdge(b, a, w);    // 若不带方向，即为无向图，添加反向边
+    }
+}
+
+void traversal(int amount_of_vertexes) {    // 遍历，传入参数为点数
+    for (int i = 1; i &lt;= amount_of_vertexes; i++)
+        for (int j = 1; j &lt;= amount_of_vertexes; j++) {
+            if (i == j) continue;
+            if (adj_matrix[i][j] != INF) ;  //操作一下
+        }
+}
+</code></pre>
+<p>下面我们将介绍一种更加优越的存储方式。</p>
+<h3 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h3><p>邻接表，是一种十分神奇的东西，它的基本组成是节点数组和边链表。<br>像之前那个图，邻接表如下：<br><img src="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/list_fixed.png" alt="邻接表"><br>根据输入可以发现，邻接表是一种<strong>动态</strong>存储方式。<br>邻接表的边是倒序存储的，也就是说，邻接表的构建和输入顺序是有关联的，但并不影响。<br>邻接表可以存储重边和自环。<br>事实上，边链表<strong>相对输入顺序</strong>，是<strong>倒序</strong>存储的。<br>显然，动态建图存储的时间、空间复杂度为 $\text{O}(m)$。<br>遍历的时间复杂度为 $\text{O}(m)$。<br>可以看出，因为邻接表使用了链表，因此内存管理是一个大问题，而且写起来也略微麻烦。<br>模板如下： </p>
+<pre><code class="lang-cpp">typedef long long ll;
+const int MAXN = 1000 + 1;
+
+struct Node {
+    struct Edge *firstEdge;     // 第一条边 (事实上是最后一条边，因为倒序)
+    Node() {
+        firstEdge = NULL;       // 设置指针初值为空
+    }
+} Graph[MAXN];
+struct Edge {
+    Node *prev, *next;          // 前驱点、后继点
+    ll w;                       // 权值
+    Edge *nextEdge;             // 下一条边 (事实上是上一条边，因为倒序)
+
+    Edge(Node *const &amp;prev, Node *const &amp;next, const ll &amp;w) : prev(prev), next(next), w(w), nextEdge(prev-&gt;firstEdge) {}    // 构造函数，利用 initializer list，自动设置 nextEdge 为下(事实上为上)一条边。
+};
+
+inline void addEdge(int prev, int next, ll w = 1) {   // 添加边，默认有向，边权 w 默认为 1，便于使用不带权图
+    Graph[prev].firstEdge = new Edge (&amp;Graph[prev], &amp;Graph[next], w);
+}
+
+void read(int const m, bool directed = true, bool have_weight = true) { // m 为数据组数，即边数，directed 为是否有向，have_weight 为是否带权
+    int a = 0, b = 0, w = 1;                // 声明变量
+    for (int i = 1; i &lt;= m; i++) {          // 开始读入数据
+        scanf(&quot;%d %d&quot;, &amp;a, &amp;b);             // 读入
+        if (have_weight) scanf(&quot;%d&quot;, &amp;w);   // 若带权，就读入权值
+        addEdge(a, b, w);                   // 加边
+        if (!directed) addEdge(b, a, w);    // 若不带方向，即为无向图，添加反向边
+    }
+}
+
+void traversal(int amount_of_vertexes) {    // 遍历，传入参数为点数
+    for (int i = 1; i &lt;= amount_of_vertexes; i++) {
+        for (Edge* e = Graph[i].firstEdge; e != NULL; e = e-&gt;nextEdge) {
+            /*e-&gt;next ...;
+            e-&gt;prev ...;
+            ...*/ // 此处可以操作
+        }
+    }
+}
+</code></pre>
+<p>前方高能预警。</p>
+        
+          <a class="article-more-a" href="/posts/save_graph_and_traversal_it/#more">... </a>
+        
+      
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">算法模板</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">图论</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/posts/save_graph_and_traversal_it/">继续阅读 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-exgcd_and_euler_sieve_template" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -566,100 +739,9 @@ cp $dir/EFI/ubuntu/grubx64.efi $dir/EFI/CLOVER/CLOVERX64.EFI
 
 
   
-    <article id="post-noip2015_magic_square" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/noip2015_magic_square/">「NOIP2015」神奇的幻方</a>
-    </h1>
-  
-
-        
-        <a href="/posts/noip2015_magic_square/" class="archive-article-date">
-  	<time datetime="2017-12-30T00:31:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>幻方是一种很神奇的 $N \times N$ 矩阵：它由数字 $1,2,3,\cdots \cdots ,N \times N$ 构成，且每行、每列及两条对角线上的数字之和都相同。</p>
-<p>当 $N$ 为奇数时，我们可以通过下方法构建一个幻方：</p>
-<p>首先将 $1$ 写在第一行的中间。</p>
-<p>之后，按如下方式从小到大依次填写每个数 $K (K=2,3,\cdots,N \times N)$ ：</p>
-<p>1.若 $(K-1)$ 在第一行但不在最后一列，则将 $K$ 填在最后一行， $(K-1)$ 所在列的右一列；</p>
-<p>2.若 $(K-1)$ 在最后一列但不在第一行，则将 $K$ 填在第一列， $(K-1)$ 所在行的上一行；</p>
-<p>3.若 $(K-1)$ 在第一行最后一列，则将 $K$ 填在 $(K-1)$ 的正下方；</p>
-<p>4.若 $(K-1)$ 既不在第一行，也不在最后一列，如果 $(K-1)$ 的右上方还未填数，则将 $K$ 填在 $(K-1)$ 的右上方，否则将 $K$ 填在 $(K-1)$ 的正下方。</p>
-<p>现给定 $N$ ，请按上述方法构造 $N \times N$ 的幻方。</p>
-        
-          <a class="article-more-a" href="/posts/noip2015_magic_square/#more">... </a>
-        
-      
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">NOIP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/noip2015_magic_square/">继续阅读 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 

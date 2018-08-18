@@ -167,6 +167,111 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-https-requests-forwarding-using-sniproxy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/https-requests-forwarding-using-sniproxy/">SNIProxy 实现服务器反向代理多个带加密网站</a>
+    </h1>
+  
+
+        
+        <a href="/posts/https-requests-forwarding-using-sniproxy/" class="archive-article-date">
+  	<time datetime="2018-08-18T08:04:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前通过 FRP 来实现了单个网站不泄露证书的 HTTPS 反向代理，但是缺点是一台服务器只能代理一个网站，即一个前端只能对应一个后端。这多少有些不够方便，也不方便与他人合租一台服务器。</p>
+<p>SNIProxy 则是一个不错的解决方案。它通过浏览器访问时提供的 SNI 头来判断访问域名，然后可以根据域名来选择转发请求到何处。由于这个过程不涉及加密和解密，因此除了匹配正则表达式几乎没有性能损失，同时也不需要在前端服务器上部署 HTTPS 证书，也无需担心数据泄露的问题。<br>本教程适用的 Linux 发行版为 CentOS 7.4。</p>
+<h2 id="安装-SNIProxy"><a href="#安装-SNIProxy" class="headerlink" title="安装 SNIProxy"></a>安装 SNIProxy</h2><p>SNIProxy 这个软件并不在大多数 Linux 操作系统默认的软件源中。因此需要手动编译以及安装。<br>编译安装教程可以参考软件官方 README.md。项目的地址是: <a href="https://github.com/dlundquist/sniproxy" target="_blank" rel="noopener">SNIProxy on GitHub</a>。<br>我这里也提供一个打包好的 RPM 包，可直接通过 <code>yum</code> 安装在 CentOS 7 上。下载地址为 <a href="https://cloud.imvictor.tech/s/b8WqDWsJcrbgfLQ" target="_blank" rel="noopener">Cloud Storage</a>。  </p>
+<h2 id="配置-SNIProxy"><a href="#配置-SNIProxy" class="headerlink" title="配置 SNIProxy"></a>配置 SNIProxy</h2><p>安装好包之后，SNIProxy 应该已经在 <code>/usr/sbin/sniproxy</code> 了。<br>在大多数情况下，我们希望它作为一个服务启动，这样方便管理。但 SNIProxy 并没有把自己安装为服务，因此需要我们手动添加。<br>将以下内容放置到 <code>/etc/systemd/system/sniproxy.service</code>。</p>
+<pre><code class="lang-ini">[Unit]
+Description=SNIProxy
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/sniproxy -f
+StandardOutput=null
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>这样就可以通过 <code>systemctl</code> 来控制 SNIProxy 了。<br>然后我们需要编辑 SNIProxy 的配置文件 <code>/etc/sniproxy.conf</code>，配置文件示例参见官方 README。 </p>
+<p>下面有几点小提示:</p>
+<ol>
+<li>注意，<code>listener</code> 后面如果带有 <code>127.0.0.1</code>，则只有本机才能传入连接。因此，一般推荐把 <code>listener 127.0.0.1:443</code>，改为 <code>listener 443</code>。 </li>
+<li><code>fallback</code> 参数的意思类似于 switch-case 语句的 <code>default</code> 选项。即所有给出的情况全部失配后，选择将请求转发到这个参数所配置的服务器上。</li>
+<li>SNIProxy 也可以转发 HTTP 流量，只要把 <code>protocol</code> 后面的 <code>tls</code> 改成 <code>http</code> 即可。</li>
+</ol>
+        
+          <a class="article-more-a" href="/posts/https-requests-forwarding-using-sniproxy/#more">... </a>
+        
+      
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网站</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/posts/https-requests-forwarding-using-sniproxy/">继续阅读 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-deploying-frp-reverse-proxy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -517,182 +622,9 @@ yum install boost-devel rabbitmq-server redis p7zip p7zip-plugins
 
 
   
-    <article id="post-save_graph_and_traversal_it" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/save_graph_and_traversal_it/">图的存储与遍历</a>
-    </h1>
-  
-
-        
-        <a href="/posts/save_graph_and_traversal_it/" class="archive-article-date">
-  	<time datetime="2018-04-15T09:44:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>图的存储与一般有三种形式，邻接矩阵、邻接表、链式前向星（邻接表的一种）。<br>本文全文使用这个图来进行演示。<br><img src="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/graph_test.png" alt="图示"><br>我们规定，一共有 $n$ 个点，$m$ 条边。输入数据的格式为 “起点”、“终点”、“边权”。则这个图的输入数据为: </p>
-<pre><code class="lang-plain">1 2 2
-1 4 3
-2 3 1
-2 5 3
-3 1 2
-5 3 2
-5 4 4
-</code></pre>
-<h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><p>由于邻接矩阵空间消耗巨大，一般不使用。<br>邻接矩阵初始化时，我们使用无穷。<br>$\begin{bmatrix} \infty &amp; \infty &amp; \infty &amp; \infty &amp; \infty \\ \infty &amp; \infty &amp; \infty &amp; \infty &amp; \infty \\ \infty &amp; \infty &amp; \infty &amp; \infty &amp; \infty \\ \infty &amp; \infty &amp; \infty &amp; \infty &amp; \infty \\ \infty &amp; \infty &amp; \infty &amp; \infty &amp; \infty \end{bmatrix}$<br>因为对于有些题目，存在瞬移术，可以将某个权重的边跳过，这时可以把它的边权设为 0，这样就和不连通的情况产生了冲突，因此，就不能使用 0 为初值，当然，对于不存在这种情况的题目，仍可使用 0。<br>对于这个图，其邻接矩阵为：<br>$\begin{bmatrix} 0 &amp; 2 &amp; \infty &amp; 3 &amp; \infty \\ \infty &amp; 0 &amp; 1 &amp; \infty &amp; 3 \\ 2 &amp; \infty &amp; 0 &amp; \infty &amp; \infty \\ \infty &amp; \infty &amp; \infty &amp; 0 &amp; \infty \\ \infty &amp; \infty &amp; 2 &amp; 4 &amp; 0 \end{bmatrix}$<br>邻接矩阵的实质，就是用元素的有无来判断两个点是否连通。<br>因此，邻接矩阵的遍历效率很低，空间开销也很大，而且不能存储重边，可以存储自环(不过好像用处不大)。<br>建图、存储的时间复杂度为 $\text{O}(n^2)$ (若初始化为 $0$ 则为 $O(m)$ 的时间复杂度)，空间复杂度为 $\text{O}(n^2)$。<br>遍历的时间复杂度为 $\text{O}(n^2)$。<br>模板如下： </p>
-<pre><code class="lang-cpp">#define INF LLONG_MAX
-typedef long long ll;
-const int MAXN = 1000 + 1;
-
-ll adj_matrix[MAXN][MAXN]; // 邻接矩阵声明，若为不带权图，则可以将 long long 改为 bool.
-
-inline void addEdge(int prev, int next, ll w = 1) {   // 加边，默认为有向图，边权默认为 1，便于使用不带权图
-    adj_matrix[prev][next] = w;
-}
-
-void init(int maxn, bool is_zero = false) {     // 初始化
-    if (is_zero) return;                        // 若初始化为 0 则直接退出
-    for (int i = 1; i &lt;= maxn; i++)             // 外循环
-        for (int j = 1; j &lt;= maxn; j++) {       // 内循环
-            if (i == j) continue;               // 若起点终点则初始化为 0 
-            adj_matrix[i][j] = INF;             // 否则初始化为无穷大
-        }
-}
-
-void read(int const m, bool directed = true, bool have_weight = true) { // m 为数据组数，即边数，directed 为是否有向，have_weight 为是否带权
-    int a = 0, b = 0, w = 1;                // 声明变量
-    for (int i = 1; i &lt;= m; i++) {          // 开始读入数据
-        scanf(&quot;%d %d&quot;, &amp;a, &amp;b);             // 读入
-        if (have_weight) scanf(&quot;%d&quot;, &amp;w);   // 若带权，就读入权值
-        addEdge(a, b, w);                   // 加边
-        if (!directed) addEdge(b, a, w);    // 若不带方向，即为无向图，添加反向边
-    }
-}
-
-void traversal(int amount_of_vertexes) {    // 遍历，传入参数为点数
-    for (int i = 1; i &lt;= amount_of_vertexes; i++)
-        for (int j = 1; j &lt;= amount_of_vertexes; j++) {
-            if (i == j) continue;
-            if (adj_matrix[i][j] != INF) ;  //操作一下
-        }
-}
-</code></pre>
-<p>下面我们将介绍一种更加优越的存储方式。</p>
-<h3 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h3><p>邻接表，是一种十分神奇的东西，它的基本组成是节点数组和边链表。<br>像之前那个图，邻接表如下：<br><img src="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/list_fixed.png" alt="邻接表"><br>根据输入可以发现，邻接表是一种<strong>动态</strong>存储方式。<br>邻接表的边是倒序存储的，也就是说，邻接表的构建和输入顺序是有关联的，但并不影响。<br>邻接表可以存储重边和自环。<br>事实上，边链表<strong>相对输入顺序</strong>，是<strong>倒序</strong>存储的。<br>显然，动态建图存储的时间、空间复杂度为 $\text{O}(m)$。<br>遍历的时间复杂度为 $\text{O}(m)$。<br>可以看出，因为邻接表使用了链表，因此内存管理是一个大问题，而且写起来也略微麻烦。<br>模板如下： </p>
-<pre><code class="lang-cpp">typedef long long ll;
-const int MAXN = 1000 + 1;
-
-struct Node {
-    struct Edge *firstEdge;     // 第一条边 (事实上是最后一条边，因为倒序)
-    Node() {
-        firstEdge = NULL;       // 设置指针初值为空
-    }
-} Graph[MAXN];
-struct Edge {
-    Node *prev, *next;          // 前驱点、后继点
-    ll w;                       // 权值
-    Edge *nextEdge;             // 下一条边 (事实上是上一条边，因为倒序)
-
-    Edge(Node *const &amp;prev, Node *const &amp;next, const ll &amp;w) : prev(prev), next(next), w(w), nextEdge(prev-&gt;firstEdge) {}    // 构造函数，利用 initializer list，自动设置 nextEdge 为下(事实上为上)一条边。
-};
-
-inline void addEdge(int prev, int next, ll w = 1) {   // 添加边，默认有向，边权 w 默认为 1，便于使用不带权图
-    Graph[prev].firstEdge = new Edge (&amp;Graph[prev], &amp;Graph[next], w);
-}
-
-void read(int const m, bool directed = true, bool have_weight = true) { // m 为数据组数，即边数，directed 为是否有向，have_weight 为是否带权
-    int a = 0, b = 0, w = 1;                // 声明变量
-    for (int i = 1; i &lt;= m; i++) {          // 开始读入数据
-        scanf(&quot;%d %d&quot;, &amp;a, &amp;b);             // 读入
-        if (have_weight) scanf(&quot;%d&quot;, &amp;w);   // 若带权，就读入权值
-        addEdge(a, b, w);                   // 加边
-        if (!directed) addEdge(b, a, w);    // 若不带方向，即为无向图，添加反向边
-    }
-}
-
-void traversal(int amount_of_vertexes) {    // 遍历，传入参数为点数
-    for (int i = 1; i &lt;= amount_of_vertexes; i++) {
-        for (Edge* e = Graph[i].firstEdge; e != NULL; e = e-&gt;nextEdge) {
-            /*e-&gt;next ...;
-            e-&gt;prev ...;
-            ...*/ // 此处可以操作
-        }
-    }
-}
-</code></pre>
-<p>前方高能预警。</p>
-        
-          <a class="article-more-a" href="/posts/save_graph_and_traversal_it/#more">... </a>
-        
-      
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">算法模板</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">图论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/save_graph_and_traversal_it/">继续阅读 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 

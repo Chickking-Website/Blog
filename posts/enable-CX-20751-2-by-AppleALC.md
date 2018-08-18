@@ -17,9 +17,9 @@ toc: true
 然后点击 patch AppleHDA，会在桌面上生成一个文件夹叫做 MironeAudio。我为了不让 Mom's 电脑多一些她不需要的东西就没在她的电脑上装 Xcode。所以下面的步骤都是在我自己的电脑上进行的。
 
 先在终端里面找到需要的路径，输入终端代码。
-~~~ bash
+```bash
 $ git clone https://github.com/vit9696/AppleALC.git
-~~~ 
+```
 ## 2. 主要步骤
 重头戏来了。
 
@@ -31,26 +31,26 @@ $ git clone https://github.com/vit9696/AppleALC.git
 还记得之前我们保存的 MironeAudio 文件夹吗？进入目录 MironeAudio/14f1510f**（此处随声卡型号的不同而不同）**/274.12**（此处随系统版本的不同而不同）**/Clover/aDummyHDA.kext/Content/Resources/，将 layout3.xml.zlib 和 Platforms.xml.zlib 拷贝到 AppleALC/Resources/CX20751_2**（此处随声卡不同而不同）**/ 下覆盖。
 
 然后打开 Sublime Text 来编辑 Plist 文件。在 aDummyHDA.kext 的 Info.plist 中搜索 HDAConfigDefault，其下面有一个值叫做 Codec ID。例如我的：
-~~~ XML
+```XML
 <key>CodecID</key>
 <integer>351359247</integer>
-~~~ 
+```
 这个值要记下来，下一步用到。
 
 在 AppleALC/Resources/CX20751_2/Info.plist 中，修改上面的 CodecID 为刚刚获取的数值。*(其实不修改理论上也可以，但有些机器不修改就无法驱动。)*
 
 在多个 Comment 的键值中，找到 “Mirone - 你的声卡型号” 的一项，其下面的 ID 修改为 3，Path 修改为 Platforms.xml.zlib。
-~~~ xml
+```xml
 <key>Comment</key>
 <string>Mirone - Conexant 20752</string>
 <key>Id</key>
 <integer>3</integer>
 <key>Path</key>
 <string>layout3.xml.zlib</string>
-~~~ 
+```
 再到 MironeAudio/14f1510F/274.12/full Patched AppleHDA/AppleHDA.kext/Contents/PlugIns/AppleHDAHardwareConfigDriver.kext/Contents 下，打开 Info.plist。将 HDAConfigDefault 键值下面 array 的内容复制下来，别告诉我你不会判断 array 的开始和结束，读 XML 应该是黑苹果的基本功了。
 
-~~~ XML
+```XML
 <key>HDAConfigDefault</key>
 <array>
 	<dict>
@@ -72,7 +72,7 @@ $ git clone https://github.com/vit9696/AppleALC.git
 		<integer>3</integer>
 	</dict>
 </array>
-~~~ 
+```
 然后将其粘贴到 AppleALC/Resources/PinConfigs.kext/Info.Plist 中，使其替换原有的 HDAConfigDefault 键值下数组的内容**（会有多个，不要替换多也不要替换少，会选中大片内容）**。
 
 这样第二步就结束了。
@@ -95,18 +95,18 @@ $ git clone https://github.com/vit9696/AppleALC.git
 然后就需要修改 config.plist 了。强烈建议先做备份，很重要，万一改毁了还有个备用的。而且个人不推荐用 Clover Configurator 来修改 config.plist，因为我用那个修改完后，在好几台机子上引导崩了好几次。建议用编辑器手动修改。
 
 首先在 Boot 键值下面找到 Arguments 键值（也就是修改 Boot Args），加一个
-~~~ css
+```css
 -alcbeta
-~~~ 
+```
 
 然后在 Devices 键值下的 Audio 键值下将 Layout ID = 3 注入。代码如下：
-~~~ xml
+```xml
 <key>Audio</key>
 	<dict>
 		<key>Inject</key>
 		<integer>3</integer>
 	</dict>
-~~~ 
+```
 当然某些 DSDT 大神们也可以把这个注入 Layout ID 和防止唤醒无声的补丁都在 DSDT 里面解决了，效果会更好。不过我等蒟蒻还是算了，除了除错 DSDT 啥也不会~~我是不是废了……
 
 ### Step 4. 重启看效果

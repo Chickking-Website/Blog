@@ -31,15 +31,15 @@ toc: true
 
 ## 样例
 ### 输入样例
-~~~ plain
+```plain
 3
-~~~ 
+```
 ### 输出样例:
-~~~ plain
+```plain
 8 1 6
 3 5 7
 4 9 2
-~~~ 
+```
 ## 数据范围与提示:
 对于全部的数据， $1 \leq N \leq 39$ 且 $N$ 为奇数。
 
@@ -48,7 +48,7 @@ toc: true
 空间限制：128 MiB
 
 ## AC 代码
-~~~ c++
+```c++
 #include <iostream>
 using std::cin;
 using std::cout;
@@ -96,4 +96,4 @@ int main() {
 #2. 「NOIP2015」神奇的幻方
 https://ly.men.ci/problem/2
 */
-~~~ 
+```

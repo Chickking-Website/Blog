@@ -167,6 +167,97 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-noip2015_magic_square" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/noip2015_magic_square/">「NOIP2015」神奇的幻方</a>
+    </h1>
+  
+
+        
+        <a href="/posts/noip2015_magic_square/" class="archive-article-date">
+  	<time datetime="2017-12-30T00:31:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>幻方是一种很神奇的 $N \times N$ 矩阵：它由数字 $1,2,3,\cdots \cdots ,N \times N$ 构成，且每行、每列及两条对角线上的数字之和都相同。</p>
+<p>当 $N$ 为奇数时，我们可以通过下方法构建一个幻方：</p>
+<p>首先将 $1$ 写在第一行的中间。</p>
+<p>之后，按如下方式从小到大依次填写每个数 $K (K=2,3,\cdots,N \times N)$ ：</p>
+<p>1.若 $(K-1)$ 在第一行但不在最后一列，则将 $K$ 填在最后一行， $(K-1)$ 所在列的右一列；</p>
+<p>2.若 $(K-1)$ 在最后一列但不在第一行，则将 $K$ 填在第一列， $(K-1)$ 所在行的上一行；</p>
+<p>3.若 $(K-1)$ 在第一行最后一列，则将 $K$ 填在 $(K-1)$ 的正下方；</p>
+<p>4.若 $(K-1)$ 既不在第一行，也不在最后一列，如果 $(K-1)$ 的右上方还未填数，则将 $K$ 填在 $(K-1)$ 的右上方，否则将 $K$ 填在 $(K-1)$ 的正下方。</p>
+<p>现给定 $N$ ，请按上述方法构造 $N \times N$ 的幻方。</p>
+        
+          <a class="article-more-a" href="/posts/noip2015_magic_square/#more">... </a>
+        
+      
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">NOIP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/posts/noip2015_magic_square/">继续阅读 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-variable-as-array-s-initial-length" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -536,109 +627,9 @@ copyrights: true
 
 
   
-    <article id="post-simulation-of-ppc-macos-via-qemu" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/simulation-of-ppc-macos-via-qemu/">使用 QEMU 模拟 PowerPC 版本的 Mac OS X / Classic Mac OS</a>
-    </h1>
-  
-
-        
-        <a href="/posts/simulation-of-ppc-macos-via-qemu/" class="archive-article-date">
-  	<time datetime="2017-09-13T04:26:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先要说声抱歉，由于我已经升入高中并且主打文化课，博文可能很难保持长期的更新。这篇博文涉及的东西早在一周前就已经做完，但一直拖着直到今天才开始写。话不多说，进入主题吧。</p>
-<h2 id="1-准备镜像"><a href="#1-准备镜像" class="headerlink" title="1. 准备镜像"></a>1. 准备镜像</h2><p>我们要模拟 PowerPC 版本的 Mac OS X，所以要准备好对应版本的 Mac OS X 的镜像。我发现有一个叫做 <a href="http://macintoshgarden.org/" target="_blank" rel="noopener">MacintoshGarden.org</a> 的网站，收集了许多旧版本 Mac OS X / Classic Mac OS 的资源。大家可以先下载着。</p>
-<h2 id="2-QEMU-版本下载"><a href="#2-QEMU-版本下载" class="headerlink" title="2. QEMU 版本下载"></a>2. QEMU 版本下载</h2><p>模拟 Mac OS X 10.4 之前的版本，只需要下载标准版本的  qemu-system-ppc 即可。只需要通过 brew 安装即可。这里给出 Emaculation.com 提供的 QEMU 的 <a href="http://www.emaculation.com/forum/viewtopic.php?f=34&amp;t=9028" target="_blank" rel="noopener">Windows 版本</a>和 <a href="http://www.emaculation.com/forum/viewtopic.php?f=34&amp;t=8848" target="_blank" rel="noopener">macOS 版本</a>。只需要安装置顶的版本即可。qemu.command 可配置如下 (Windows 用户请根据实际使用 Shell 情况修改):</p>
-<pre><code class="lang-bash">#!/bin/bash
-cd &quot;$(dirname &quot;$0&quot;)&quot;
-./qemu-system-ppc -hda osx_cheetah.qcow2 -hdb swap.img -cdrom cheetah.iso -m 512 -boot c -net nic,model=e1000 -net user
-</code></pre>
-<p>其中，-hda、-hdb 设置的是内置硬盘的镜像，-cdrom 是设置光盘镜像的路径。-m 是 RAM 的大小(以 MB 为单位)。而 -boot 则是第一启动项设置，c 为硬盘，d 为光盘。后面的 -net 是指网络配置，无需修改。<br>而对于 Mac OS X 10.4 以及以上版本，我们需要一个特殊版本的支持 mac99p 机型的 QEMU，由于我使用的是 macOS，故无法提供 Windows 版本。Mac 版本的下载我已经上传 CDN 了。下载地址在<a href="https://static.chickger.pw/201709/qemu-mac99p.zip" target="_blank" rel="noopener">这里</a>。<br>这个版本我没有内置 qemu.command，需要进行如下配置:</p>
-<pre><code class="lang-bash">#!/bin/bash
-cd &quot;$(dirname &quot;$0&quot;)&quot;
-./qemu-system-ppc-wip -bios openbios-qemu-wip.elf -L pc-bios -boot c -m 1024 -M mac99p -prom-env &quot;auto-boot?=true&quot; -net nic,model=e1000 -net user -hda osx_tiger.qcow2 -hdb swap.img
-</code></pre>
-<p>其中，-bios 是设置特殊的 BIOS 文件。而 -M 则是设置机型，Mac OS X Tiger 要求至少是 G4 的 Mac，所以机型设置为 mac99p。而 -prom-env 则是在 NVRAM 中写入参数，比如如果你需要 -v 啰嗦启动，则加入 <code>-prom-env &quot;boot-args=-v&quot;</code>。</p>
-<h2 id="3-虚拟硬盘镜像生成"><a href="#3-虚拟硬盘镜像生成" class="headerlink" title="3. 虚拟硬盘镜像生成"></a>3. 虚拟硬盘镜像生成</h2>
-        
-          <a class="article-more-a" href="/posts/simulation-of-ppc-macos-via-qemu/#more">... </a>
-        
-      
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">苹果</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">黑苹果</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">macOS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/simulation-of-ppc-macos-via-qemu/">继续阅读 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 

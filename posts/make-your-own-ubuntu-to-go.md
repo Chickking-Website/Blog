@@ -31,17 +31,17 @@ grub 的安装非常简单，这里不再赘述。网上这样的教程一大把
 EFI Tools 也比较好找，例如:链接: https://pan.baidu.com/s/1dFTprdJ 密码: 76gm。版本虽然有些老，但是我们的重点是里面模拟 UEFI 的 boot0ss。  
 在 macOS 启动 EFI Tools 并选择 “G、挂载 EFI 分区到桌面不格式化(Fat32)”，然后“H、(一)安装 Clover EFI 开机引导文件(Fat32)”，注意要挂载的是 U 盘的 EFI 分区。
 将启动文件写入后，在终端中执行以下命令。
-~~~ bash
+```bash
 # 这里假设您的 EFI 分区在 /Volumes/EFI 挂载
 dir="/Volumes/EFI"
 mkdir $dir/EFI/BOOT
 rm -rf $dir/EFI/CLOVER/*
 cp $dir/EFI/ubuntu/grubx64.efi $dir/EFI/BOOT/BOOTX64.EFI
 cp $dir/EFI/ubuntu/grubx64.efi $dir/EFI/CLOVER/CLOVERX64.EFI
-~~~ 
+```
 这样，U盘就能够在不支持 EFI 的电脑上启动了。  
 我们可以在 Ubuntu 的 `/etc/grub.d/40_custom` 中加入一些自定义代码，来扩充 grub 的菜单项。我的如下：
-~~~ bash
+```bash
 #!/bin/sh
 exec tail -n +3 $0
 menuentry '退出 Grub' {
@@ -56,7 +56,7 @@ menuentry '重新启动计算机' {
 # This file provides an easy way to add custom menu entries.  Simply type the
 # menu entries you want to add after this comment.  Be careful not to change
 # the 'exec tail' line above.
-~~~ 
+```
 ## 桌面美化
 从第三张截图可以看到，尽管 Unity 在 Ubuntu 17.10 artful. 中已经被抛弃，我还是更愿意使用它。因为 Unity 对全局菜单支持的很好。这是我非常喜欢的 Mac 的功能之一，在 Ubuntu 上自然不可或缺。  
 主题使用 OSX-Arc-Darker，图标使用 Ultra-Flat。  
@@ -76,7 +76,7 @@ QQ 这个东西不太好办，我最终选择安装一个 VirtualBox 虚拟机�
 微信的话，有一个第三方封装的项目——[electronic-wechat](https://github.com/geeeeeeeeek/electronic-wechat)。我替它做了一个图标和 Desktop 文件。图标在下面提供，直接保存即可。
 ![WeChat icon](https://github.com/Chickking-Website/SomeFile/blob/master/201801/ubuntu/wechat_logo/icon.png?raw=true)
 Desktop 文件请将如下代码保存到 `/usr/share/applications/wechat.desktop`。其中请将 `#YOUR DOWNLOADED DIR#` 替换成你保存这个项目 release 文件夹的路径，`#ICON PATH#` 替换成你下载的图标的路径。
-~~~ plain
+```plain
 [Desktop Entry]
 Name=WeChat
 GenericName=WeChat
@@ -87,18 +87,18 @@ Terminal=false
 Type=Application
 Categories=Network;
 StartupNotify=true
-~~~ 
+```
 网易云音乐在 Ubuntu 17.10 artful 上可能无法使用，是因为依赖包的问题。[这篇文章](https://www.jianshu.com/p/6f0747db7018) 提供了解决方案。
 WPS Office 是比较符合我们使用习惯的。有一个问题是它在高分屏下的界面有点问题，不过功能是正常的。在安装时，可能会遇到依赖问题。  
 要解决 WPS Office 的依赖问题，首先要将它的依赖包装齐：
-~~~ bash
+```bash
 sudo apt-get install libc6 libfreetype6 libcups2 libglib2.0-0 libpng12-0 libglu1-mesa libsm6 libxrender1 libfontconfig1 libxext6 libxcb1
-~~~ 
+```
 你可能会发现 `libpng12-0` 不能正常安装。这样的话我们就只能去 Ubuntu 16.04 的源安装：
-~~~ 
+```
 wget http://kr.archive.ubuntu.com/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb
 sudo dpkg -i libpng12-0_1.2.54-1ubuntu1_amd64.deb
-~~~ 
+```
 然后去 [WPS Community](http://wps-community.org/download.html) 下载最新的 `wps-office_10.1.0.5707~a21_amd64.deb` 安装即可。  
 另外 ShadowsocksR 在 Ubuntu 上的配置也比较难找，我在下一篇博文中详细叙述了配置方法。
 

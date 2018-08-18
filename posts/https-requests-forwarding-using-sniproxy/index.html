@@ -7,18 +7,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="">
-  <title>Archives | 凌风仙鸡的 Blog&amp;Diary</title>
+  <title>SNIProxy 实现服务器反向代理多个带加密网站 | 凌风仙鸡的 Blog&amp;Diary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我的网上家园。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="凌风仙鸡的 Blog&amp;Diary">
-<meta property="og:url" content="/archives/index.html">
+  <meta name="description" content="之前通过 FRP 来实现了单个网站不泄露证书的 HTTPS 反向代理，但是缺点是一台服务器只能代理一个网站，即一个前端只能对应一个后端。这多少有些不够方便，也不方便与他人合租一台服务器。 SNIProxy 则是一个不错的解决方案。它通过浏览器访问时提供的 SNI 头来判断访问域名，然后可以根据域名来选择转发请求到何处。由于这个过程不涉及加密和解密，因此除了匹配正则表达式几乎没有性能损失，同时也不需">
+<meta name="keywords" content="Linux,网站,网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SNIProxy 实现服务器反向代理多个带加密网站">
+<meta property="og:url" content="/posts/https-requests-forwarding-using-sniproxy/index.html">
 <meta property="og:site_name" content="凌风仙鸡的 Blog&amp;Diary">
-<meta property="og:description" content="我的网上家园。">
+<meta property="og:description" content="之前通过 FRP 来实现了单个网站不泄露证书的 HTTPS 反向代理，但是缺点是一台服务器只能代理一个网站，即一个前端只能对应一个后端。这多少有些不够方便，也不方便与他人合租一台服务器。 SNIProxy 则是一个不错的解决方案。它通过浏览器访问时提供的 SNI 头来判断访问域名，然后可以根据域名来选择转发请求到何处。由于这个过程不涉及加密和解密，因此除了匹配正则表达式几乎没有性能损失，同时也不需">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:updated_time" content="2018-08-18T08:05:39.035Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="凌风仙鸡的 Blog&amp;Diary">
-<meta name="twitter:description" content="我的网上家园。">
+<meta name="twitter:title" content="SNIProxy 实现服务器反向代理多个带加密网站">
+<meta name="twitter:description" content="之前通过 FRP 来实现了单个网站不泄露证书的 HTTPS 反向代理，但是缺点是一台服务器只能代理一个网站，即一个前端只能对应一个后端。这多少有些不够方便，也不方便与他人合租一台服务器。 SNIProxy 则是一个不错的解决方案。它通过浏览器访问时提供的 SNI 头来判断访问域名，然后可以根据域名来选择转发请求到何处。由于这个过程不涉及加密和解密，因此除了匹配正则表达式几乎没有性能损失，同时也不需">
   
     <link rel="alternative" href="/atom.xml" title="凌风仙鸡的 Blog&amp;Diary" type="application/atom+xml">
   
@@ -165,36 +167,65 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>-->
           <div id="js-content" class="content-ll">
-            
+            <article id="post-https-requests-forwarding-using-sniproxy" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      SNIProxy 实现服务器反向代理多个带加密网站
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/https-requests-forwarding-using-sniproxy/" class="archive-article-date">
+
+        
+        <a href="/posts/https-requests-forwarding-using-sniproxy/" class="archive-article-date">
   	<time datetime="2018-08-18T08:04:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-18</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/https-requests-forwarding-using-sniproxy/">SNIProxy 实现服务器反向代理多个带加密网站</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前通过 FRP 来实现了单个网站不泄露证书的 HTTPS 反向代理，但是缺点是一台服务器只能代理一个网站，即一个前端只能对应一个后端。这多少有些不够方便，也不方便与他人合租一台服务器。</p>
+<p>SNIProxy 则是一个不错的解决方案。它通过浏览器访问时提供的 SNI 头来判断访问域名，然后可以根据域名来选择转发请求到何处。由于这个过程不涉及加密和解密，因此除了匹配正则表达式几乎没有性能损失，同时也不需要在前端服务器上部署 HTTPS 证书，也无需担心数据泄露的问题。<br>本教程适用的 Linux 发行版为 CentOS 7.4。</p>
+<h2 id="安装-SNIProxy"><a href="#安装-SNIProxy" class="headerlink" title="安装 SNIProxy"></a>安装 SNIProxy</h2><p>SNIProxy 这个软件并不在大多数 Linux 操作系统默认的软件源中。因此需要手动编译以及安装。<br>编译安装教程可以参考软件官方 README.md。项目的地址是: <a href="https://github.com/dlundquist/sniproxy" target="_blank" rel="noopener">SNIProxy on GitHub</a>。<br>我这里也提供一个打包好的 RPM 包，可直接通过 <code>yum</code> 安装在 CentOS 7 上。下载地址为 <a href="https://cloud.imvictor.tech/s/b8WqDWsJcrbgfLQ" target="_blank" rel="noopener">Cloud Storage</a>。  </p>
+<h2 id="配置-SNIProxy"><a href="#配置-SNIProxy" class="headerlink" title="配置 SNIProxy"></a>配置 SNIProxy</h2><p>安装好包之后，SNIProxy 应该已经在 <code>/usr/sbin/sniproxy</code> 了。<br>在大多数情况下，我们希望它作为一个服务启动，这样方便管理。但 SNIProxy 并没有把自己安装为服务，因此需要我们手动添加。<br>将以下内容放置到 <code>/etc/systemd/system/sniproxy.service</code>。</p>
+<pre><code class="lang-ini">[Unit]
+Description=SNIProxy
 
-        <div class="article-info info-on-right">
-          
+[Service]
+Type=simple
+ExecStart=/usr/sbin/sniproxy -f
+StandardOutput=null
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>这样就可以通过 <code>systemctl</code> 来控制 SNIProxy 了。<br>然后我们需要编辑 SNIProxy 的配置文件 <code>/etc/sniproxy.conf</code>，配置文件示例参见官方 README。 </p>
+<p>下面有几点小提示:</p>
+<ol>
+<li>注意，<code>listener</code> 后面如果带有 <code>127.0.0.1</code>，则只有本机才能传入连接。因此，一般推荐把 <code>listener 127.0.0.1:443</code>，改为 <code>listener 443</code>。 </li>
+<li><code>fallback</code> 参数的意思类似于 switch-case 语句的 <code>default</code> 选项。即所有给出的情况全部失配后，选择将请求转发到这个参数所配置的服务器上。</li>
+<li>SNIProxy 也可以转发 HTTP 流量，只要把 <code>protocol</code> 后面的 <code>tls</code> 改成 <code>http</code> 即可。</li>
+</ol>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>对于 FRP 端口映射前端服务器，建议开启防火墙，保证所有流量都能经过 SNIProxy。</p>
+
+	    
+			<hr>
+	        <p>本文著作权归作者所有，允许非商业性转载使用，但请在转载后文末附上原文链接。</p>
+	        <p>原文链接: <a href="https://imvictor.tech/posts/https-requests-forwarding-using-sniproxy/">https://imvictor.tech/posts/https-requests-forwarding-using-sniproxy/</a>，<a href="https://imvictor.tech/posts/https-requests-forwarding-using-sniproxy/#gitalk-container">前往原文评论。</a></p>
+	    
+	    
+                <div style="margin-right: 1em; text-align: right;"><a href="/posts/https-requests-forwarding-using-sniproxy.md">查看本文 Markdown 版本 »</a></div>      
+	    
+	
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -214,183 +245,84 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/deploying-frp-reverse-proxy/" class="archive-article-date">
-  	<time datetime="2018-07-16T14:00:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/posts/deploying-frp-reverse-proxy/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">FRP 作为 TCP 反向代理的部署</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/deploying-frp-reverse-proxy/">FRP 作为 TCP 反向代理的部署</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网站</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-SNIProxy"><span class="toc-number">1.</span> <span class="toc-text">安装 SNIProxy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-SNIProxy"><span class="toc-number">2.</span> <span class="toc-text">配置 SNIProxy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它"><span class="toc-number">3.</span> <span class="toc-text">其它</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/mirrored-make-girls-moe/" class="archive-article-date">
-  	<time datetime="2018-06-23T14:45:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-23</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/mirrored-make-girls-moe/">推出 MakeGirlsMoe 镜像</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/deploying-syzoj2-on-centos/" class="archive-article-date">
-  	<time datetime="2018-06-14T15:12:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/deploying-syzoj2-on-centos/">SYZOJ2 在 CentOS 上的搭建</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/lemon-mac/" class="archive-article-date">
-  	<time datetime="2018-04-27T15:39:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/lemon-mac/">lemon 在 macOS 上的移植</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">macOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
-  
+<div id="gitalk-container" style="margin-left: 5%; margin-right: 5%;"></div> 
+<link rel="stylesheet" href="https://static.imvictor.tech/lib/gitalk/dist/gitalk.css">
+<script src="https://static.imvictor.tech/lib/gitalk/dist/gitalk.js"></script>
+<script>
+var gitalk = new Gitalk({
+  id: '/posts/https-requests-forwarding-using-sniproxy/',
+  clientID: 'aa192ece2749d13ce589',
+  clientSecret: 'f2310ac26737ea5a1d21aaba9d1f5d91ab27824e',
+  repo: 'Comment',
+  owner: 'Chickking-Website',
+  admin: ['Chickking-Website','Chickking'],
+});
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+gitalk.render('gitalk-container');
+</script>
   
 
 
@@ -415,8 +347,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

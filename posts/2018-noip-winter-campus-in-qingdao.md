@@ -18,9 +18,9 @@ Day 1 和 Day 2 的主讲老师是清华的 [zhx](https://github.com/haoxizhong)
 ![Result](https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201802/day1_test.png)  
 所以说还是钟长者比较 6 啊，随随便便 AK。  
 钟长者是个很皮的人，比如:
-~~~ cpp
+```cpp
 void two_fen_cha_zhao();
-~~~ 
+```
 Day 1 发生了一件非常恐怖的事情，教室里出现了一个 Wi-Fi:
 ![Scary Wi-Fi](https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201802/scary_wifi.jpeg)  
 我感觉这个可能会让全教室的人死光。  

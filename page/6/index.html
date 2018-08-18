@@ -7,12 +7,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="">
-  <title>Archives | 凌风仙鸡的 Blog&amp;Diary</title>
+  <title>凌风仙鸡的 Blog&amp;Diary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="我的网上家园。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="凌风仙鸡的 Blog&amp;Diary">
-<meta property="og:url" content="/archives/index.html">
+<meta property="og:url" content="/page/6/index.html">
 <meta property="og:site_name" content="凌风仙鸡的 Blog&amp;Diary">
 <meta property="og:description" content="我的网上家园。">
 <meta property="og:locale" content="zh_CN">
@@ -167,229 +167,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-tech-of-jobs-remembering" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/tech-of-jobs-remembering/">浅析乔布斯纪念页面</a>
+    </h1>
+  
+
+        
+        <a href="/posts/tech-of-jobs-remembering/" class="archive-article-date">
+  	<time datetime="2016-10-15T08:48:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-15</time>
+</a>
+        
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-序言"><a href="#1-序言" class="headerlink" title="1. 序言"></a>1. 序言</h2><p>相信大家已经都看到 10 月 5 日的 Steve Jobs 纪念网页了。Steve 是一位天才，他逝世 5 周年，我们没有理由不去纪念他。</p>
+<p>于是我就已经把纪念网页放上去了，为什么直到 10 天后才写关于网页的内容呢？主要是当时比较忙。那么我就梳理梳理在网页中使用的东西。</p>
+<p>友情提示，最好先打开<a href="http://www.chickger.pw/HomePage/2016/Steve%20Jobs/" target="_blank" rel="noopener">纪念页</a>，对照代码来阅读这篇博文，以取得最佳效果。</p>
+<h2 id="2-全站变灰"><a href="#2-全站变灰" class="headerlink" title="2. 全站变灰"></a>2. 全站变灰</h2><p>纪念伟人嘛，总是要有点哀悼的气氛。全站变灰是少不了的了。针对全站变灰，我们可以设置一个单独的 CSS 文件，然后在 index.html 和博客模板的 header.php 里面都引入这个文件，我是将这个文件放在了 www 站点下面，然后在 blog 站下面建立软链接。这样就可以通过一个 / 来全部搞定了。<br>Code:</p>
+<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/special.css&quot; /&gt;
+</code></pre>
+<p>在 CSS 里面，加入这一行代码，即可全站变灰。Code:</p>
+<pre><code class="lang-CSS">html{-webkit-filter: greyscale(1)}
+</code></pre>
+<p>在平时也不用删除代码，只需将灰度值1改为0即可。</p>
+        
+          <a class="article-more-a" href="/posts/tech-of-jobs-remembering/#more">... </a>
+        
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/https-requests-forwarding-using-sniproxy/" class="archive-article-date">
-  	<time datetime="2018-08-18T08:04:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/https-requests-forwarding-using-sniproxy/">SNIProxy 实现服务器反向代理多个带加密网站</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网站</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTML</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/posts/tech-of-jobs-remembering/">继续阅读 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/deploying-frp-reverse-proxy/" class="archive-article-date">
-  	<time datetime="2018-07-16T14:00:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
-</a>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/deploying-frp-reverse-proxy/">FRP 作为 TCP 反向代理的部署</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网站</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/mirrored-make-girls-moe/" class="archive-article-date">
-  	<time datetime="2018-06-23T14:45:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/mirrored-make-girls-moe/">推出 MakeGirlsMoe 镜像</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/deploying-syzoj2-on-centos/" class="archive-article-date">
-  	<time datetime="2018-06-14T15:12:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/deploying-syzoj2-on-centos/">SYZOJ2 在 CentOS 上的搭建</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/posts/lemon-mac/" class="archive-article-date">
-  	<time datetime="2018-04-27T15:39:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/posts/lemon-mac/">lemon 在 macOS 上的移植</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">macOS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
-  
-
-    
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
     </nav>
   
 
@@ -414,9 +286,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: false,
+		isHome: true,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
