@@ -17,7 +17,7 @@ comments: true
     border-radius: 3px;
     margin-bottom: 10px;
 }
-.cp-mainbody{height: 5em !important;}
+//.cp-mainbody{height: 5em !important;}
 </style>
 
 ## <img style='height: 1.5em' src='https://avatars3.githubusercontent.com/u/21100901?v=3&s=120'></img> 凌风仙鸡
@@ -27,7 +27,7 @@ Tags: <div style="line-height: 2"><span class="readme_tag">Apple 产品用户</s
 </div>
 
 
-<div id="app"></div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=543139510&auto=1&height=66"></iframe>
 <div></div>
 英文名 Victor Huang，  
 中文名我不告诉你。  
@@ -48,24 +48,3 @@ Shell 必选 [oh-my-zsh](https://ohmyz.sh/)，
 > “我若是，将错就错呢？”  
 > <p style="text-align: right">——《再一次》</p>
 
-
-<script src="https://static.imvictor.tech/lib/cPlayer/dist/cplayer.js"></script>
-<script>
-  let player = new cplayer({
-    element: document.getElementById('app'),
-    size: '12px',
-    showPlaylist: false,
-	playmode: 'singlecycle',
-	zoomOutKana: true,
-    big: true,
-    playlist: [
-      {
-        src: 'https://music.163.com/song/media/outer/url?id=32845031.mp3',
-        poster: 'https://p1.music.126.net/1qJX5ld5QCtWkZs6cduZlw==/7982454418387284.jpg',
-        name: '梦里梦外',
-        artist: 'Jam',
-        lyric: '[00:17.76]梦里梦外，我总见怪\n[00:26.00]相逢对白，无声存在\n[00:34.86]春去秋来，影射飞快\n[00:43.63]郁结成灾，挥散阴霾\n\n[00:51.65]梦里外你来的稍无声息\n[00:56.35]对视间从不说话的你\n[01:00.68]想靠近却又装不在意\n[01:04.97]那是你教会我的专情\n\n[01:09.44]梦里外没有关心话语\n[01:14.03]只想多看几眼你的样子\n[01:18.56]撕碎回忆控制梦境\n[01:22.62]那是我对你的长情\n\n[01:45.78]我触摸不到你的温度\n[01:49.60]我抓不住你大步的走\n[01:53.86]只能在两眼余光中\n[01:57.76]见到你熟悉的笑容\n\n[02:02.08]梦里外我都看不清的你\n[02:06.38]世界都在嘲笑我的秘密\n[02:10.73]关掉你所有存在的信息\n[02:15.12]尽管此刻是想你\n\n[02:19.48]梦里外没有关心话语\n[02:24.02]只想多看几眼你的样子\n[02:28.59]撕碎回忆控制梦境\n[02:32.81]那是我对你的长情\n\n[02:53.71]梦里梦外，思念成灾\n[03:02.69]春去秋来，影射飞快'
-      }
-    ]
-  })
-</script>
