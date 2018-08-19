@@ -7,7 +7,7 @@ permalink: /README/
 comments: true
 ---
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-
+<link rel="stylesheet" href="https://static.imvictor.tech/lib/Font-Awesome/css/font-awesome.min.css">
 <style type="text/css">
 .readme_tag{
     padding: 3px 5px;
