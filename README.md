@@ -6,7 +6,7 @@ visible: false
 permalink: /README/
 comments: true
 ---
-
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
 
 <style type="text/css">
 .readme_tag{
