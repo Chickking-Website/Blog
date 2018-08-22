@@ -9,7 +9,7 @@ toc: true
 由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ2。  
 但是，SYZOJ2 官方只提供了 Ubuntu 的教程，在 CentOS 上，有些东西会不一样。  
 本文需要对照官方安装指南查看，详情请阅读 [syzoj/syzoj on GitHub](https://github.com/syzoj/syzoj/) 和 [Demo 服务器账号及搭建指南 - 帖子 - Demo](https://syzoj-demo.t123yh.xyz:20170/article/1)。  
-这里还有一篇很详细的 [SYZOJ 部署指南](http://blog.masellum.me/syzoj-setup/)，是 Masellum 写的。值得参考。
+这里还有一篇很详细的 [SYZOJ 部署指南](https://blog.masellum.me/2018/08/syzoj-setup/)，是 Masellum 写的。值得参考。
 
 ### SYZOJ-Web
 Web 的搭建相对比较简单。大部分都可以按照 SYZOJ2 官方的教程来做。  
