@@ -18,7 +18,7 @@
 <meta property="og:description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，现在换成了 Intel(R) Xeon(R)  CPU E5440 @ 2.83GHz，比 BZOJ 好多了。于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://static.imvictor.tech/data/201806/syzoj_bincache.jpg">
-<meta property="og:updated_time" content="2018-08-22T06:43:14.495Z">
+<meta property="og:updated_time" content="2018-08-22T06:55:59.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SYZOJ2 在 CentOS 上的搭建">
 <meta name="twitter:description" content="这一个月倒是干了不少事，只是没找到时机记录下来。前不久高爷带我去捡垃圾，弄到一台主机当服务器。CPU 是 Pentium(R) Dual-Core E5700 @ 3.00GHz，想到比 BZOJ 还好一点，现在换成了 Intel(R) Xeon(R)  CPU E5440 @ 2.83GHz，比 BZOJ 好多了。于是我就想搭建一个 OJ。由于我对于 SYZOJ2 比较习惯，所以选择 SYZOJ">
@@ -199,7 +199,7 @@
 <pre><code>yum groupinstall &quot;Development Tools&quot;
 yum install boost-devel rabbitmq-server redis p7zip p7zip-plugins
 </code></pre><p>其他步骤可以参照官方教程来进行。<br>另外，不清楚是不是 bug，如果在 config.json 中，将 <code>&quot;hostname&quot;</code> 字段设置为一个域名(这样注册验证电子邮件的地址就是这个域名)，那么必须在 <code>/etc/hosts</code> 中将这个域名的 IP 地址解析到 127.0.0.1，否则会无法启动 Web 端。</p>
-<h3 id="SYZOJ-Judge"><a href="#SYZOJ-Judge" class="headerlink" title="SYZOJ-Judge"></a>SYZOJ-Judge</h3><p>Judge 端的情况，相对有一些问题。在 CentOS 上，出现了严重的问题，就是 C++ 程序默认是会 RE 的。经过我 chroot 到沙盒排查，这个问题是 <code>-mx32</code> 编译参数导致的。所以我们需要修改这个编译参数。<br>进入 Judge 文件夹，修改 <code>./src/languages/</code> 下的 <code>c.ts</code>、<code>cpp.ts</code>、<code>cpp11.ts</code>，将 <code>-mx32</code> 替换为空。<br>然后，在 Judge 文件夹下，执行 <code>npm run build</code> 重新编译评测程序。<br>此时，SYZOJ2 应当已经能够正常运行。<br>此外，给大家看一张图。<br><img src="https://static.imvictor.tech/data/201806/syzoj_bincache.jpg" alt="准备的大坑"><br>当时是在没有去掉 <code>-mx32</code> 的时候提交了一道题，发现无论怎么重新评测，都是 RE。试了一晚上之后还是不行，最后我暴怒删题重加，发现奇迹般的行了。<br>询问 Menci 后得到的答复是，我成功跳进了 tyh 准备的大坑……<br>嗯，这坑很大。</p>
+<h3 id="SYZOJ-Judge"><a href="#SYZOJ-Judge" class="headerlink" title="SYZOJ-Judge"></a>SYZOJ-Judge</h3><p>Judge 端的情况，相对有一些问题。在 CentOS 上，出现了严重的问题，就是 C++ 程序默认是会 RE 的。经过我 chroot 到沙盒排查，这个问题是 <code>-mx32</code> 编译参数导致的。所以我们需要修改这个编译参数。<br>进入 Judge 文件夹，修改 <code>./src/languages/</code> 下的 <code>c.ts</code>、<code>cpp.ts</code>、<code>cpp11.ts</code>，将 <code>-mx32</code> 替换为空。<br>但这样会导致指针为 64 位大小，如果程序大量使用指针，可能导致 MLE，因为指针占据的空间是 32 位的两倍。因此，也可以把 <code>-mx32</code> 修改为 <code>-m32</code>，这样编译出来的是纯 32 位程序。<br>然后，在 Judge 文件夹下，执行 <code>npm run build</code> 重新编译评测程序。<br>此时，SYZOJ2 应当已经能够正常运行。<br>此外，给大家看一张图。<br><img src="https://static.imvictor.tech/data/201806/syzoj_bincache.jpg" alt="准备的大坑"><br>当时是在没有修改 <code>-mx32</code> 的时候提交了一道题，发现无论怎么重新评测，都是 RE。试了一晚上之后还是不行，最后我暴怒删题重加，发现奇迹般的行了。<br>询问 Menci 后得到的答复是，我成功跳进了 tyh 准备的大坑……<br>嗯，这坑很大。</p>
 <h3 id="评测实时状态获取"><a href="#评测实时状态获取" class="headerlink" title="评测实时状态获取"></a>评测实时状态获取</h3><p>在 SYZOJ2 中浏览器在获取评测状态时，会尝试 SYZOJ-Web 的 <code>config.json</code> 中定义的 <code>&quot;judge_server_addr&quot;</code>。如果按照官方的配置将其配置为 <code>http://127.0.0.1:5284</code>，显然用户是不能访问的。<br>如果我们改成 OJ 的地址呢？在 CentOS 7 上，默认打开了防火墙，而防火墙默认会阻断 5284 端口。那么我们就有两种方案，一种是开放 5284 端口，但 SYZOJ-Frontend 监听下的 5284 端口不支持 HTTPS，导致 HTTPS 页面不能建立连接。综合来看，我们应当采用 nginx 反向代理来实现。这里提供配置文件参考。</p>
 <pre><code class="lang-nginx">server {
         listen 443 ssl http2;
