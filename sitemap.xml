@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>//README/index.html</loc>
+    
+    <lastmod>2018-08-25T09:32:12.896Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>/posts/deploying-syzoj2-on-centos/</loc>
     
     <lastmod>2018-08-22T06:55:59.409Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>/posts/deploying-syzoj2-on-centos.html</loc>
     
     <lastmod>2018-08-22T06:55:59.409Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//README/index.html</loc>
-    
-    <lastmod>2018-08-19T10:53:09.942Z</lastmod>
     
   </url>
   
