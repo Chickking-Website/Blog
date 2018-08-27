@@ -7,7 +7,8 @@ permalink: /about/
 comments: true
 ---
 凌风仙鸡的 Blog&Diary 创建于 2016 年 1 月，由站长 [@凌风仙鸡](/README/) 始创。为了分享、记录一下自己折腾计算机的过程。  
-现在，本站运行于站长家中的服务器上，由中国香港 UOVZ 的服务器作为前端服务器，静态资源托管于阿里云 OSS 以及 Coding Pages 上。
+现在，本站运行于站长家中的服务器上，由中国香港 GigsGigsCloud 的服务器作为前端服务器，静态资源托管于阿里云 OSS 以及 Coding Pages 上。  
+本站由 [Hexo](https://hexo.io/) 强力驱动。
 
 Logo:   
 ![Logo](https://static.chickger.pw/images/logo.png)  
