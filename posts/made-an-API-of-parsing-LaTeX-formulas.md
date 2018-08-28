@@ -12,7 +12,7 @@ Equation
 ## API 说明
 传入 LaTeX 公式，返回指定格式的返回值。 
 ## API 版本
-见[更新日志](https://api.imvictor.tech/php-api/v5/equation?changelog)。
+见[更新日志](https://api.imvictor.tech/php-api/v7/equation?changelog)。
 ## URL
 https://api.imvictor.tech/php-api/v7/equation  
 ## HTTP 请求方式
@@ -52,9 +52,9 @@ GET
 
 ## 请求示例
 请求公式 $E = mc^2$:  
-Request URL:https://api.imvictor.tech/php-api/v7/equation?tex=E%3Dmc%5E2&type=svg  
-Request Method:GET  
-Status Code:200 OK  
+- Request URL: https://api.imvictor.tech/php-api/v7/equation?tex=E%3Dmc%5E2&type=svg  
+- Request Method: GET  
+- Status Code: 200 OK  
 
 ## 返回数据示例
 ````xml

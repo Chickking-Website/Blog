@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://api.imvictor.tech/php-api/v7/equation?tex=%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Ba_i%7D&type=svg&dpi=128&inline=1">
 <meta property="og:image" content="https://api.imvictor.tech/php-api/v7/equation?tex=%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Ba_i%7D&type=svg">
-<meta property="og:updated_time" content="2018-08-28T14:39:53.311Z">
+<meta property="og:updated_time" content="2018-08-28T14:41:40.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="做了一个 Parse LaTeX 公式的 API">
 <meta name="twitter:description" content="做了一个 Parse LaTeX 公式的 API，大家悠着点用。 API 名称Equation API 说明传入 LaTeX 公式，返回指定格式的返回值。  API 版本见更新日志。 URLhttps://api.imvictor.tech/php-api/v7/equation   HTTP 请求方式">
@@ -193,7 +193,7 @@
         <p>做了一个 Parse LaTeX 公式的 API，大家悠着点用。</p>
 <h2 id="API-名称"><a href="#API-名称" class="headerlink" title="API 名称"></a>API 名称</h2><p>Equation</p>
 <h2 id="API-说明"><a href="#API-说明" class="headerlink" title="API 说明"></a>API 说明</h2><p>传入 LaTeX 公式，返回指定格式的返回值。 </p>
-<h2 id="API-版本"><a href="#API-版本" class="headerlink" title="API 版本"></a>API 版本</h2><p>见<a href="https://api.imvictor.tech/php-api/v5/equation?changelog" target="_blank" rel="noopener">更新日志</a>。</p>
+<h2 id="API-版本"><a href="#API-版本" class="headerlink" title="API 版本"></a>API 版本</h2><p>见<a href="https://api.imvictor.tech/php-api/v7/equation?changelog" target="_blank" rel="noopener">更新日志</a>。</p>
 <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://api.imvictor.tech/php-api/v7/equation" target="_blank" rel="noopener">https://api.imvictor.tech/php-api/v7/equation</a>  </p>
 <h2 id="HTTP-请求方式"><a href="#HTTP-请求方式" class="headerlink" title="HTTP 请求方式"></a>HTTP 请求方式</h2><p>GET</p>
 <h2 id="请求参数"><a href="#请求参数" class="headerlink" title="请求参数"></a>请求参数</h2><h3 id="type-可选"><a href="#type-可选" class="headerlink" title="type 可选"></a><code>type</code> 可选</h3><p>指定返回格式，请按下列要求填写，若不填写，则默认为 SVG:</p>
@@ -216,7 +216,12 @@
 <li>changelog : 查看 API 更新日志。</li>
 <li>license : 查看许可协议。</li>
 </ul>
-<h2 id="请求示例"><a href="#请求示例" class="headerlink" title="请求示例"></a>请求示例</h2><p>请求公式 $E = mc^2$:<br>Request URL:<a href="https://api.imvictor.tech/php-api/v7/equation?tex=E%3Dmc%5E2&amp;type=svg" target="_blank" rel="noopener">https://api.imvictor.tech/php-api/v7/equation?tex=E%3Dmc%5E2&amp;type=svg</a><br>Request Method:GET<br>Status Code:200 OK  </p>
+<h2 id="请求示例"><a href="#请求示例" class="headerlink" title="请求示例"></a>请求示例</h2><p>请求公式 $E = mc^2$:  </p>
+<ul>
+<li>Request URL: <a href="https://api.imvictor.tech/php-api/v7/equation?tex=E%3Dmc%5E2&amp;type=svg" target="_blank" rel="noopener">https://api.imvictor.tech/php-api/v7/equation?tex=E%3Dmc%5E2&amp;type=svg</a>  </li>
+<li>Request Method: GET  </li>
+<li>Status Code: 200 OK  </li>
+</ul>
 <h2 id="返回数据示例"><a href="#返回数据示例" class="headerlink" title="返回数据示例"></a>返回数据示例</h2><pre><code class="lang-xml">&lt;svg xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; width=&quot;8.976ex&quot; height=&quot;2.676ex&quot; style=&quot;vertical-align: -0.338ex;&quot; viewBox=&quot;0 -1006.6 3864.5 1152.1&quot; role=&quot;img&quot; focusable=&quot;false&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
 &lt;defs&gt;
 &lt;path stroke-width=&quot;1&quot; id=&quot;E1-MJMATHI-45&quot; d=&quot;M492 213Q472 213 472 226Q472 230 477 250T482 285Q482 316 461 323T364 330H312Q311 328 277 192T243 52Q243 48 254 48T334 46Q428 46 458 48T518 61Q567 77 599 117T670 248Q680 270 683 272Q690 274 698 274Q718 274 718 261Q613 7 608 2Q605 0 322 0H133Q31 0 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H757Q764 676 764 669Q764 664 751 557T737 447Q735 440 717 440H705Q698 445 698 453L701 476Q704 500 704 528Q704 558 697 578T678 609T643 625T596 632T532 634H485Q397 633 392 631Q388 629 386 622Q385 619 355 499T324 377Q347 376 372 376H398Q464 376 489 391T534 472Q538 488 540 490T557 493Q562 493 565 493T570 492T572 491T574 487T577 483L544 351Q511 218 508 216Q505 213 492 213Z&quot;&gt;&lt;/path&gt;
