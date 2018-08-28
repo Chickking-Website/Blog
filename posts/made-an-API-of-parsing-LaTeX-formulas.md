@@ -14,7 +14,7 @@ Equation
 ## API 版本
 见[更新日志](https://api.imvictor.tech/php-api/v5/equation?changelog)。
 ## URL
-https://api.imvictor.tech/php-api/v5/equation  
+https://api.imvictor.tech/php-api/v7/equation  
 ## HTTP 请求方式
 GET
 ## 请求参数
@@ -40,9 +40,9 @@ GET
 传入 inline 的值为 `1` 时，表示 inline 打开。  
 默认情况下，inline 模式为关闭状态。  
 在 inline 模式下，类似求和公式等会被渲染成这样:  
-![inline 模式](https://api.imvictor.tech/php-api/v5/equation?tex=%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Ba_i%7D&type=svg&dpi=128&inline=1)  
+![inline 模式](https://api.imvictor.tech/php-api/v7/equation?tex=%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Ba_i%7D&type=svg&dpi=128&inline=1)  
 而非 inline 即行间公式模式时是:   
-![非 inline](https://api.imvictor.tech/php-api/v5/equation?tex=%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Ba_i%7D&type=svg)  
+![非 inline](https://api.imvictor.tech/php-api/v7/equation?tex=%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%7Ba_i%7D&type=svg)  
 ### 特殊指令
 调用方法: 在请求参数中直接附加特殊指令即可，注意不要附加其他内容。
 
@@ -52,7 +52,7 @@ GET
 
 ## 请求示例
 请求公式 $E = mc^2$:  
-Request URL:https://api.imvictor.tech/php-api/v5/equation?tex=E%3Dmc%5E2&type=svg  
+Request URL:https://api.imvictor.tech/php-api/v7/equation?tex=E%3Dmc%5E2&type=svg  
 Request Method:GET  
 Status Code:200 OK  
 
