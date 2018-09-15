@@ -45,9 +45,8 @@ Shell 必选 [oh-my-zsh](https://ohmyz.sh/)，
 手机 [iPhone SE 64GB 玫瑰金色](https://www.apple.com/cn/iphone-se/)，    
 电脑 [MacBook Pro 13.3" Retina 2015](https://www.apple.com/cn/macbook-pro/)。
 
-> “为什么要为了我？我们之间只是错觉而已啊。”  
-> “我若是，将错就错呢？”  
-> <p style="text-align: right">——《再一次》</p>
+> 无论你在这世上的什么地方，我都一定会再去见你的。 
+> <p style="text-align: right">——《你的名字。》</p>
 
 
 <script src="https://static.imvictor.tech/lib/APlayer/dist/APlayer.min.js"></script>
