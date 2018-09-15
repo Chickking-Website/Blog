@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2018-08-18T08:05:39.035Z</updated>
+  <updated>2018-09-15T07:44:44.123Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,160 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>非旋转 Treap 模板</title>
+    <link href="/posts/fhqTreap-template/"/>
+    <id>/posts/fhqTreap-template/</id>
+    <published>2018-09-15T07:44:33.000Z</published>
+    <updated>2018-09-15T07:44:44.123Z</updated>
+    
+    <content type="html"><![CDATA[<p>题目传送门: <a href="https://www.luogu.org/problemnew/show/P3369" target="_blank" rel="noopener">洛谷 P3369</a>、<a href="https://loj.ac/problem/104" target="_blank" rel="noopener">LibreOJ #104</a>、<a href="https://www.lydsy.com/JudgeOnline/problem.php?id=3224" target="_blank" rel="noopener">BZOJ 3224</a></p><p>我们需要实现一种数据结构，实现以下操作。</p><ol><li>插入 $ x $ 数；</li><li>删除 $ x $ 数（若有多个相同的数，因只删除一个）；</li><li>查询 $ x $ 数的排名（若有多个相同的数，因输出最小的排名）；</li><li>查询排名为 $ x $ 的数；</li><li>求 $ x $ 的前趋（前趋定义为小于 $ x $，且最大的数）；</li><li>求 $ x $ 的后继（后继定义为大于 $ x $，且最小的数）。</li></ol><p>很明显，可以通过 Splay 来做，但是我不会，因此我们可以使用非旋转 Treap 来做。</p><p>AC 代码:</p><pre><code class="lang-cpp">#include &lt;cstdio&gt;const int MAXN = 200000 + 10;namespace fhqTreap {    const int INF = 0x7fffffff;    inline int rand() {        static unsigned long long seed = 19260817;        return seed = (seed * 47821 + 0x1317D1E) % 0x1317CB3;    }    int root, count;    struct Node {        int l, r, k, rd, size;        Node() {}        Node(int k) : l(0), r(0), k(k), rd(rand()), size(1) {}    } node[MAXN];    void update(int const n) {        node[n].size = (node[n].l ? node[node[n].l].size : 0) + (node[n].r ? node[node[n].r].size : 0) + 1;    }    void split(int const n, int const k, int &amp;x, int &amp;y) {        if (!n) x = y = 0;        else if (k &lt;= node[n].k) {            split(node[n].l, k, x, y);            node[n].l = y;            update(y = n);        }        else {            split(node[n].r, k, x, y);            node[n].r = x;            update(x = n);        }    }    int merge(int const x, int const y) {        if (!x || !y) return x + y;        if (node[x].rd &lt; node[y].rd) {            node[x].r = merge(node[x].r, y);            return update(x), x;        }        else {            node[y].l = merge(x, node[y].l); // X &lt; NODE[Y].L!!!!!!!!!            return update(y), y;        }    }    inline void insert(int const &amp;k) {        int x, y;        split(root, k, x, y);        node[++count] = Node(k);        root = merge(merge(x, count), y);    }    inline void remove(int const &amp;k) {        int x, y, z;        split(root, k, x, z), split(z, k + 1, z, y);        z = merge(node[z].l, node[z].r);        root = merge(merge(x, z), y);    }    inline int rank(int const &amp;k) {        int x, y, ans;        split(root, k, x, y);        if (!x) return (root = merge(x, y)), 1;        ans = node[x].size + 1;        return (root = merge(x, y)), ans;    }    inline int search(int const rk, int n = root) {        int rank = (node[n].l ? node[node[n].l].size : 0) + 1;        if (rank == rk) return node[n].k;        if (rk &lt; rank) {            return search(rk, node[n].l);        }        else {            return search(rk - rank, node[n].r);        }    }    inline int lower(int const k) {        int x, y, t;        split(root, k, x, y), t = x;        if (!x) return -INF;        while (node[t].r) t = node[t].r;        return (root = merge(x, y)), node[t].k;    }    inline int upper(int const k) {        int x, y, t;        split(root, k + 1, x, y), t = y;        if (!y) return INF;        while(node[t].l) t = node[t].l;        return (root = merge(x, y)), node[t].k;    }}int n, opt, x;int main(int argc, char const *argv[]) {    scanf(&quot;%d&quot;, &amp;n);    while (n--) {        scanf(&quot;%d %d&quot;, &amp;opt, &amp;x);        switch(opt) {            case 1:                fhqTreap::insert(x);                break;            case 2:                fhqTreap::remove(x);                break;            case 3:                printf(&quot;%d\n&quot;, fhqTreap::rank(x));                break;            case 4:                printf(&quot;%d\n&quot;, fhqTreap::search(x));                break;            case 5:                printf(&quot;%d\n&quot;, fhqTreap::lower(x));                break;            case 6:                printf(&quot;%d\n&quot;, fhqTreap::upper(x));                break;        }    }}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;题目传送门: &lt;a href=&quot;https://www.luogu.org/problemnew/show/P3369&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;洛谷 P3369&lt;/a&gt;、&lt;a href=&quot;https://loj.ac/problem/104&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;LibreOJ #104&lt;/a&gt;、&lt;a href=&quot;https://www.lydsy.com/JudgeOnline/problem.php?id=3224&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;BZOJ 3224&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我们需要实现一种数据结构，实现以下操作。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;插入 $ x $ 数；&lt;/li&gt;
+&lt;li&gt;删除 $ x $ 数（若有多个相同的数，因只删除一个）；&lt;/li&gt;
+&lt;li&gt;查询 $ x $ 数的排名（若有多个相同的数，因输出最小的排名）；&lt;/li&gt;
+&lt;li&gt;查询排名为 $ x $ 的数；&lt;/li&gt;
+&lt;li&gt;求 $ x $ 的前趋（前趋定义为小于 $ x $，且最大的数）；&lt;/li&gt;
+&lt;li&gt;求 $ x $ 的后继（后继定义为大于 $ x $，且最小的数）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;很明显，可以通过 Splay 来做，但是我不会，因此我们可以使用非旋转 Treap 来做。&lt;/p&gt;
+&lt;p&gt;AC 代码:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-cpp&quot;&gt;#include &amp;lt;cstdio&amp;gt;
+const int MAXN = 200000 + 10;
+namespace fhqTreap {
+    const int INF = 0x7fffffff;
+    inline int rand() {
+        static unsigned long long seed = 19260817;
+        return seed = (seed * 47821 + 0x1317D1E) % 0x1317CB3;
+    }
+    int root, count;
+    struct Node {
+        int l, r, k, rd, size;
+        Node() {}
+        Node(int k) : l(0), r(0), k(k), rd(rand()), size(1) {}
+    } node[MAXN];
+    void update(int const n) {
+        node[n].size = (node[n].l ? node[node[n].l].size : 0) + (node[n].r ? node[node[n].r].size : 0) + 1;
+    }
+    void split(int const n, int const k, int &amp;amp;x, int &amp;amp;y) {
+        if (!n) x = y = 0;
+        else if (k &amp;lt;= node[n].k) {
+            split(node[n].l, k, x, y);
+            node[n].l = y;
+            update(y = n);
+        }
+        else {
+            split(node[n].r, k, x, y);
+            node[n].r = x;
+            update(x = n);
+        }
+    }
+    int merge(int const x, int const y) {
+        if (!x || !y) return x + y;
+        if (node[x].rd &amp;lt; node[y].rd) {
+            node[x].r = merge(node[x].r, y);
+            return update(x), x;
+        }
+        else {
+            node[y].l = merge(x, node[y].l); // X &amp;lt; NODE[Y].L!!!!!!!!!
+            return update(y), y;
+        }
+    }
+    inline void insert(int const &amp;amp;k) {
+        int x, y;
+        split(root, k, x, y);
+        node[++count] = Node(k);
+        root = merge(merge(x, count), y);
+
+    }
+    inline void remove(int const &amp;amp;k) {
+        int x, y, z;
+        split(root, k, x, z), split(z, k + 1, z, y);
+        z = merge(node[z].l, node[z].r);
+        root = merge(merge(x, z), y);
+    }
+    inline int rank(int const &amp;amp;k) {
+        int x, y, ans;
+        split(root, k, x, y);
+        if (!x) return (root = merge(x, y)), 1;
+        ans = node[x].size + 1;
+        return (root = merge(x, y)), ans;
+    }
+    inline int search(int const rk, int n = root) {
+        int rank = (node[n].l ? node[node[n].l].size : 0) + 1;
+        if (rank == rk) return node[n].k;
+        if (rk &amp;lt; rank) {
+            return search(rk, node[n].l);
+        }
+        else {
+            return search(rk - rank, node[n].r);
+        }
+    }
+    inline int lower(int const k) {
+        int x, y, t;
+        split(root, k, x, y), t = x;
+        if (!x) return -INF;
+        while (node[t].r) t = node[t].r;
+        return (root = merge(x, y)), node[t].k;
+    }
+
+    inline int upper(int const k) {
+        int x, y, t;
+        split(root, k + 1, x, y), t = y;
+        if (!y) return INF;
+        while(node[t].l) t = node[t].l;
+        return (root = merge(x, y)), node[t].k;
+    }
+}
+int n, opt, x;
+int main(int argc, char const *argv[]) {
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;n);
+
+    while (n--) {
+        scanf(&amp;quot;%d %d&amp;quot;, &amp;amp;opt, &amp;amp;x);
+        switch(opt) {
+            case 1:
+                fhqTreap::insert(x);
+                break;
+            case 2:
+                fhqTreap::remove(x);
+                break;
+            case 3:
+                printf(&amp;quot;%d\n&amp;quot;, fhqTreap::rank(x));
+                break;
+            case 4:
+                printf(&amp;quot;%d\n&amp;quot;, fhqTreap::search(x));
+                break;
+            case 5:
+                printf(&amp;quot;%d\n&amp;quot;, fhqTreap::lower(x));
+                break;
+            case 6:
+                printf(&amp;quot;%d\n&amp;quot;, fhqTreap::upper(x));
+                break;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+    
+    </summary>
+    
+    
+      <category term="OI" scheme="/tags/OI/"/>
+    
+      <category term="算法模板" scheme="/tags/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/"/>
+    
+      <category term="数据结构" scheme="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="平衡树" scheme="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/"/>
+    
+  </entry>
   
   <entry>
     <title>SNIProxy 实现服务器反向代理多个带加密网站</title>
@@ -166,18 +320,14 @@ yum install boost-devel rabbitmq-server redis p7zip p7zip-plugins
     <link href="/posts/lemon-mac/"/>
     <id>/posts/lemon-mac/</id>
     <published>2018-04-27T15:39:20.000Z</published>
-    <updated>2018-04-27T15:40:31.000Z</updated>
+    <updated>2018-09-15T07:43:31.459Z</updated>
     
-    <content type="html"><![CDATA[<p>lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。<br>但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。<br>所以，我去做了一个移植的工作。<br>这里就直接贴项目地址了(其实就是骗 Star): </p><ul><li><a href="https://github.com/Chickking/lemon-mac" target="_blank" rel="external">lemon-mac 在 GitHub 上的内容</a></li><li><a href="https://coding.net/u/chickking/p/lemon-mac/" target="_blank" rel="external">lemon-mac 在 Coding.net 上的内容</a></li></ul><p>如果你实在懒得折腾，也可以下载我构建好的版本，既可以去 GitHub Release 下，也可以<a href="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/lemon-darwin-x86_64.zip" target="_blank" rel="external">点击这里</a>下载。<br><img src="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/lemon01.png" alt="lemon 界面"><br>放张图就跑~<br>另外，最近中国移动网络似乎会将 GitHub 解析到 127.0.0.1。访问不了 GitHub 的朋友们就去 Coding.net 吧。</p>]]></content>
+    <content type="html"><![CDATA[<p>lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。<br>但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。<br>所以，我去做了一个移植的工作。<br>这里就直接贴项目地址了(其实就是骗 Star):<br><a href="https://github.com/Chickking/lemon-mac" target="_blank" rel="noopener">lemon-mac 在 GitHub 上的内容</a></p><p>如果你实在懒得折腾，也可以下载我构建好的版本，既可以去 GitHub Release 下，也可以<a href="https://static.imvictor.tech/data/201809/lemon-darwin-x86_64.zip" target="_blank" rel="noopener">点击这里</a>下载。<br><img src="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/lemon01.png" alt="lemon 界面"><br>放张图就跑~<br>另外，最近中国移动网络似乎会将 GitHub 解析到 127.0.0.1。访问不了 GitHub 的朋友们就去 Coding.net 吧。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。&lt;br&gt;但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。&lt;br&gt;所以，我去做了一个移植的工作。&lt;br&gt;这里就直接贴项目地址了(其实就是骗 Star): &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/Chickking/lemon-mac&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lemon-mac 在 GitHub 上的内容&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://coding.net/u/chickking/p/lemon-mac/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lemon-mac 在 Coding.net 上的内容&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果你实在懒得折腾，也可以下载我构建好的版本，既可以去 GitHub Release 下，也可以&lt;a href=&quot;https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/lemon-darwin-x86_64.zip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点击这里&lt;/a&gt;下载。&lt;br&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/lemon01.png&quot; alt=&quot;lemon 界面&quot;&gt;&lt;br&gt;放张图就跑~&lt;br&gt;另外，最近中国移动网络似乎会将 GitHub 解析到 127.0.0.1。访问不了 GitHub 的朋友们就去 Coding.net 吧。&lt;/p&gt;
+      &lt;p&gt;lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。&lt;br&gt;但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。&lt;br&gt;所以，我去做了一个移植的工作。&lt;br&gt;这里就直接贴项目地址了(其实就是骗 Star):&lt;br&gt;&lt;a href=&quot;https://github.com/Chickking/lemon-mac&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;lemon-mac 在 GitHub 上的内容&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如果你实在懒得折腾，也可以下载我构建好的版本，既可以去 GitHub Release 下，也可以&lt;a href=&quot;https://static.imvictor.tech/data/201809/lemon-darwin-x86_64.zip&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;点击这里&lt;/a&gt;下载。&lt;br&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/lemon01.png&quot; alt=&quot;lemon 界面&quot;&gt;&lt;br&gt;放张图就跑~&lt;br&gt;另外，最近中国移动网络似乎会将 GitHub 解析到 127.0.0.1。访问不了 GitHub 的朋友们就去 Coding.net 吧。&lt;/p&gt;
 
     
     </summary>
@@ -814,62 +964,6 @@ applyer.innerText = source.innerHTML;
       <category term="JavaScript" scheme="/tags/JavaScript/"/>
     
       <category term="php" scheme="/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>让 emlog 支持 Markdown</title>
-    <link href="/posts/add-markdown-support-to-emlog/"/>
-    <id>/posts/add-markdown-support-to-emlog/</id>
-    <published>2017-03-23T12:36:01.000Z</published>
-    <updated>2018-08-18T07:53:29.457Z</updated>
-    
-    <content type="html"><![CDATA[<p>更新: 通过 Editor.md 可以获得更好的 Parse 效果，所以 Markdown Parser 部分已经弃用。<br>现在很多博客系统比如 Typecho、Hexo 等等都支持 Markdown 写作，然而 emlog 竟然不支持，这不够科学，不够优雅，所以我们要让它优雅起来。<br>接下来就要实战解决 Markdown 的问题。</p><h2 id="删除自带编辑器"><a href="#删除自带编辑器" class="headerlink" title="删除自带编辑器"></a>删除自带编辑器</h2><p>emlog 自带的 KindEditor 不实用，首先功能半残不说，从 HTML 源代码模式切换过来还有 BUG。所以为了防止 KindEditor 坏事，我们要删除它。<br>删除 KindEditor 非常简单，我们只需要在博客主目录下 <code>admin/views</code> 下的 <code>add_log.php</code>、<code>add_page.php</code>、<code>edit_log.php</code>、<code>edit_page.php</code> 中删除/注释掉下列代码:  </p><pre><code class="lang-html">&lt;script charset=&quot;utf-8&quot; src=&quot;./editor/kindeditor.js?v=&lt;?php echo Option::EMLOG_VERSION; ?&gt;&quot;&gt;&lt;/script&gt;&lt;script charset=&quot;utf-8&quot; src=&quot;./editor/lang/zh_CN.js?v=&lt;?php echo Option::EMLOG_VERSION; ?&gt;&quot;&gt;&lt;/script&gt;</code></pre><p>这样再修改文章、页面时，你就只会看到一个<code>&lt;textarea&gt;</code>，而不会看到编辑器的界面了。<br>这个文本框只会原封不动地显示博文的 HTML 代码，所以基本不可能用这个直接写作。<br>如果你希望简便一些，可以装个插件“Markdown for emlog”，不过有 bug，如果一般的写文字，这个插件就足够了，做 《EMLOG 大前端》模板的“小草”封装的，封装了一个 Editor.md，<a href="http://www.emlog.net/plugin/download/269" target="_blank" rel="noopener">下载链接 »</a>。但是如果代码多，并且 <code>h1-h6</code> 如果连续且中间没有任何内容，就会无法解析。BUG 复现例子:</p><pre><code class="lang-markdown">## 12345### 67890</code></pre><p>这样一定会出 BUG。所以如果你想用的爽，就 follow me 吧。如果你不在乎或者你不会出现上面的情况，下面就不用看了，直接用小草封装的插件即可。  </p><h2 id="安装-Markdown-编辑器"><a href="#安装-Markdown-编辑器" class="headerlink" title="安装 Markdown 编辑器"></a>安装 Markdown 编辑器</h2><p>前面已经说过，去掉原有编辑器，基本无法直接在 Emlog 中编辑了。但是我们可以手动加入 Editor.md，只要它不把自己解析好的 HTML 发送就可以，因为我们是需要使用插件来解析 Markdown。<br>在之前提到过的四个 php 文件中加入如下代码:</p><pre><code>&lt;div id=&quot;layout&quot;&gt;    &lt;div id=&quot;test-editormd&quot;&gt;        &lt;textarea id=&quot;content&quot; name=&quot;content&quot; style=&quot;display:none;&quot;&gt;&lt;?php echo $content; //在 add_log.php 和 add_page.php 中请去掉这段 php 代码。 ?&gt;&lt;/textarea&gt;    &lt;/div&gt;&lt;/div&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;https://pandao.github.io/editor.md/css/editormd.css&quot; /&gt;&lt;script src=&quot;https://pandao.github.io/editor.md/examples/js/jquery.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;https://pandao.github.io/editor.md/editormd.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var testEditor;    $(function() {        testEditor = editormd(&quot;test-editormd&quot;, {            width   : &quot;100%&quot;,            height  : 640,            syncScrolling : &quot;single&quot;,            path    : &quot;https://pandao.github.io/editor.md/lib/&quot;        });    });&lt;/script&gt;</code></pre><p>这样 Editor.md 就可以展示我们的代码了，但是它不会成为 Markdown Parser。它仅仅是作为预览 Markdown 代码并将 Markdown 代码原样提交的编辑器，而 Parse Markdown 将会在下一个部分提到。<br>虽然 Editor.md 可以使用，但是我并不建议仅使用它，因为我们下面的 Markdown Parser 在 Parse 后不会保留 Markdown 源码，所以推荐大家选择一个适合自己的编辑器。此处推荐 <a href="https://moeditor.org" target="_blank" rel="noopener">Moeditor</a>。</p><h2 id="Markdown-Parser"><a href="#Markdown-Parser" class="headerlink" title="Markdown Parser"></a>Markdown Parser</h2><p>上面我们说到 Editor.md 只是原样提交 Markdown 源文件，而 emlog 本身并不支持 Markdown，所以需要一个 Parser 插件。<br>我发现 “Mike” 写的 Markdown 增强插件很好，但是我们需要配合代码高亮，所以需要做一些修改，由于比较杂乱，我就不再一一叙述，大家可以下载我修改的版本和原版作对照。<br>我的版本的<a href="http://static.chickger.pw/201703/advancemarkdown.tar.gz" target="_blank" rel="noopener">下载链接 »</a>，原版的<a href="http://www.emlog.net/plugin/download/160" target="_blank" rel="noopener">下载链接 »</a>。<br>但是仅仅 Parse 之后是不够的，因为不够好看，我比较喜欢 GitHub Flavored 的主题，我是直接提取了 Moeditor 的 CSS 应用到我模板的样式中的。</p><h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><p>用“Markdown 增强” Parse 出来的代码块是不会有代码高亮的。所以需要使用代码高亮模块，我选择的是 <a href="http://highlightjs.org" target="_blank" rel="noopener">Highlight.js</a>。<br>首先要对“Markdown 增强”进行修改，在 <code>博客目录/content/plugins/advancemarkdown/lib/</code> 下找到 <code>parsedown.php</code>。查找内容<code>language-</code>并替换为空。<br>现在就可以加载 Highlight.js 了，在模板的 <code>header.php</code> 中 <code>&lt;head&gt;</code> 加入以下代码(我使用了 GitHub CDN，大家自己随意，把代码里的<code>!!</code>括起来内容换成自己的 CDN 路径即可):</p><pre><code class="lang-html">&lt;link href=&quot;!!CDN_PATH_HLJS!!/styles/github.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;&lt;script src=&quot;!!CDN_PATH_HLJS!!/highlight.pack.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;script&gt;hljs.initHighlightingOnLoad();&lt;/script&gt;</code></pre><p>这样就可以实现代码块的高亮了。</p><h2 id="Parse-TeX-公式"><a href="#Parse-TeX-公式" class="headerlink" title="Parse TeX 公式"></a>Parse TeX 公式</h2><p>很多 Markdown 编辑器比如 Moeditor 都支持 TeX 公式的 Parse，虽然我有一个 API，但是没有必要用 API 解决这个问题，JavaScript 库就可以又快又好地完美解决。<br>行业内解析 TeX 公式并排版的常见的两个 JavaScript 库是 <a href="http://mathjax.org" target="_blank" rel="noopener">MathJax</a> 和 <a href="http://khan.github.io/KaTeX/" target="_blank" rel="noopener">KaTeX</a>。我对比了一下，老牌的 MathJax 虽然功能强大但是速度太慢，我的博客又不需要过于强大的功能，所以 KaTeX 就足矣。<br>KaTeX 内置有一个扩展 Auto-Render，可以方便的解决这个问题。自然是要加载的。<br>如果需要加载 KaTeX 是非常简单的，在模板的 <code>header.php</code> 的 <code>&lt;head&gt;</code> 标签最后加入以下几行代码:  </p><pre><code class="lang-html">&lt;script src=&quot;!!CDN_PATH_KATEX!!/katex.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;!!CDN_PATH_KATEX!!/contrib/auto-render.min.js&quot;&gt;&lt;/script&gt;</code></pre><p>在模板的 <code>footer.php</code> 的 <code>&lt;/body&gt;</code> 标签结束之前加入以下代码:  </p><pre><code class="lang-html">&lt;script&gt;  renderMathInElement(      document.body,      {          delimiters: [              {left: &quot;$$&quot;, right: &quot;$$&quot;, display: true},              {left: &quot;\\[&quot;, right: &quot;\\]&quot;, display: true},              {left: &quot;$&quot;, right: &quot;$&quot;, display: false},              {left: &quot;\\(&quot;, right: &quot;\\)&quot;, display: false}          ]      }  );&lt;/script&gt;</code></pre><p>至此，我们就实现了令 emlog 支持全功能的 Markdown 了。今后可以优雅地用 Markdown 来写博文了。那滋味就是一个: 爽爽爽爽！</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;更新: 通过 Editor.md 可以获得更好的 Parse 效果，所以 Markdown Parser 部分已经弃用。&lt;br&gt;现在很多博客系统比如 Typecho、Hexo 等等都支持 Markdown 写作，然而 emlog 竟然不支持，这不够科学，不够优雅，所以我们要让它优雅起来。&lt;br&gt;接下来就要实战解决 Markdown 的问题。&lt;/p&gt;
-&lt;h2 id=&quot;删除自带编辑器&quot;&gt;&lt;a href=&quot;#删除自带编辑器&quot; class=&quot;headerlink&quot; title=&quot;删除自带编辑器&quot;&gt;&lt;/a&gt;删除自带编辑器&lt;/h2&gt;&lt;p&gt;emlog 自带的 KindEditor 不实用，首先功能半残不说，从 HTML 源代码模式切换过来还有 BUG。所以为了防止 KindEditor 坏事，我们要删除它。&lt;br&gt;删除 KindEditor 非常简单，我们只需要在博客主目录下 &lt;code&gt;admin/views&lt;/code&gt; 下的 &lt;code&gt;add_log.php&lt;/code&gt;、&lt;code&gt;add_page.php&lt;/code&gt;、&lt;code&gt;edit_log.php&lt;/code&gt;、&lt;code&gt;edit_page.php&lt;/code&gt; 中删除/注释掉下列代码:  &lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-html&quot;&gt;&amp;lt;script charset=&amp;quot;utf-8&amp;quot; src=&amp;quot;./editor/kindeditor.js?v=&amp;lt;?php echo Option::EMLOG_VERSION; ?&amp;gt;&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script charset=&amp;quot;utf-8&amp;quot; src=&amp;quot;./editor/lang/zh_CN.js?v=&amp;lt;?php echo Option::EMLOG_VERSION; ?&amp;gt;&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这样再修改文章、页面时，你就只会看到一个&lt;code&gt;&amp;lt;textarea&amp;gt;&lt;/code&gt;，而不会看到编辑器的界面了。&lt;br&gt;这个文本框只会原封不动地显示博文的 HTML 代码，所以基本不可能用这个直接写作。&lt;br&gt;如果你希望简便一些，可以装个插件“Markdown for emlog”，不过有 bug，如果一般的写文字，这个插件就足够了，做 《EMLOG 大前端》模板的“小草”封装的，封装了一个 Editor.md，&lt;a href=&quot;http://www.emlog.net/plugin/download/269&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;下载链接 »&lt;/a&gt;。但是如果代码多，并且 &lt;code&gt;h1-h6&lt;/code&gt; 如果连续且中间没有任何内容，就会无法解析。BUG 复现例子:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-markdown&quot;&gt;## 12345
-### 67890
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这样一定会出 BUG。所以如果你想用的爽，就 follow me 吧。如果你不在乎或者你不会出现上面的情况，下面就不用看了，直接用小草封装的插件即可。  &lt;/p&gt;
-&lt;h2 id=&quot;安装-Markdown-编辑器&quot;&gt;&lt;a href=&quot;#安装-Markdown-编辑器&quot; class=&quot;headerlink&quot; title=&quot;安装 Markdown 编辑器&quot;&gt;&lt;/a&gt;安装 Markdown 编辑器&lt;/h2&gt;&lt;p&gt;前面已经说过，去掉原有编辑器，基本无法直接在 Emlog 中编辑了。但是我们可以手动加入 Editor.md，只要它不把自己解析好的 HTML 发送就可以，因为我们是需要使用插件来解析 Markdown。&lt;br&gt;在之前提到过的四个 php 文件中加入如下代码:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&amp;quot;layout&amp;quot;&amp;gt;
-    &amp;lt;div id=&amp;quot;test-editormd&amp;quot;&amp;gt;
-        &amp;lt;textarea id=&amp;quot;content&amp;quot; name=&amp;quot;content&amp;quot; style=&amp;quot;display:none;&amp;quot;&amp;gt;&amp;lt;?php echo $content; //在 add_log.php 和 add_page.php 中请去掉这段 php 代码。 ?&amp;gt;&amp;lt;/textarea&amp;gt;
-    &amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;https://pandao.github.io/editor.md/css/editormd.css&amp;quot; /&amp;gt;
-&amp;lt;script src=&amp;quot;https://pandao.github.io/editor.md/examples/js/jquery.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script src=&amp;quot;https://pandao.github.io/editor.md/editormd.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
-    var testEditor;
-    $(function() {
-        testEditor = editormd(&amp;quot;test-editormd&amp;quot;, {
-            width   : &amp;quot;100%&amp;quot;,
-            height  : 640,
-            syncScrolling : &amp;quot;single&amp;quot;,
-            path    : &amp;quot;https://pandao.github.io/editor.md/lib/&amp;quot;
-        });
-    });
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-      <category term="网站" scheme="/tags/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="JavaScript" scheme="/tags/JavaScript/"/>
-    
-      <category term="php" scheme="/tags/php/"/>
-    
-      <category term="HTML" scheme="/tags/HTML/"/>
     
   </entry>
   

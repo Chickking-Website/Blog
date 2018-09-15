@@ -167,6 +167,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-a-completely-new-beginning" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/a-completely-new-beginning/">新的开始</a>
+    </h1>
+  
+
+        
+        <a href="/posts/a-completely-new-beginning/" class="archive-article-date">
+  	<time datetime="2017-10-19T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>转眼间，开学已经一个多月了。<br>既然来到了一中，我想一切都应当重新开始了。和过去的自己一刀两断，或许是有必要的吧。那个懒惰、不思进取的自己，也要有所改变了？<br>这个博客的域名从 chickger.pw 换到 imvictor.tech，是一个经过深思熟虑的决定，旧的域名难以记忆，而新的域名则更加便于记忆和展现个性。 As you can see，我也弃暗投明，换用了 Hexo 这个博客系统，和 emlog 彻底说再见。以前只知道一味地缝缝补补，缺乏推倒重来的勇气。此番功夫的目的就是让一切重新开始。<br>而在文化课上，初中三年都是浪过来的我，在进入一中的时候是没有任何优势的。入学时，全班一共 59 个人，我排第 44 名。最低分数线 624，我 628 进来。这种成绩在这里除了艺术生基本就是垫底了。<br>而十一过后月考完了呢？我确信这一个月我只是比从前的自己稍稍多努力了一点点，甚至不比以前努力多少，而取得的成绩确是大不一样的。至于月考成绩出来后从第 44 名蹦到第 9 名，35 个名次。这也许是我中考以来第二个转折点了吧。<br>然而仅仅是月考是远远不够的。今后的内容会更加困难，成绩能不能保得住，还未可知。  </p>
+<p><strong>重新开始</strong>，这四个字就是我现在首要的事情。而竞争只会越来越激烈。那么我只能更加拼命地提升自己了。博客我还会坚持更新，不会放弃。</p>
+<p>每一天又是新的一天，让人期待的一天。</p>
+
+        
+          <a class="article-more-a" href="/posts/a-completely-new-beginning/#more">... </a>
+        
+      
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">碎碎念</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/posts/a-completely-new-beginning/">继续阅读 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-simulation-of-ppc-macos-via-qemu" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -581,123 +659,6 @@ applyer.innerText = source.innerHTML;
 
 
   
-    <article id="post-add-markdown-support-to-emlog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/add-markdown-support-to-emlog/">让 emlog 支持 Markdown</a>
-    </h1>
-  
-
-        
-        <a href="/posts/add-markdown-support-to-emlog/" class="archive-article-date">
-  	<time datetime="2017-03-23T12:36:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>更新: 通过 Editor.md 可以获得更好的 Parse 效果，所以 Markdown Parser 部分已经弃用。<br>现在很多博客系统比如 Typecho、Hexo 等等都支持 Markdown 写作，然而 emlog 竟然不支持，这不够科学，不够优雅，所以我们要让它优雅起来。<br>接下来就要实战解决 Markdown 的问题。</p>
-<h2 id="删除自带编辑器"><a href="#删除自带编辑器" class="headerlink" title="删除自带编辑器"></a>删除自带编辑器</h2><p>emlog 自带的 KindEditor 不实用，首先功能半残不说，从 HTML 源代码模式切换过来还有 BUG。所以为了防止 KindEditor 坏事，我们要删除它。<br>删除 KindEditor 非常简单，我们只需要在博客主目录下 <code>admin/views</code> 下的 <code>add_log.php</code>、<code>add_page.php</code>、<code>edit_log.php</code>、<code>edit_page.php</code> 中删除/注释掉下列代码:  </p>
-<pre><code class="lang-html">&lt;script charset=&quot;utf-8&quot; src=&quot;./editor/kindeditor.js?v=&lt;?php echo Option::EMLOG_VERSION; ?&gt;&quot;&gt;&lt;/script&gt;
-&lt;script charset=&quot;utf-8&quot; src=&quot;./editor/lang/zh_CN.js?v=&lt;?php echo Option::EMLOG_VERSION; ?&gt;&quot;&gt;&lt;/script&gt;
-</code></pre>
-<p>这样再修改文章、页面时，你就只会看到一个<code>&lt;textarea&gt;</code>，而不会看到编辑器的界面了。<br>这个文本框只会原封不动地显示博文的 HTML 代码，所以基本不可能用这个直接写作。<br>如果你希望简便一些，可以装个插件“Markdown for emlog”，不过有 bug，如果一般的写文字，这个插件就足够了，做 《EMLOG 大前端》模板的“小草”封装的，封装了一个 Editor.md，<a href="http://www.emlog.net/plugin/download/269" target="_blank" rel="noopener">下载链接 »</a>。但是如果代码多，并且 <code>h1-h6</code> 如果连续且中间没有任何内容，就会无法解析。BUG 复现例子:</p>
-<pre><code class="lang-markdown">## 12345
-### 67890
-</code></pre>
-<p>这样一定会出 BUG。所以如果你想用的爽，就 follow me 吧。如果你不在乎或者你不会出现上面的情况，下面就不用看了，直接用小草封装的插件即可。  </p>
-<h2 id="安装-Markdown-编辑器"><a href="#安装-Markdown-编辑器" class="headerlink" title="安装 Markdown 编辑器"></a>安装 Markdown 编辑器</h2><p>前面已经说过，去掉原有编辑器，基本无法直接在 Emlog 中编辑了。但是我们可以手动加入 Editor.md，只要它不把自己解析好的 HTML 发送就可以，因为我们是需要使用插件来解析 Markdown。<br>在之前提到过的四个 php 文件中加入如下代码:</p>
-<pre><code>&lt;div id=&quot;layout&quot;&gt;
-    &lt;div id=&quot;test-editormd&quot;&gt;
-        &lt;textarea id=&quot;content&quot; name=&quot;content&quot; style=&quot;display:none;&quot;&gt;&lt;?php echo $content; //在 add_log.php 和 add_page.php 中请去掉这段 php 代码。 ?&gt;&lt;/textarea&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;https://pandao.github.io/editor.md/css/editormd.css&quot; /&gt;
-&lt;script src=&quot;https://pandao.github.io/editor.md/examples/js/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://pandao.github.io/editor.md/editormd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    var testEditor;
-    $(function() {
-        testEditor = editormd(&quot;test-editormd&quot;, {
-            width   : &quot;100%&quot;,
-            height  : 640,
-            syncScrolling : &quot;single&quot;,
-            path    : &quot;https://pandao.github.io/editor.md/lib/&quot;
-        });
-    });
-&lt;/script&gt;
-</code></pre>
-        
-          <a class="article-more-a" href="/posts/add-markdown-support-to-emlog/#more">... </a>
-        
-      
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网站</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTML</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/add-markdown-support-to-emlog/">继续阅读 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -887,6 +848,10 @@ applyer.innerText = source.innerHTML;
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">平衡树</a>
               </li>
             
             <div class="clearfix"></div>

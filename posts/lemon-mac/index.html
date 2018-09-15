@@ -9,19 +9,19 @@
   <link rel="dns-prefetch" href="">
   <title>lemon 在 macOS 上的移植 | 凌风仙鸡的 Blog&amp;Diary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。所以，我去做了一个移植的工作。这里就直接贴项目地址了(其实就是骗 Star):   lemon-mac 在 GitHub 上的内容 lemon-mac 在 Coding.net 上的">
+  <meta name="description" content="lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。所以，我去做了一个移植的工作。这里就直接贴项目地址了(其实就是骗 Star):lemon-mac 在 GitHub 上的内容 如果你实在懒得折腾，也可以下载我构建好的版本，既可以去">
 <meta name="keywords" content="OI,macOS,C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="lemon 在 macOS 上的移植">
 <meta property="og:url" content="/posts/lemon-mac/index.html">
 <meta property="og:site_name" content="凌风仙鸡的 Blog&amp;Diary">
-<meta property="og:description" content="lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。所以，我去做了一个移植的工作。这里就直接贴项目地址了(其实就是骗 Star):   lemon-mac 在 GitHub 上的内容 lemon-mac 在 Coding.net 上的">
+<meta property="og:description" content="lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。所以，我去做了一个移植的工作。这里就直接贴项目地址了(其实就是骗 Star):lemon-mac 在 GitHub 上的内容 如果你实在懒得折腾，也可以下载我构建好的版本，既可以去">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/lemon01.png">
-<meta property="og:updated_time" content="2018-04-27T15:40:31.000Z">
+<meta property="og:updated_time" content="2018-09-15T07:43:31.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lemon 在 macOS 上的移植">
-<meta name="twitter:description" content="lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。所以，我去做了一个移植的工作。这里就直接贴项目地址了(其实就是骗 Star):   lemon-mac 在 GitHub 上的内容 lemon-mac 在 Coding.net 上的">
+<meta name="twitter:description" content="lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。所以，我去做了一个移植的工作。这里就直接贴项目地址了(其实就是骗 Star):lemon-mac 在 GitHub 上的内容 如果你实在懒得折腾，也可以下载我构建好的版本，既可以去">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/lemon01.png">
   
     <link rel="alternative" href="/atom.xml" title="凌风仙鸡的 Blog&amp;Diary" type="application/atom+xml">
@@ -189,12 +189,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。<br>但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。<br>所以，我去做了一个移植的工作。<br>这里就直接贴项目地址了(其实就是骗 Star): </p>
-<ul>
-<li><a href="https://github.com/Chickking/lemon-mac" target="_blank" rel="external">lemon-mac 在 GitHub 上的内容</a></li>
-<li><a href="https://coding.net/u/chickking/p/lemon-mac/" target="_blank" rel="external">lemon-mac 在 Coding.net 上的内容</a></li>
-</ul>
-<p>如果你实在懒得折腾，也可以下载我构建好的版本，既可以去 GitHub Release 下，也可以<a href="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/lemon-darwin-x86_64.zip" target="_blank" rel="external">点击这里</a>下载。<br><img src="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/lemon01.png" alt="lemon 界面"><br>放张图就跑~<br>另外，最近中国移动网络似乎会将 GitHub 解析到 127.0.0.1。访问不了 GitHub 的朋友们就去 Coding.net 吧。</p>
+        <p>lemon 是一个轻量的 OI 评测系统。它基于 Qt 编写，因此应当具有强大的跨平台特性。<br>但是 2012 年开始，lemon 就不再更新了。而且之前官方也没有管 macOS 的问题，直接 qmake 也是不可能通过。<br>所以，我去做了一个移植的工作。<br>这里就直接贴项目地址了(其实就是骗 Star):<br><a href="https://github.com/Chickking/lemon-mac" target="_blank" rel="noopener">lemon-mac 在 GitHub 上的内容</a></p>
+<p>如果你实在懒得折腾，也可以下载我构建好的版本，既可以去 GitHub Release 下，也可以<a href="https://static.imvictor.tech/data/201809/lemon-darwin-x86_64.zip" target="_blank" rel="noopener">点击这里</a>下载。<br><img src="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201804/lemon01.png" alt="lemon 界面"><br>放张图就跑~<br>另外，最近中国移动网络似乎会将 GitHub 解析到 127.0.0.1。访问不了 GitHub 的朋友们就去 Coding.net 吧。</p>
 
 	    
 			<hr>
@@ -502,6 +498,10 @@ gitalk.render('gitalk-container');
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">平衡树</a>
               </li>
             
             <div class="clearfix"></div>
