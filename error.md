@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 嘤~
-date: 1970-01-01 00:00:00
+date: 1926-08-17 00:00:00
 visible: false
 permalink: /error/
 comments: true

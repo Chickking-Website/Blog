@@ -1,7 +1,7 @@
 ---
 layout: page
 title: README.md
-date: 1970-01-01 00:00:00
+date: 2002-05-10 15:28:35
 visible: false
 permalink: /README/
 comments: true
@@ -34,8 +34,7 @@ Tags: <div style="line-height: 2"><span class="readme_tag">macOS / iOS 重度用
 中文名我不告诉你。  
 LYOI 最弱的人没有之一，    
 电脑界面和壁纸不好看会死星人，  
-心里住着两个自己，  
-因此时而感性时而理性。  
+是个矛盾共同体。  
 非常喜欢看动画电影。  
 家里有台捡垃圾捡出来的服务器，  
 服务器上跑着 [CentOS](https://centos.org/)。  

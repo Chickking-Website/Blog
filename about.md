@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 关于本站
-date: 1970-01-01 00:00:00
+date: 2016-01-10 12:00:00
 visible: false
 permalink: /about/
 comments: true

@@ -4,19 +4,54 @@
   <url>
     <loc>//README/index.html</loc>
     
-    <lastmod>2018-09-15T08:33:12.656Z</lastmod>
+    <lastmod>2018-09-16T10:38:48.673Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/lemon-mac.html</loc>
+    <loc>/posts/2018-noip-winter-campus-in-qingdao.html</loc>
+    
+    <lastmod>2018-09-16T10:37:56.687Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/2018-noip-winter-campus-in-qingdao/</loc>
+    
+    <lastmod>2018-09-16T10:37:56.687Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//msgboard/index.html</loc>
+    
+    <lastmod>2018-09-16T10:36:22.311Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//error/index.html</loc>
+    
+    <lastmod>2018-09-16T10:35:52.814Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//about/index.html</loc>
+    
+    <lastmod>2018-09-16T10:35:31.239Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/lemon-mac/</loc>
     
     <lastmod>2018-09-15T08:24:35.587Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/lemon-mac/</loc>
+    <loc>/posts/lemon-mac.html</loc>
     
     <lastmod>2018-09-15T08:24:35.587Z</lastmod>
     
@@ -51,13 +86,6 @@
   </url>
   
   <url>
-    <loc>//about/index.html</loc>
-    
-    <lastmod>2018-08-27T05:29:50.950Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/deploying-syzoj2-on-centos.html</loc>
     
     <lastmod>2018-08-22T06:55:59.409Z</lastmod>
@@ -72,21 +100,14 @@
   </url>
   
   <url>
-    <loc>//error/index.html</loc>
-    
-    <lastmod>2018-08-19T08:40:41.859Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/https-requests-forwarding-using-sniproxy.html</loc>
+    <loc>/posts/https-requests-forwarding-using-sniproxy/</loc>
     
     <lastmod>2018-08-18T08:05:39.035Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/https-requests-forwarding-using-sniproxy/</loc>
+    <loc>/posts/https-requests-forwarding-using-sniproxy.html</loc>
     
     <lastmod>2018-08-18T08:05:39.035Z</lastmod>
     
@@ -114,7 +135,7 @@
   </url>
   
   <url>
-    <loc>/posts/variable-as-array-s-initial-length.html</loc>
+    <loc>/posts/tech-of-jobs-remembering.html</loc>
     
     <lastmod>2018-08-18T07:53:29.463Z</lastmod>
     
@@ -128,9 +149,16 @@
   </url>
   
   <url>
-    <loc>/posts/tech-of-jobs-remembering.html</loc>
+    <loc>/posts/variable-as-array-s-initial-length.html</loc>
     
     <lastmod>2018-08-18T07:53:29.463Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/stack-and-queue-basic.html</loc>
+    
+    <lastmod>2018-08-18T07:53:29.462Z</lastmod>
     
   </url>
   
@@ -156,35 +184,7 @@
   </url>
   
   <url>
-    <loc>/posts/stack-and-queue-basic.html</loc>
-    
-    <lastmod>2018-08-18T07:53:29.462Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/simulation-of-ppc-macos-via-qemu/</loc>
-    
-    <lastmod>2018-08-18T07:53:29.461Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/noip2015_magic_square.html</loc>
-    
-    <lastmod>2018-08-18T07:53:29.461Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/simulation-of-ppc-macos-via-qemu.html</loc>
-    
-    <lastmod>2018-08-18T07:53:29.461Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/noip2015_magic_square/</loc>
     
     <lastmod>2018-08-18T07:53:29.461Z</lastmod>
     
@@ -198,7 +198,28 @@
   </url>
   
   <url>
+    <loc>/posts/simulation-of-ppc-macos-via-qemu.html</loc>
+    
+    <lastmod>2018-08-18T07:53:29.461Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>/posts/save_graph_and_traversal_it.html</loc>
+    
+    <lastmod>2018-08-18T07:53:29.461Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/noip2015_magic_square.html</loc>
+    
+    <lastmod>2018-08-18T07:53:29.461Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/noip2015_magic_square/</loc>
     
     <lastmod>2018-08-18T07:53:29.461Z</lastmod>
     
@@ -219,7 +240,7 @@
   </url>
   
   <url>
-    <loc>/posts/enable-CX-20751-2-by-AppleALC.html</loc>
+    <loc>/posts/enable-CX-20751-2-by-AppleALC/</loc>
     
     <lastmod>2018-08-18T07:53:29.459Z</lastmod>
     
@@ -233,7 +254,14 @@
   </url>
   
   <url>
-    <loc>/posts/enable-CX-20751-2-by-AppleALC/</loc>
+    <loc>/posts/emlog-variables-dev-of-keypad-and-acme-sh.html</loc>
+    
+    <lastmod>2018-08-18T07:53:29.459Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/enable-CX-20751-2-by-AppleALC.html</loc>
     
     <lastmod>2018-08-18T07:53:29.459Z</lastmod>
     
@@ -241,13 +269,6 @@
   
   <url>
     <loc>/posts/exgcd_and_euler_sieve_template.html</loc>
-    
-    <lastmod>2018-08-18T07:53:29.459Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/emlog-variables-dev-of-keypad-and-acme-sh.html</loc>
     
     <lastmod>2018-08-18T07:53:29.459Z</lastmod>
     
@@ -282,7 +303,7 @@
   </url>
   
   <url>
-    <loc>/posts/add-markdown-support-to-emlog.html</loc>
+    <loc>/posts/changing-website's-architecture/</loc>
     
     <lastmod>2018-08-18T07:53:29.457Z</lastmod>
     
@@ -296,7 +317,7 @@
   </url>
   
   <url>
-    <loc>/posts/changing-website's-architecture/</loc>
+    <loc>/posts/add-markdown-support-to-emlog.html</loc>
     
     <lastmod>2018-08-18T07:53:29.457Z</lastmod>
     
@@ -317,13 +338,6 @@
   </url>
   
   <url>
-    <loc>/posts/a-better-solution-of-markdown-support-for-emlog.html</loc>
-    
-    <lastmod>2018-08-18T07:53:29.456Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/98-percent-perfection-of-ASUS-Pro451L.html</loc>
     
     <lastmod>2018-08-18T07:53:29.456Z</lastmod>
@@ -331,16 +345,9 @@
   </url>
   
   <url>
-    <loc>/posts/2018-noip-winter-campus-in-qingdao.html</loc>
+    <loc>/posts/a-better-solution-of-markdown-support-for-emlog.html</loc>
     
-    <lastmod>2018-08-18T07:53:29.455Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/2018-noip-winter-campus-in-qingdao/</loc>
-    
-    <lastmod>2018-08-18T07:53:29.455Z</lastmod>
+    <lastmod>2018-08-18T07:53:29.456Z</lastmod>
     
   </url>
   
@@ -352,14 +359,14 @@
   </url>
   
   <url>
-    <loc>/posts/mirrored-make-girls-moe.html</loc>
+    <loc>/posts/mirrored-make-girls-moe/</loc>
     
     <lastmod>2018-06-23T14:43:46.172Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/mirrored-make-girls-moe/</loc>
+    <loc>/posts/mirrored-make-girls-moe.html</loc>
     
     <lastmod>2018-06-23T14:43:46.172Z</lastmod>
     
@@ -387,13 +394,6 @@
   </url>
   
   <url>
-    <loc>/posts/a-completely-new-beginning/</loc>
-    
-    <lastmod>2017-11-29T14:49:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/a-completely-new-beginning.html</loc>
     
     <lastmod>2017-11-29T14:49:48.000Z</lastmod>
@@ -401,9 +401,9 @@
   </url>
   
   <url>
-    <loc>/posts/drcom-auto-login-script/</loc>
+    <loc>/posts/a-completely-new-beginning/</loc>
     
-    <lastmod>2017-11-04T06:00:32.000Z</lastmod>
+    <lastmod>2017-11-29T14:49:48.000Z</lastmod>
     
   </url>
   
@@ -415,7 +415,7 @@
   </url>
   
   <url>
-    <loc>//msgboard/index.html</loc>
+    <loc>/posts/drcom-auto-login-script/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
