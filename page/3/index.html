@@ -167,6 +167,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-stack-and-queue-basic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/stack-and-queue-basic/">栈与队列的基础实现</a>
+    </h1>
+  
+
+        
+        <a href="/posts/stack-and-queue-basic/" class="archive-article-date">
+  	<time datetime="2018-02-01T16:38:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前学习栈和队列就不是很系统，这会趁着有时间赶紧补一补。</p>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>栈 (stack) 是一种“先入后出”的数据结构。栈的基本结构类似洗盘子，你必须把上面的盘子全部移走，才能够取得下面的盘子。栈的图解如下:<br><img src="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201802/stack.png" alt="stack picture"><br>可以看出，栈由两部分组成，数据和栈指针。<br>在 C++ 中，我们一般通过数组模拟来实现栈。<br>栈的类型声明如下:  </p>
+<pre><code class="lang-cpp">typedef struct {
+    int data[MAXN];
+    int top;
+} stack;
+</code></pre>
+<p>栈的一些基本操作包括: 压入、弹出。<br>我们现在就开始编写一些与栈有关的函数。</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>栈的初始化很有意思，一般我们在初始化时将栈指针设置为 -1。  </p>
+<pre><code class="lang-cpp">void stack_init(stack *s) {
+    s-&gt;top = -1;
+}
+</code></pre>
+<p>因为接下来我们将数据压入栈的时候，栈指针会先自己加 1，因此将栈指针设置为 -1 可以让第一个元素的指针为 0。<br><span style="color:orange">这里说的“指针”，和 C++ 中常规的指针不同，但其存在的根本意义是一致的。</span></p>
+<h3 id="判断栈空或满"><a href="#判断栈空或满" class="headerlink" title="判断栈空或满"></a>判断栈空或满</h3>
+        
+          <a class="article-more-a" href="/posts/stack-and-queue-basic/#more">... </a>
+        
+      
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OI</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线性表</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/posts/stack-and-queue-basic/">继续阅读 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-make-your-own-ubuntu-to-go" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -518,100 +619,6 @@ cp $dir/EFI/ubuntu/grubx64.efi $dir/EFI/CLOVER/CLOVERX64.EFI
       
         <p class="article-more-link">
           <a class="article-more-a" href="/posts/asus_pro451l_high_sierra_hackintosh/">继续阅读 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-standardly-perfect-hexo-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/standardly-perfect-hexo-blog/">Hexo 博客程序初步完善</a>
-    </h1>
-  
-
-        
-        <a href="/posts/standardly-perfect-hexo-blog/" class="archive-article-date">
-  	<time datetime="2017-11-04T08:09:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>切换到 Hexo 之后，首要的任务就是把之前的一些轮子再造一遍。  </p>
-<h2 id="1-版权声明和原文链接"><a href="#1-版权声明和原文链接" class="headerlink" title="1. 版权声明和原文链接"></a>1. 版权声明和原文链接</h2><p>在旧的博客中，我曾经加入过这样的功能:<br><img src="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201711/sourcemark.png" alt="版权声明和原文链接"><br>在 emlog 中，这些非常容易做。而在 Hexo 中，这也不是难事。<br>我使用的是 yilia 主题，在主题的 <code>layout/_partial/article.ejs</code> 中，在 <code>&lt;% post.content %&gt;</code> 之后加入以下代码:</p>
-<pre><code>&lt;% if (config.copyrights &amp;&amp; page.layout == &quot;post&quot;) { %&gt;
-    &lt;hr&gt;
-    &lt;p&gt;本文著作权归作者所有，允许非商业性转载使用，但请在转载后文末附上原文链接。&lt;/p&gt;
-    &lt;p&gt;原文链接: &lt;a href=&quot;https://&lt;%= config.domain %&gt;&lt;%= post.permalink %&gt;&quot;&gt;https://&lt;%= config.domain %&gt;&lt;%= post.permalink %&gt;&lt;/a&gt;，&lt;a href=&quot;https://&lt;%= config.domain %&gt;&lt;%= post.permalink %&gt;#gitalk-container&quot;&gt;前往原文评论。&lt;/a&gt;&lt;/p&gt;
-&lt;% } %&gt;
-</code></pre><p>前往原文评论部分 URL 的 Hash 值请根据你使用的评论系统的 Container ID 修改。<br>然后在 Hexo 的 <code>_config.yml</code> 文件中加入如下配置:</p>
-<pre><code class="lang-yaml">domain: imvictor.tech # 你的域名
-copyrights: true
-</code></pre>
-<p>这样可以灵活控制是否打开这个功能，也方便切换域名。</p>
-<h2 id="2-查看-Markdown-源文件"><a href="#2-查看-Markdown-源文件" class="headerlink" title="2. 查看 Markdown 源文件"></a>2. 查看 Markdown 源文件</h2><p>这个灵感最初是来自 imququ.com，再次致敬。<br>在 emlog 中，这个功能实现起来反而更加复杂，因为 emlog 本身不支持 Markdown，我是通过自己的方式来实现 Markdown 支持的。在 emlog 中，为了输出 Markdown 源文件，我使用了一些比较 trick 的方法，就不说了。<br>现在，我几乎没有动 Hexo 就实现了这个功能，因为 nginx 可以很好地完成这个工作。<br>先对 <code>source/_posts/</code> 进行符号链接到 <code>source/posts/</code>。<br>在 nginx 的 Config 文件中加入以下代码:</p>
-<pre><code>location / {
-    root /home/user/hexo/public/;
-    location ~* \.(md)$ {
-        root /home/user/hexo/source/;
-    }
-}
-</code></pre>
-        
-          <a class="article-more-a" href="/posts/standardly-perfect-hexo-blog/#more">... </a>
-        
-      
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网站</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/standardly-perfect-hexo-blog/">继续阅读 >></a>
         </p>
       
 

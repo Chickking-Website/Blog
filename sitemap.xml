@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>//our-apis/index.html</loc>
+    
+    <lastmod>2018-09-17T09:04:32.731Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/some-new-API-released-in-autumn-2018.html</loc>
+    
+    <lastmod>2018-09-17T09:03:17.271Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/some-new-API-released-in-autumn-2018/</loc>
+    
+    <lastmod>2018-09-17T09:03:17.271Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>//README/index.html</loc>
     
     <lastmod>2018-09-17T08:29:08.094Z</lastmod>
@@ -9,14 +30,14 @@
   </url>
   
   <url>
-    <loc>/posts/2018-noip-winter-campus-in-qingdao.html</loc>
+    <loc>/posts/2018-noip-winter-campus-in-qingdao/</loc>
     
     <lastmod>2018-09-16T10:37:56.687Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/2018-noip-winter-campus-in-qingdao/</loc>
+    <loc>/posts/2018-noip-winter-campus-in-qingdao.html</loc>
     
     <lastmod>2018-09-16T10:37:56.687Z</lastmod>
     
@@ -100,13 +121,6 @@
   </url>
   
   <url>
-    <loc>/posts/https-requests-forwarding-using-sniproxy/</loc>
-    
-    <lastmod>2018-08-18T08:05:39.035Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/https-requests-forwarding-using-sniproxy.html</loc>
     
     <lastmod>2018-08-18T08:05:39.035Z</lastmod>
@@ -114,14 +128,14 @@
   </url>
   
   <url>
-    <loc>/posts/tech-of-jobs-remembering/</loc>
+    <loc>/posts/https-requests-forwarding-using-sniproxy/</loc>
     
-    <lastmod>2018-08-18T07:53:29.463Z</lastmod>
+    <lastmod>2018-08-18T08:05:39.035Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/turn-an-old-iPhone-into-a-server/</loc>
+    <loc>/posts/variable-as-array-s-initial-length.html</loc>
     
     <lastmod>2018-08-18T07:53:29.463Z</lastmod>
     
@@ -135,13 +149,6 @@
   </url>
   
   <url>
-    <loc>/posts/tech-of-jobs-remembering.html</loc>
-    
-    <lastmod>2018-08-18T07:53:29.463Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/turn-an-old-iPhone-into-a-server.html</loc>
     
     <lastmod>2018-08-18T07:53:29.463Z</lastmod>
@@ -149,23 +156,23 @@
   </url>
   
   <url>
-    <loc>/posts/variable-as-array-s-initial-length.html</loc>
+    <loc>/posts/tech-of-jobs-remembering/</loc>
     
     <lastmod>2018-08-18T07:53:29.463Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/stack-and-queue-basic.html</loc>
+    <loc>/posts/tech-of-jobs-remembering.html</loc>
     
-    <lastmod>2018-08-18T07:53:29.462Z</lastmod>
+    <lastmod>2018-08-18T07:53:29.463Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/stack-and-queue-basic/</loc>
+    <loc>/posts/turn-an-old-iPhone-into-a-server/</loc>
     
-    <lastmod>2018-08-18T07:53:29.462Z</lastmod>
+    <lastmod>2018-08-18T07:53:29.463Z</lastmod>
     
   </url>
   
@@ -178,6 +185,20 @@
   
   <url>
     <loc>/posts/standardly-perfect-hexo-blog.html</loc>
+    
+    <lastmod>2018-08-18T07:53:29.462Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/stack-and-queue-basic.html</loc>
+    
+    <lastmod>2018-08-18T07:53:29.462Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/stack-and-queue-basic/</loc>
     
     <lastmod>2018-08-18T07:53:29.462Z</lastmod>
     
@@ -240,20 +261,6 @@
   </url>
   
   <url>
-    <loc>/posts/enable-CX-20751-2-by-AppleALC/</loc>
-    
-    <lastmod>2018-08-18T07:53:29.459Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/exgcd_and_euler_sieve_template/</loc>
-    
-    <lastmod>2018-08-18T07:53:29.459Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/emlog-variables-dev-of-keypad-and-acme-sh.html</loc>
     
     <lastmod>2018-08-18T07:53:29.459Z</lastmod>
@@ -282,9 +289,16 @@
   </url>
   
   <url>
-    <loc>/posts/deploying-frp-reverse-proxy.html</loc>
+    <loc>/posts/exgcd_and_euler_sieve_template/</loc>
     
-    <lastmod>2018-08-18T07:53:29.458Z</lastmod>
+    <lastmod>2018-08-18T07:53:29.459Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/enable-CX-20751-2-by-AppleALC/</loc>
+    
+    <lastmod>2018-08-18T07:53:29.459Z</lastmod>
     
   </url>
   
@@ -296,7 +310,14 @@
   </url>
   
   <url>
-    <loc>/posts/changing-website's-architecture.html</loc>
+    <loc>/posts/deploying-frp-reverse-proxy.html</loc>
+    
+    <lastmod>2018-08-18T07:53:29.458Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/add-markdown-support-to-emlog.html</loc>
     
     <lastmod>2018-08-18T07:53:29.457Z</lastmod>
     
@@ -317,21 +338,21 @@
   </url>
   
   <url>
-    <loc>/posts/add-markdown-support-to-emlog.html</loc>
+    <loc>/posts/changing-website's-architecture.html</loc>
     
     <lastmod>2018-08-18T07:53:29.457Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/a-better-solution-of-markdown-support-for-emlog/</loc>
+    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L/</loc>
     
     <lastmod>2018-08-18T07:53:29.456Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L/</loc>
+    <loc>/posts/a-better-solution-of-markdown-support-for-emlog/</loc>
     
     <lastmod>2018-08-18T07:53:29.456Z</lastmod>
     
@@ -352,21 +373,14 @@
   </url>
   
   <url>
-    <loc>//our-apis/index.html</loc>
-    
-    <lastmod>2018-08-18T07:53:25.565Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/mirrored-make-girls-moe/</loc>
+    <loc>/posts/mirrored-make-girls-moe.html</loc>
     
     <lastmod>2018-06-23T14:43:46.172Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/mirrored-make-girls-moe.html</loc>
+    <loc>/posts/mirrored-make-girls-moe/</loc>
     
     <lastmod>2018-06-23T14:43:46.172Z</lastmod>
     

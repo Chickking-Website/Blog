@@ -167,6 +167,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-standardly-perfect-hexo-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/standardly-perfect-hexo-blog/">Hexo 博客程序初步完善</a>
+    </h1>
+  
+
+        
+        <a href="/posts/standardly-perfect-hexo-blog/" class="archive-article-date">
+  	<time datetime="2017-11-04T08:09:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>切换到 Hexo 之后，首要的任务就是把之前的一些轮子再造一遍。  </p>
+<h2 id="1-版权声明和原文链接"><a href="#1-版权声明和原文链接" class="headerlink" title="1. 版权声明和原文链接"></a>1. 版权声明和原文链接</h2><p>在旧的博客中，我曾经加入过这样的功能:<br><img src="https://raw.githubusercontent.com/Chickking-Website/SomeFile/master/201711/sourcemark.png" alt="版权声明和原文链接"><br>在 emlog 中，这些非常容易做。而在 Hexo 中，这也不是难事。<br>我使用的是 yilia 主题，在主题的 <code>layout/_partial/article.ejs</code> 中，在 <code>&lt;% post.content %&gt;</code> 之后加入以下代码:</p>
+<pre><code>&lt;% if (config.copyrights &amp;&amp; page.layout == &quot;post&quot;) { %&gt;
+    &lt;hr&gt;
+    &lt;p&gt;本文著作权归作者所有，允许非商业性转载使用，但请在转载后文末附上原文链接。&lt;/p&gt;
+    &lt;p&gt;原文链接: &lt;a href=&quot;https://&lt;%= config.domain %&gt;&lt;%= post.permalink %&gt;&quot;&gt;https://&lt;%= config.domain %&gt;&lt;%= post.permalink %&gt;&lt;/a&gt;，&lt;a href=&quot;https://&lt;%= config.domain %&gt;&lt;%= post.permalink %&gt;#gitalk-container&quot;&gt;前往原文评论。&lt;/a&gt;&lt;/p&gt;
+&lt;% } %&gt;
+</code></pre><p>前往原文评论部分 URL 的 Hash 值请根据你使用的评论系统的 Container ID 修改。<br>然后在 Hexo 的 <code>_config.yml</code> 文件中加入如下配置:</p>
+<pre><code class="lang-yaml">domain: imvictor.tech # 你的域名
+copyrights: true
+</code></pre>
+<p>这样可以灵活控制是否打开这个功能，也方便切换域名。</p>
+<h2 id="2-查看-Markdown-源文件"><a href="#2-查看-Markdown-源文件" class="headerlink" title="2. 查看 Markdown 源文件"></a>2. 查看 Markdown 源文件</h2><p>这个灵感最初是来自 imququ.com，再次致敬。<br>在 emlog 中，这个功能实现起来反而更加复杂，因为 emlog 本身不支持 Markdown，我是通过自己的方式来实现 Markdown 支持的。在 emlog 中，为了输出 Markdown 源文件，我使用了一些比较 trick 的方法，就不说了。<br>现在，我几乎没有动 Hexo 就实现了这个功能，因为 nginx 可以很好地完成这个工作。<br>先对 <code>source/_posts/</code> 进行符号链接到 <code>source/posts/</code>。<br>在 nginx 的 Config 文件中加入以下代码:</p>
+<pre><code>location / {
+    root /home/user/hexo/public/;
+    location ~* \.(md)$ {
+        root /home/user/hexo/source/;
+    }
+}
+</code></pre>
+        
+          <a class="article-more-a" href="/posts/standardly-perfect-hexo-blog/#more">... </a>
+        
+      
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网站</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/posts/standardly-perfect-hexo-blog/">继续阅读 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-a-completely-new-beginning" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -518,118 +612,6 @@ if IS_TEST:
       
         <p class="article-more-link">
           <a class="article-more-a" href="/posts/turn-an-old-iPhone-into-a-server/">继续阅读 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-a-better-solution-of-markdown-support-for-emlog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/a-better-solution-of-markdown-support-for-emlog/">更好的 Markdown for emlog 解决方案</a>
-    </h1>
-  
-
-        
-        <a href="/posts/a-better-solution-of-markdown-support-for-emlog/" class="archive-article-date">
-  	<time datetime="2017-03-26T04:36:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>上一篇博文说到了让 emlog 支持 Markdown，但是在实际应用中我发现效果并不是非常理想，如在文章中输入<code>\r</code>会换行，以及不支持页面的 Markdown Parse。于是想去改进一下，读了 Editor.md 的文档，我决定基于 Editor.md 实现 Markdown 的 Parser。</p>
-<h2 id="1-安装并配置-Editor-md"><a href="#1-安装并配置-Editor-md" class="headerlink" title="1.安装并配置 Editor.md"></a>1.安装并配置 Editor.md</h2><p>安装 Editor.md 十分简单，我就不多说了，大家都会的。<br>重点在于配置 Editor.md，如何配置呢？这取决于你需要怎样的功能，这里推荐你去看看它的 <a href="https://pandao.github.io/editor.md/examples/index.html" target="_blank" rel="noopener">Examples</a>。<br>我的需求是 HTML in Markdown、TOC、以及输出 HTML，流程图和时序图以后恐怕也会用到。我的配置如下:</p>
-<pre><code class="lang-html">        &lt;script type=&quot;text/javascript&quot;&gt;
-            var testEditor;
-
-            $(function() {
-                testEditor = editormd(&quot;test-editormd&quot;, {
-                    width   : &quot;100%&quot;,
-                    height  : 640,
-                    syncScrolling : &quot;single&quot;,
-                    htmlDecode : true,
-                    sequenceDiagram : true,
-                    flowChart : true,
-                    saveHTMLToTextarea : true,
-                    tocm : true,
-                    tocContainer : &quot;&quot;,
-                    tocDropdown   : false,
-                    path    : &quot;https://static.chickger.pw/js/editor.md/lib/&quot;
-                });
-            });
-        &lt;/script&gt;
-</code></pre>
-<h2 id="2-添加-Parser"><a href="#2-添加-Parser" class="headerlink" title="2.添加 Parser"></a>2.添加 Parser</h2><p>首先，我们在 emlog 的<code>admin/views</code>中上一个博文提到的四个 php 文件中 form 里的合适位置处插入一个 <code>&lt;textarea&gt;</code>，并命名其 name 和 id 为 <code>content</code>。通过审查元素我们发现: Editor.md 的 Markdown Preview Div 的 ClassName 为 <code>markdown-body editormd-preview-container</code>，且整个编辑界面 HTML DOM 树中拥有此 ClassName 的有且只有这一个。所以我们可以通过令这个 <code>&lt;textarea&gt;</code> 的 <code>innerText</code> 属性等于 Preview Div 的 <code>innerHTML</code> 属性来实现 Parse。于是代码如下:</p>
-<pre><code class="lang-javascript">var applyer = document.getElementById(&#39;content&#39;);
-var source = document.getElementsByClassName(&#39;markdown-body editormd-preview-container&#39;)[0];
-applyer.innerText = source.innerHTML;
-</code></pre>
-<h2 id="3-获取-Markdown-原文"><a href="#3-获取-Markdown-原文" class="headerlink" title="3.获取 Markdown 原文"></a>3.获取 Markdown 原文</h2><p>由于 emlog 本身不支持 Markdown，所以我通过 github 转存 Markdown 文件，而 Parse 后无法获取源文件，不够方便，于是可以判断如果文章发表时间在第一篇 Markdown 文章之后则去 github 获取 Markdown 原文并进行 HTML 转义。代码如下:</p>
-<pre><code>&lt;textarea class=&quot;editormd-markdown-textarea&quot; style=&quot;display:none;&quot;&gt;&lt;?php $logDay = gmdate(&#39;Y-n-j&#39;, $date);$logSec = strtotime($logDay);if ($logSec &gt; 1476439200) echo htmlspecialchars(file_get_contents(&quot;https://chickking-website.github.io/Blog-MD/&quot; . &#39;post-&#39; . $_GET[&#39;gid&#39;] . &#39;.md&#39;)); else echo $content; ?&gt;&lt;/textarea&gt;
-</code></pre>
-        
-          <a class="article-more-a" href="/posts/a-better-solution-of-markdown-support-for-emlog/#more">... </a>
-        
-      
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网站</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/a-better-solution-of-markdown-support-for-emlog/">继续阅读 >></a>
         </p>
       
 

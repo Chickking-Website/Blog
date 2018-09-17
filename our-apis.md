@@ -11,7 +11,10 @@ comments: true
 
 ### LaTeX 公式生成
 [说明文档](https://imvictor.tech/posts/made-an-API-of-parsing-LaTeX-formulas/)
-
+### 一言
+[说明文档](https://imvictor.tech/posts/some-new-API-released-in-autumn-2018/#一言)
+### 网易云音乐
+[说明文档](https://imvictor.tech/posts/some-new-API-released-in-autumn-2018/#网易云音乐)
 <hr>
 #### 许可协议: 
 ```plain

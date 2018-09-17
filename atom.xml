@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2018-09-15T07:44:44.123Z</updated>
+  <updated>2018-09-17T09:03:17.271Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>秋天的一波新 API 上线</title>
+    <link href="/posts/some-new-API-released-in-autumn-2018/"/>
+    <id>/posts/some-new-API-released-in-autumn-2018/</id>
+    <published>2018-09-17T09:03:03.000Z</published>
+    <updated>2018-09-17T09:03:17.271Z</updated>
+    
+    <content type="html"><![CDATA[<p>这几个月添加了一些 API。现介绍如下:</p><h2 id="一言"><a href="#一言" class="headerlink" title="一言"></a>一言</h2><h3 id="API-名称"><a href="#API-名称" class="headerlink" title="API 名称"></a>API 名称</h3><p>Hitokoto</p><h3 id="API-说明"><a href="#API-说明" class="headerlink" title="API 说明"></a>API 说明</h3><p>每次推荐一条一言。</p><h3 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h3><p><a href="https://api.imvictor.tech/php-api/v7/hitokoto" target="_blank" rel="noopener">https://api.imvictor.tech/php-api/v7/hitokoto</a>  </p><h3 id="HTTP-请求方式"><a href="#HTTP-请求方式" class="headerlink" title="HTTP 请求方式"></a>HTTP 请求方式</h3><p>GET</p><h3 id="请求参数"><a href="#请求参数" class="headerlink" title="请求参数"></a>请求参数</h3><h4 id="charset-可选"><a href="#charset-可选" class="headerlink" title="charset 可选"></a><code>charset</code> 可选</h4><p>选择文本编码，可选的编码有 UTF-8 和 GBK。若不传入该参数，则默认为 UTF-8。</p><h3 id="请求示例"><a href="#请求示例" class="headerlink" title="请求示例"></a>请求示例</h3><ul><li>Request URL: <a href="https://api.imvictor.tech/php-api/v7/hitokoto" target="_blank" rel="noopener">https://api.imvictor.tech/php-api/v7/hitokoto</a>   </li><li>Request Method: GET  </li></ul><h3 id="返回数据示例"><a href="#返回数据示例" class="headerlink" title="返回数据示例"></a>返回数据示例</h3><ul><li>Status Code: HTTP/2.0 200</li></ul><pre><code class="lang-plain">无论你在这世上的什么地方，我都一定会再去见你的</code></pre><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>“一言” 有另一个特别版本，称为<a href="https://github.com/SDLYYZ/Tangokoto" target="_blank" rel="noopener">“唐言”</a>。该项目首先被用于 <a href="https://mr.imvictor.tech" target="_blank" rel="noopener">Mountain &amp; River Online Judge</a>。现在该项目由 <a href="https://mr.imvictor.tech" target="_blank" rel="noopener">Mountain &amp; River Online Judge</a> 和 <a href="https://lyoi.ac" target="_blank" rel="noopener">LYOI Online Judge</a> 共同维护。<br>关于此 API 的使用，请参阅<a href="https://github.com/SDLYYZ/Tangokoto" target="_blank" rel="noopener">该项目的 GitHub 主页</a>。</p><h2 id="网易云音乐"><a href="#网易云音乐" class="headerlink" title="网易云音乐"></a>网易云音乐</h2><h3 id="API-名称-1"><a href="#API-名称-1" class="headerlink" title="API 名称"></a>API 名称</h3><p>Cloudmusic</p><h3 id="API-说明-1"><a href="#API-说明-1" class="headerlink" title="API 说明"></a>API 说明</h3><p>本 API 内含 3 个子 API，分别是获取直链、获取高清封面、获取 LRC 歌词。   </p><h3 id="URL-1"><a href="#URL-1" class="headerlink" title="URL"></a>URL</h3><p>获取直链: <a href="https://api.imvictor.tech/php-api/v7/cloudmusic/direct-link" target="_blank" rel="noopener">https://api.imvictor.tech/php-api/v7/cloudmusic/direct-link</a><br>获取高清封面: <a href="https://api.imvictor.tech/php-api/v7/cloudmusic/cover" target="_blank" rel="noopener">https://api.imvictor.tech/php-api/v7/cloudmusic/cover</a><br>获取 LRC 歌词:<br><a href="https://api.imvictor.tech/php-api/v7/cloudmusic/lyrics" target="_blank" rel="noopener">https://api.imvictor.tech/php-api/v7/cloudmusic/lyrics</a></p><h3 id="HTTP-请求方式-1"><a href="#HTTP-请求方式-1" class="headerlink" title="HTTP 请求方式"></a>HTTP 请求方式</h3><p>GET</p><h3 id="请求参数-1"><a href="#请求参数-1" class="headerlink" title="请求参数"></a>请求参数</h3><h4 id="id-必需"><a href="#id-必需" class="headerlink" title="id 必需"></a><code>id</code> 必需</h4><p>仅需传入歌曲 ID。<br><strong>特别的，付费方可试听的歌曲不支持获取直链。</strong></p><h3 id="返回类型"><a href="#返回类型" class="headerlink" title="返回类型"></a>返回类型</h3><p>获取直链和获取高清封面，均返回一个 302 跳转，跳转到网易官方服务器。<br>LRC 歌词则直接返回 UTF-8 编码的纯文本歌词。</p><h3 id="请求示例-1"><a href="#请求示例-1" class="headerlink" title="请求示例"></a>请求示例</h3><p>请求歌曲 <a href="https://music.163.com/#/song?id=426881503" target="_blank" rel="noopener">スパークル (movie ver.)</a> 的封面:  </p><ul><li>Request URL: <a href="https://api.imvictor.tech/php-api/v7/cloudmusic/cover?id=426881503" target="_blank" rel="noopener">https://api.imvictor.tech/php-api/v7/cloudmusic/cover?id=426881503</a>  </li><li>Request Method: GET  </li></ul><h3 id="返回数据示例-1"><a href="#返回数据示例-1" class="headerlink" title="返回数据示例"></a>返回数据示例</h3><ul><li>Status Code: HTTP/2.0 302</li><li>Location: <a href="https://p1.music.126.net/sSxbRt9RpC6s_MaewyDJfA==/18597139672292692.jpg" target="_blank" rel="noopener">https://p1.music.126.net/sSxbRt9RpC6s_MaewyDJfA==/18597139672292692.jpg</a></li></ul><p><img src="https://api.imvictor.tech/php-api/v7/cloudmusic/cover?id=426881503" alt="https://api.imvictor.tech/php-api/v7/cloudmusic/cover?id=426881503"></p><p><b style="color: red;">请大家注意，不要无节制地使用。因为服务器的资源有限，谢谢。</b></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这几个月添加了一些 API。现介绍如下:&lt;/p&gt;
+&lt;h2 id=&quot;一言&quot;&gt;&lt;a href=&quot;#一言&quot; class=&quot;headerlink&quot; title=&quot;一言&quot;&gt;&lt;/a&gt;一言&lt;/h2&gt;&lt;h3 id=&quot;API-名称&quot;&gt;&lt;a href=&quot;#API-名称&quot; class=&quot;headerlink&quot; title=&quot;API 名称&quot;&gt;&lt;/a&gt;API 名称&lt;/h3&gt;&lt;p&gt;Hitokoto&lt;/p&gt;
+&lt;h3 id=&quot;API-说明&quot;&gt;&lt;a href=&quot;#API-说明&quot; class=&quot;headerlink&quot; title=&quot;API 说明&quot;&gt;&lt;/a&gt;API 说明&lt;/h3&gt;&lt;p&gt;每次推荐一条一言。&lt;/p&gt;
+&lt;h3 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://api.imvictor.tech/php-api/v7/hitokoto&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://api.imvictor.tech/php-api/v7/hitokoto&lt;/a&gt;  &lt;/p&gt;
+&lt;h3 id=&quot;HTTP-请求方式&quot;&gt;&lt;a href=&quot;#HTTP-请求方式&quot; class=&quot;headerlink&quot; title=&quot;HTTP 请求方式&quot;&gt;&lt;/a&gt;HTTP 请求方式&lt;/h3&gt;&lt;p&gt;GET&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="php" scheme="/tags/php/"/>
+    
+      <category term="API" scheme="/tags/API/"/>
+    
+  </entry>
   
   <entry>
     <title>非旋转 Treap 模板</title>
@@ -911,59 +937,6 @@ if IS_TEST:
       <category term="iPhone" scheme="/tags/iPhone/"/>
     
       <category term="iOS" scheme="/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>更好的 Markdown for emlog 解决方案</title>
-    <link href="/posts/a-better-solution-of-markdown-support-for-emlog/"/>
-    <id>/posts/a-better-solution-of-markdown-support-for-emlog/</id>
-    <published>2017-03-26T04:36:42.000Z</published>
-    <updated>2018-08-18T07:53:29.456Z</updated>
-    
-    <content type="html"><![CDATA[<p>上一篇博文说到了让 emlog 支持 Markdown，但是在实际应用中我发现效果并不是非常理想，如在文章中输入<code>\r</code>会换行，以及不支持页面的 Markdown Parse。于是想去改进一下，读了 Editor.md 的文档，我决定基于 Editor.md 实现 Markdown 的 Parser。</p><h2 id="1-安装并配置-Editor-md"><a href="#1-安装并配置-Editor-md" class="headerlink" title="1.安装并配置 Editor.md"></a>1.安装并配置 Editor.md</h2><p>安装 Editor.md 十分简单，我就不多说了，大家都会的。<br>重点在于配置 Editor.md，如何配置呢？这取决于你需要怎样的功能，这里推荐你去看看它的 <a href="https://pandao.github.io/editor.md/examples/index.html" target="_blank" rel="noopener">Examples</a>。<br>我的需求是 HTML in Markdown、TOC、以及输出 HTML，流程图和时序图以后恐怕也会用到。我的配置如下:</p><pre><code class="lang-html">        &lt;script type=&quot;text/javascript&quot;&gt;            var testEditor;            $(function() {                testEditor = editormd(&quot;test-editormd&quot;, {                    width   : &quot;100%&quot;,                    height  : 640,                    syncScrolling : &quot;single&quot;,                    htmlDecode : true,                    sequenceDiagram : true,                    flowChart : true,                    saveHTMLToTextarea : true,                    tocm : true,                    tocContainer : &quot;&quot;,                    tocDropdown   : false,                    path    : &quot;https://static.chickger.pw/js/editor.md/lib/&quot;                });            });        &lt;/script&gt;</code></pre><h2 id="2-添加-Parser"><a href="#2-添加-Parser" class="headerlink" title="2.添加 Parser"></a>2.添加 Parser</h2><p>首先，我们在 emlog 的<code>admin/views</code>中上一个博文提到的四个 php 文件中 form 里的合适位置处插入一个 <code>&lt;textarea&gt;</code>，并命名其 name 和 id 为 <code>content</code>。通过审查元素我们发现: Editor.md 的 Markdown Preview Div 的 ClassName 为 <code>markdown-body editormd-preview-container</code>，且整个编辑界面 HTML DOM 树中拥有此 ClassName 的有且只有这一个。所以我们可以通过令这个 <code>&lt;textarea&gt;</code> 的 <code>innerText</code> 属性等于 Preview Div 的 <code>innerHTML</code> 属性来实现 Parse。于是代码如下:</p><pre><code class="lang-javascript">var applyer = document.getElementById(&#39;content&#39;);var source = document.getElementsByClassName(&#39;markdown-body editormd-preview-container&#39;)[0];applyer.innerText = source.innerHTML;</code></pre><h2 id="3-获取-Markdown-原文"><a href="#3-获取-Markdown-原文" class="headerlink" title="3.获取 Markdown 原文"></a>3.获取 Markdown 原文</h2><p>由于 emlog 本身不支持 Markdown，所以我通过 github 转存 Markdown 文件，而 Parse 后无法获取源文件，不够方便，于是可以判断如果文章发表时间在第一篇 Markdown 文章之后则去 github 获取 Markdown 原文并进行 HTML 转义。代码如下:</p><pre><code>&lt;textarea class=&quot;editormd-markdown-textarea&quot; style=&quot;display:none;&quot;&gt;&lt;?php $logDay = gmdate(&#39;Y-n-j&#39;, $date);$logSec = strtotime($logDay);if ($logSec &gt; 1476439200) echo htmlspecialchars(file_get_contents(&quot;https://chickking-website.github.io/Blog-MD/&quot; . &#39;post-&#39; . $_GET[&#39;gid&#39;] . &#39;.md&#39;)); else echo $content; ?&gt;&lt;/textarea&gt;</code></pre><p>而且这样还实现了我修改文章无需复制修改后的原文去管理后台，只要 push 到 GitHub 后打开管理后台之后保存即可。<br>这样就近乎完美实现了 emlog 支持 Markdown 这一目标。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;上一篇博文说到了让 emlog 支持 Markdown，但是在实际应用中我发现效果并不是非常理想，如在文章中输入&lt;code&gt;\r&lt;/code&gt;会换行，以及不支持页面的 Markdown Parse。于是想去改进一下，读了 Editor.md 的文档，我决定基于 Editor.md 实现 Markdown 的 Parser。&lt;/p&gt;
-&lt;h2 id=&quot;1-安装并配置-Editor-md&quot;&gt;&lt;a href=&quot;#1-安装并配置-Editor-md&quot; class=&quot;headerlink&quot; title=&quot;1.安装并配置 Editor.md&quot;&gt;&lt;/a&gt;1.安装并配置 Editor.md&lt;/h2&gt;&lt;p&gt;安装 Editor.md 十分简单，我就不多说了，大家都会的。&lt;br&gt;重点在于配置 Editor.md，如何配置呢？这取决于你需要怎样的功能，这里推荐你去看看它的 &lt;a href=&quot;https://pandao.github.io/editor.md/examples/index.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Examples&lt;/a&gt;。&lt;br&gt;我的需求是 HTML in Markdown、TOC、以及输出 HTML，流程图和时序图以后恐怕也会用到。我的配置如下:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-html&quot;&gt;        &amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
-            var testEditor;
-
-            $(function() {
-                testEditor = editormd(&amp;quot;test-editormd&amp;quot;, {
-                    width   : &amp;quot;100%&amp;quot;,
-                    height  : 640,
-                    syncScrolling : &amp;quot;single&amp;quot;,
-                    htmlDecode : true,
-                    sequenceDiagram : true,
-                    flowChart : true,
-                    saveHTMLToTextarea : true,
-                    tocm : true,
-                    tocContainer : &amp;quot;&amp;quot;,
-                    tocDropdown   : false,
-                    path    : &amp;quot;https://static.chickger.pw/js/editor.md/lib/&amp;quot;
-                });
-            });
-        &amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;2-添加-Parser&quot;&gt;&lt;a href=&quot;#2-添加-Parser&quot; class=&quot;headerlink&quot; title=&quot;2.添加 Parser&quot;&gt;&lt;/a&gt;2.添加 Parser&lt;/h2&gt;&lt;p&gt;首先，我们在 emlog 的&lt;code&gt;admin/views&lt;/code&gt;中上一个博文提到的四个 php 文件中 form 里的合适位置处插入一个 &lt;code&gt;&amp;lt;textarea&amp;gt;&lt;/code&gt;，并命名其 name 和 id 为 &lt;code&gt;content&lt;/code&gt;。通过审查元素我们发现: Editor.md 的 Markdown Preview Div 的 ClassName 为 &lt;code&gt;markdown-body editormd-preview-container&lt;/code&gt;，且整个编辑界面 HTML DOM 树中拥有此 ClassName 的有且只有这一个。所以我们可以通过令这个 &lt;code&gt;&amp;lt;textarea&amp;gt;&lt;/code&gt; 的 &lt;code&gt;innerText&lt;/code&gt; 属性等于 Preview Div 的 &lt;code&gt;innerHTML&lt;/code&gt; 属性来实现 Parse。于是代码如下:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-javascript&quot;&gt;var applyer = document.getElementById(&amp;#39;content&amp;#39;);
-var source = document.getElementsByClassName(&amp;#39;markdown-body editormd-preview-container&amp;#39;)[0];
-applyer.innerText = source.innerHTML;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;3-获取-Markdown-原文&quot;&gt;&lt;a href=&quot;#3-获取-Markdown-原文&quot; class=&quot;headerlink&quot; title=&quot;3.获取 Markdown 原文&quot;&gt;&lt;/a&gt;3.获取 Markdown 原文&lt;/h2&gt;&lt;p&gt;由于 emlog 本身不支持 Markdown，所以我通过 github 转存 Markdown 文件，而 Parse 后无法获取源文件，不够方便，于是可以判断如果文章发表时间在第一篇 Markdown 文章之后则去 github 获取 Markdown 原文并进行 HTML 转义。代码如下:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;textarea class=&amp;quot;editormd-markdown-textarea&amp;quot; style=&amp;quot;display:none;&amp;quot;&amp;gt;&amp;lt;?php $logDay = gmdate(&amp;#39;Y-n-j&amp;#39;, $date);$logSec = strtotime($logDay);if ($logSec &amp;gt; 1476439200) echo htmlspecialchars(file_get_contents(&amp;quot;https://chickking-website.github.io/Blog-MD/&amp;quot; . &amp;#39;post-&amp;#39; . $_GET[&amp;#39;gid&amp;#39;] . &amp;#39;.md&amp;#39;)); else echo $content; ?&amp;gt;&amp;lt;/textarea&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-      <category term="网站" scheme="/tags/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="JavaScript" scheme="/tags/JavaScript/"/>
-    
-      <category term="php" scheme="/tags/php/"/>
     
   </entry>
   

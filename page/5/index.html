@@ -167,6 +167,118 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-a-better-solution-of-markdown-support-for-emlog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/posts/a-better-solution-of-markdown-support-for-emlog/">更好的 Markdown for emlog 解决方案</a>
+    </h1>
+  
+
+        
+        <a href="/posts/a-better-solution-of-markdown-support-for-emlog/" class="archive-article-date">
+  	<time datetime="2017-03-26T04:36:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上一篇博文说到了让 emlog 支持 Markdown，但是在实际应用中我发现效果并不是非常理想，如在文章中输入<code>\r</code>会换行，以及不支持页面的 Markdown Parse。于是想去改进一下，读了 Editor.md 的文档，我决定基于 Editor.md 实现 Markdown 的 Parser。</p>
+<h2 id="1-安装并配置-Editor-md"><a href="#1-安装并配置-Editor-md" class="headerlink" title="1.安装并配置 Editor.md"></a>1.安装并配置 Editor.md</h2><p>安装 Editor.md 十分简单，我就不多说了，大家都会的。<br>重点在于配置 Editor.md，如何配置呢？这取决于你需要怎样的功能，这里推荐你去看看它的 <a href="https://pandao.github.io/editor.md/examples/index.html" target="_blank" rel="noopener">Examples</a>。<br>我的需求是 HTML in Markdown、TOC、以及输出 HTML，流程图和时序图以后恐怕也会用到。我的配置如下:</p>
+<pre><code class="lang-html">        &lt;script type=&quot;text/javascript&quot;&gt;
+            var testEditor;
+
+            $(function() {
+                testEditor = editormd(&quot;test-editormd&quot;, {
+                    width   : &quot;100%&quot;,
+                    height  : 640,
+                    syncScrolling : &quot;single&quot;,
+                    htmlDecode : true,
+                    sequenceDiagram : true,
+                    flowChart : true,
+                    saveHTMLToTextarea : true,
+                    tocm : true,
+                    tocContainer : &quot;&quot;,
+                    tocDropdown   : false,
+                    path    : &quot;https://static.chickger.pw/js/editor.md/lib/&quot;
+                });
+            });
+        &lt;/script&gt;
+</code></pre>
+<h2 id="2-添加-Parser"><a href="#2-添加-Parser" class="headerlink" title="2.添加 Parser"></a>2.添加 Parser</h2><p>首先，我们在 emlog 的<code>admin/views</code>中上一个博文提到的四个 php 文件中 form 里的合适位置处插入一个 <code>&lt;textarea&gt;</code>，并命名其 name 和 id 为 <code>content</code>。通过审查元素我们发现: Editor.md 的 Markdown Preview Div 的 ClassName 为 <code>markdown-body editormd-preview-container</code>，且整个编辑界面 HTML DOM 树中拥有此 ClassName 的有且只有这一个。所以我们可以通过令这个 <code>&lt;textarea&gt;</code> 的 <code>innerText</code> 属性等于 Preview Div 的 <code>innerHTML</code> 属性来实现 Parse。于是代码如下:</p>
+<pre><code class="lang-javascript">var applyer = document.getElementById(&#39;content&#39;);
+var source = document.getElementsByClassName(&#39;markdown-body editormd-preview-container&#39;)[0];
+applyer.innerText = source.innerHTML;
+</code></pre>
+<h2 id="3-获取-Markdown-原文"><a href="#3-获取-Markdown-原文" class="headerlink" title="3.获取 Markdown 原文"></a>3.获取 Markdown 原文</h2><p>由于 emlog 本身不支持 Markdown，所以我通过 github 转存 Markdown 文件，而 Parse 后无法获取源文件，不够方便，于是可以判断如果文章发表时间在第一篇 Markdown 文章之后则去 github 获取 Markdown 原文并进行 HTML 转义。代码如下:</p>
+<pre><code>&lt;textarea class=&quot;editormd-markdown-textarea&quot; style=&quot;display:none;&quot;&gt;&lt;?php $logDay = gmdate(&#39;Y-n-j&#39;, $date);$logSec = strtotime($logDay);if ($logSec &gt; 1476439200) echo htmlspecialchars(file_get_contents(&quot;https://chickking-website.github.io/Blog-MD/&quot; . &#39;post-&#39; . $_GET[&#39;gid&#39;] . &#39;.md&#39;)); else echo $content; ?&gt;&lt;/textarea&gt;
+</code></pre>
+        
+          <a class="article-more-a" href="/posts/a-better-solution-of-markdown-support-for-emlog/#more">... </a>
+        
+      
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网站</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/posts/a-better-solution-of-markdown-support-for-emlog/">继续阅读 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-add-markdown-support-to-emlog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -542,115 +654,6 @@ server {
       
         <p class="article-more-link">
           <a class="article-more-a" href="/posts/changing-website's-architecture/">继续阅读 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-98-percent-perfection-of-ASUS-Pro451L" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/posts/98-percent-perfection-of-ASUS-Pro451L/">【Hack】ASUS Pro451L 黑苹果 98% 完美</a>
-    </h1>
-  
-
-        
-        <a href="/posts/98-percent-perfection-of-ASUS-Pro451L/" class="archive-article-date">
-  	<time datetime="2017-01-20T07:18:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>哈哈，终于到了寒假，又可以浪一番了。这一阵子搞黑苹果倒是搞得很欢。话不多说，刚刚把老妈的本子 98% 完美了。放一下我都干了啥吧。</p>
-<h2 id="1-机器介绍"><a href="#1-机器介绍" class="headerlink" title="1. 机器介绍"></a>1. 机器介绍</h2><h3 id="a-配置单"><a href="#a-配置单" class="headerlink" title="a) 配置单"></a>a) 配置单</h3><ul>
-<li>[x] CPU: Intel Core i5-4200U 2.39GHz</li>
-<li>[x] 内存: 4GB DDR3 1600MHz</li>
-<li>[x] 硬盘: 日立 7200 转 500GB</li>
-<li>[x] 显卡: Intel HD Graphics 4400 1536MB + NVIDIA GeForce 820M 2GB (Optimus 技术独显无法使用)</li>
-<li>[x] 声卡: Conexant SmartAudio CX20751/2 (麦克风不可用)</li>
-<li>[x] 网卡: Realtek RTL8168 + Broadcom BCM94352HMB(更换) </li>
-<li>[x] 蓝牙: Broadcom BCM94352HMB </li>
-</ul>
-<p>系统版本： OS X El Capitan 10.11.6 (15G31)</p>
-<h3 id="b-不完美清单"><a href="#b-不完美清单" class="headerlink" title="b) 不完美清单"></a>b) 不完美清单</h3><ul>
-<li>电池已识别并可判断电池充放电状态以及计算剩余时间，但电池百分比无法显示 1%</li>
-<li>电脑自带的指纹识别器无法使用(可用 MacID 代替，反正 PC 笔记本上的指纹识别也不很好用) 0.44%</li>
-<li>iMessage、FaceTime 和其他白果专用服务、硬件(如无痛升级)无法使用，以及时不时 iCloud 弹窗恶心人 0.55%</li>
-<li>黑苹果哪有完美的 233333333 0.01%</li>
-</ul>
-<h2 id="2-显卡及显示器"><a href="#2-显卡及显示器" class="headerlink" title="2. 显卡及显示器"></a>2. 显卡及显示器</h2><p>前面已经说了，这台 ASUS Pro451L 使用了 Intel HD Graphics 4400，而这个显卡并不是那么好驱动。不过当时我驱动时 RehabMan 大神已经写出了 FakePCIID，可以到 <a href="https://bitbucket.org/RehabMan/os-x-fake-pci-id/downloads" target="_blank" rel="noopener">BitBucket</a> 下载，FakePCIID 还可以帮助驱动 Broadcom 网卡蓝牙等，这里不再细说。安装好 FakePCIID 后再 Clover 里面注入 ig-platform-id<br>我当时还顺便把 EDID 给注入了(ig-platform-id 和 EDID 的具体注入方法远景一堆堆)，</p>
-<pre><code class="lang-plist">&lt;key&gt;CustomEDID&lt;/key&gt;
-&lt;data&gt;&lt;!-- BASE64 ENCODED DATA --&gt;&lt;/data&gt;
-&lt;key&gt;ig-platform-id&lt;/key&gt;
-&lt;string&gt;0x0a260006&lt;/string&gt;
-</code></pre>
-        
-          <a class="article-more-a" href="/posts/98-percent-perfection-of-ASUS-Pro451L/#more">... </a>
-        
-      
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">苹果</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">黑苹果</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">macOS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/posts/98-percent-perfection-of-ASUS-Pro451L/">继续阅读 >></a>
         </p>
       
 
