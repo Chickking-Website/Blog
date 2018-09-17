@@ -283,19 +283,21 @@
 <p>很明显，可以通过 Splay 来做，但是我不会，因此我们可以使用非旋转 Treap 来做。</p>
 <p>AC 代码:</p>
 <pre><code class="lang-cpp">#include &lt;cstdio&gt;
+#include &lt;vector&gt;
 const int MAXN = 200000 + 10;
-namespace fhqTreap {
-    const int INF = 0x7fffffff;
-    inline int rand() {
+class fhqTreap {
+    const static int INF = 0x7fffffff;
+    inline static int rand() {
         static unsigned long long seed = 19260817;
         return seed = (seed * 47821 + 0x1317D1E) % 0x1317CB3;
     }
-    int root, count;
+    int root, count, del;
     struct Node {
         int l, r, k, rd, size;
         Node() {}
         Node(int k) : l(0), r(0), k(k), rd(rand()), size(1) {}
-    } node[MAXN];
+    };
+    std::vector&lt;Node&gt; node;
     void update(int const n) {
         node[n].size = (node[n].l ? node[node[n].l].size : 0) + (node[n].r ? node[node[n].r].size : 0) + 1;
     }
@@ -323,16 +325,18 @@ namespace fhqTreap {
             return update(y), y;
         }
     }
+public:
+    fhqTreap() { node.push_back(Node()); }
     inline void insert(int const &amp;k) {
         int x, y;
         split(root, k, x, y);
-        node[++count] = Node(k);
-        root = merge(merge(x, count), y);
+        node.push_back(Node(k));
+        root = merge(merge(x, ++count), y);
 
     }
     inline void remove(int const &amp;k) {
         int x, y, z;
-        split(root, k, x, z), split(z, k + 1, z, y);
+        split(root, k, x, z), split(z, k + 1, z, y), del++;
         z = merge(node[z].l, node[z].r);
         root = merge(merge(x, z), y);
     }
@@ -343,7 +347,8 @@ namespace fhqTreap {
         ans = node[x].size + 1;
         return (root = merge(x, y)), ans;
     }
-    inline int search(int const rk, int n = root) {
+    inline int search(int const rk, int n = -INF) {
+        if (n == -INF) n = root;
         int rank = (node[n].l ? node[node[n].l].size : 0) + 1;
         if (rank == rk) return node[n].k;
         if (rk &lt; rank) {
@@ -360,7 +365,6 @@ namespace fhqTreap {
         while (node[t].r) t = node[t].r;
         return (root = merge(x, y)), node[t].k;
     }
-
     inline int upper(int const k) {
         int x, y, t;
         split(root, k + 1, x, y), t = y;
@@ -368,31 +372,33 @@ namespace fhqTreap {
         while(node[t].l) t = node[t].l;
         return (root = merge(x, y)), node[t].k;
     }
-}
+    inline int size(int const x) { return node[x].size; }
+    inline int size() { return count - del; }
+} t;
+
 int n, opt, x;
 int main(int argc, char const *argv[]) {
     scanf(&quot;%d&quot;, &amp;n);
-
     while (n--) {
         scanf(&quot;%d %d&quot;, &amp;opt, &amp;x);
         switch(opt) {
             case 1:
-                fhqTreap::insert(x);
+                t.insert(x);
                 break;
             case 2:
-                fhqTreap::remove(x);
+                t.remove(x);
                 break;
             case 3:
-                printf(&quot;%d\n&quot;, fhqTreap::rank(x));
+                printf(&quot;%d\n&quot;, t.rank(x));
                 break;
             case 4:
-                printf(&quot;%d\n&quot;, fhqTreap::search(x));
+                printf(&quot;%d\n&quot;, t.search(x));
                 break;
             case 5:
-                printf(&quot;%d\n&quot;, fhqTreap::lower(x));
+                printf(&quot;%d\n&quot;, t.lower(x));
                 break;
             case 6:
-                printf(&quot;%d\n&quot;, fhqTreap::upper(x));
+                printf(&quot;%d\n&quot;, t.upper(x));
                 break;
         }
     }

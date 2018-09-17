@@ -19,118 +19,124 @@ toc: true
 AC 代码:
 ```cpp
 #include <cstdio>
+#include <vector>
 const int MAXN = 200000 + 10;
-namespace fhqTreap {
-	const int INF = 0x7fffffff;
-	inline int rand() {
-		static unsigned long long seed = 19260817;
-		return seed = (seed * 47821 + 0x1317D1E) % 0x1317CB3;
-	}
-	int root, count;
-	struct Node {
-		int l, r, k, rd, size;
-		Node() {}
-		Node(int k) : l(0), r(0), k(k), rd(rand()), size(1) {}
-	} node[MAXN];
-	void update(int const n) {
-		node[n].size = (node[n].l ? node[node[n].l].size : 0) + (node[n].r ? node[node[n].r].size : 0) + 1;
-	}
-	void split(int const n, int const k, int &x, int &y) {
-		if (!n) x = y = 0;
-		else if (k <= node[n].k) {
-			split(node[n].l, k, x, y);
-			node[n].l = y;
-			update(y = n);
-		}
-		else {
-			split(node[n].r, k, x, y);
-			node[n].r = x;
-			update(x = n);
-		}
-	}
-	int merge(int const x, int const y) {
-		if (!x || !y) return x + y;
-		if (node[x].rd < node[y].rd) {
-			node[x].r = merge(node[x].r, y);
-			return update(x), x;
-		}
-		else {
-			node[y].l = merge(x, node[y].l); // X < NODE[Y].L!!!!!!!!!
-			return update(y), y;
-		}
-	}
-	inline void insert(int const &k) {
-		int x, y;
-		split(root, k, x, y);
-		node[++count] = Node(k);
-		root = merge(merge(x, count), y);
+class fhqTreap {
+    const static int INF = 0x7fffffff;
+    inline static int rand() {
+        static unsigned long long seed = 19260817;
+        return seed = (seed * 47821 + 0x1317D1E) % 0x1317CB3;
+    }
+    int root, count, del;
+    struct Node {
+        int l, r, k, rd, size;
+        Node() {}
+        Node(int k) : l(0), r(0), k(k), rd(rand()), size(1) {}
+    };
+    std::vector<Node> node;
+    void update(int const n) {
+        node[n].size = (node[n].l ? node[node[n].l].size : 0) + (node[n].r ? node[node[n].r].size : 0) + 1;
+    }
+    void split(int const n, int const k, int &x, int &y) {
+        if (!n) x = y = 0;
+        else if (k <= node[n].k) {
+            split(node[n].l, k, x, y);
+            node[n].l = y;
+            update(y = n);
+        }
+        else {
+            split(node[n].r, k, x, y);
+            node[n].r = x;
+            update(x = n);
+        }
+    }
+    int merge(int const x, int const y) {
+        if (!x || !y) return x + y;
+        if (node[x].rd < node[y].rd) {
+            node[x].r = merge(node[x].r, y);
+            return update(x), x;
+        }
+        else {
+            node[y].l = merge(x, node[y].l); // X < NODE[Y].L!!!!!!!!!
+            return update(y), y;
+        }
+    }
+public:
+    fhqTreap() { node.push_back(Node()); }
+    inline void insert(int const &k) {
+        int x, y;
+        split(root, k, x, y);
+        node.push_back(Node(k));
+        root = merge(merge(x, ++count), y);
 
-	}
-	inline void remove(int const &k) {
-		int x, y, z;
-		split(root, k, x, z), split(z, k + 1, z, y);
-		z = merge(node[z].l, node[z].r);
-		root = merge(merge(x, z), y);
-	}
-	inline int rank(int const &k) {
-		int x, y, ans;
-		split(root, k, x, y);
-		if (!x) return (root = merge(x, y)), 1;
-		ans = node[x].size + 1;
-		return (root = merge(x, y)), ans;
-	}
-	inline int search(int const rk, int n = root) {
-		int rank = (node[n].l ? node[node[n].l].size : 0) + 1;
-		if (rank == rk) return node[n].k;
-		if (rk < rank) {
-			return search(rk, node[n].l);
-		}
-		else {
-			return search(rk - rank, node[n].r);
-		}
-	}
-	inline int lower(int const k) {
-		int x, y, t;
-		split(root, k, x, y), t = x;
-		if (!x) return -INF;
-		while (node[t].r) t = node[t].r;
-		return (root = merge(x, y)), node[t].k;
-	}
+    }
+    inline void remove(int const &k) {
+        int x, y, z;
+        split(root, k, x, z), split(z, k + 1, z, y), del++;
+        z = merge(node[z].l, node[z].r);
+        root = merge(merge(x, z), y);
+    }
+    inline int rank(int const &k) {
+        int x, y, ans;
+        split(root, k, x, y);
+        if (!x) return (root = merge(x, y)), 1;
+        ans = node[x].size + 1;
+        return (root = merge(x, y)), ans;
+    }
+    inline int search(int const rk, int n = -INF) {
+        if (n == -INF) n = root;
+        int rank = (node[n].l ? node[node[n].l].size : 0) + 1;
+        if (rank == rk) return node[n].k;
+        if (rk < rank) {
+            return search(rk, node[n].l);
+        }
+        else {
+            return search(rk - rank, node[n].r);
+        }
+    }
+    inline int lower(int const k) {
+        int x, y, t;
+        split(root, k, x, y), t = x;
+        if (!x) return -INF;
+        while (node[t].r) t = node[t].r;
+        return (root = merge(x, y)), node[t].k;
+    }
+    inline int upper(int const k) {
+        int x, y, t;
+        split(root, k + 1, x, y), t = y;
+        if (!y) return INF;
+        while(node[t].l) t = node[t].l;
+        return (root = merge(x, y)), node[t].k;
+    }
+    inline int size(int const x) { return node[x].size; }
+    inline int size() { return count - del; }
+} t;
 
-	inline int upper(int const k) {
-		int x, y, t;
-		split(root, k + 1, x, y), t = y;
-		if (!y) return INF;
-		while(node[t].l) t = node[t].l;
-		return (root = merge(x, y)), node[t].k;
-	}
-}
 int n, opt, x;
 int main(int argc, char const *argv[]) {
-	scanf("%d", &n);
-
-	while (n--) {
-		scanf("%d %d", &opt, &x);
-		switch(opt) {
-			case 1:
-				fhqTreap::insert(x);
-				break;
-			case 2:
-				fhqTreap::remove(x);
-				break;
-			case 3:
-				printf("%d\n", fhqTreap::rank(x));
-				break;
-			case 4:
-				printf("%d\n", fhqTreap::search(x));
-				break;
-			case 5:
-				printf("%d\n", fhqTreap::lower(x));
-				break;
-			case 6:
-				printf("%d\n", fhqTreap::upper(x));
-				break;
-		}
-	}
+    scanf("%d", &n);
+    while (n--) {
+        scanf("%d %d", &opt, &x);
+        switch(opt) {
+            case 1:
+                t.insert(x);
+                break;
+            case 2:
+                t.remove(x);
+                break;
+            case 3:
+                printf("%d\n", t.rank(x));
+                break;
+            case 4:
+                printf("%d\n", t.search(x));
+                break;
+            case 5:
+                printf("%d\n", t.lower(x));
+                break;
+            case 6:
+                printf("%d\n", t.upper(x));
+                break;
+        }
+    }
 }
 ```
