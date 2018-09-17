@@ -21,7 +21,7 @@ comments: true
 .cp-mainbody{height: 5em !important;}
 </style>
 
-## <img style='height: 1.5em' src='https://avatars3.githubusercontent.com/u/21100901?v=3&s=120'></img> 凌风仙鸡
+## <img style='height: 1.5em' src='https://imvictor.tech/avatar.png'></img> 凌风仙鸡
 <i class="fa fa-location-arrow" aria-hidden="true"> </i> Linyi, Shandong　｜　<i class="fa fa-university" aria-hidden="true"> </i> No.1 High School of Linyi Shandong
 
 Tags: <div style="line-height: 2"><span class="readme_tag">macOS / iOS 重度用户</span><span class="readme_tag">LYOI 最弱</span><span class="readme_tag">Linux 服务器用户</span><span class="readme_tag">一新社服务器运维</span><span class="readme_tag">大颓子</span><span class="readme_tag">小屏手机用户</span><span class="readme_tag">知乎 iOS 内测成员</span><span class="readme_tag">壁纸控</span><span class="readme_tag">垃圾佬</span><span class="readme_tag">山河 OJ 创建者</span>

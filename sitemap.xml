@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>//README/index.html</loc>
+    
+    <lastmod>2018-09-17T09:12:50.852Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>//our-apis/index.html</loc>
     
     <lastmod>2018-09-17T09:04:32.731Z</lastmod>
@@ -23,21 +30,14 @@
   </url>
   
   <url>
-    <loc>//README/index.html</loc>
-    
-    <lastmod>2018-09-17T08:29:08.094Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/2018-noip-winter-campus-in-qingdao/</loc>
+    <loc>/posts/2018-noip-winter-campus-in-qingdao.html</loc>
     
     <lastmod>2018-09-16T10:37:56.687Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/2018-noip-winter-campus-in-qingdao.html</loc>
+    <loc>/posts/2018-noip-winter-campus-in-qingdao/</loc>
     
     <lastmod>2018-09-16T10:37:56.687Z</lastmod>
     
@@ -79,13 +79,6 @@
   </url>
   
   <url>
-    <loc>/posts/fhqTreap-template.html</loc>
-    
-    <lastmod>2018-09-15T07:44:44.123Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/fhqTreap-template/</loc>
     
     <lastmod>2018-09-15T07:44:44.123Z</lastmod>
@@ -93,14 +86,21 @@
   </url>
   
   <url>
-    <loc>/posts/made-an-API-of-parsing-LaTeX-formulas.html</loc>
+    <loc>/posts/fhqTreap-template.html</loc>
+    
+    <lastmod>2018-09-15T07:44:44.123Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/made-an-API-of-parsing-LaTeX-formulas/</loc>
     
     <lastmod>2018-08-28T14:41:40.573Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/made-an-API-of-parsing-LaTeX-formulas/</loc>
+    <loc>/posts/made-an-API-of-parsing-LaTeX-formulas.html</loc>
     
     <lastmod>2018-08-28T14:41:40.573Z</lastmod>
     
@@ -135,6 +135,13 @@
   </url>
   
   <url>
+    <loc>/posts/variable-as-array-s-initial-length/</loc>
+    
+    <lastmod>2018-08-18T07:53:29.463Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>/posts/variable-as-array-s-initial-length.html</loc>
     
     <lastmod>2018-08-18T07:53:29.463Z</lastmod>
@@ -142,7 +149,7 @@
   </url>
   
   <url>
-    <loc>/posts/variable-as-array-s-initial-length/</loc>
+    <loc>/posts/turn-an-old-iPhone-into-a-server/</loc>
     
     <lastmod>2018-08-18T07:53:29.463Z</lastmod>
     
@@ -170,14 +177,14 @@
   </url>
   
   <url>
-    <loc>/posts/turn-an-old-iPhone-into-a-server/</loc>
+    <loc>/posts/standardly-perfect-hexo-blog/</loc>
     
-    <lastmod>2018-08-18T07:53:29.463Z</lastmod>
+    <lastmod>2018-08-18T07:53:29.462Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/standardly-perfect-hexo-blog/</loc>
+    <loc>/posts/stack-and-queue-basic/</loc>
     
     <lastmod>2018-08-18T07:53:29.462Z</lastmod>
     
@@ -198,21 +205,14 @@
   </url>
   
   <url>
-    <loc>/posts/stack-and-queue-basic/</loc>
-    
-    <lastmod>2018-08-18T07:53:29.462Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/simulation-of-ppc-macos-via-qemu/</loc>
+    <loc>/posts/noip2015_magic_square.html</loc>
     
     <lastmod>2018-08-18T07:53:29.461Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/save_graph_and_traversal_it/</loc>
+    <loc>/posts/simulation-of-ppc-macos-via-qemu/</loc>
     
     <lastmod>2018-08-18T07:53:29.461Z</lastmod>
     
@@ -233,7 +233,7 @@
   </url>
   
   <url>
-    <loc>/posts/noip2015_magic_square.html</loc>
+    <loc>/posts/save_graph_and_traversal_it/</loc>
     
     <lastmod>2018-08-18T07:53:29.461Z</lastmod>
     
@@ -247,14 +247,14 @@
   </url>
   
   <url>
-    <loc>/posts/make-your-own-ubuntu-to-go.html</loc>
+    <loc>/posts/make-your-own-ubuntu-to-go/</loc>
     
     <lastmod>2018-08-18T07:53:29.460Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/make-your-own-ubuntu-to-go/</loc>
+    <loc>/posts/make-your-own-ubuntu-to-go.html</loc>
     
     <lastmod>2018-08-18T07:53:29.460Z</lastmod>
     
@@ -282,6 +282,13 @@
   </url>
   
   <url>
+    <loc>/posts/enable-CX-20751-2-by-AppleALC/</loc>
+    
+    <lastmod>2018-08-18T07:53:29.459Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>/posts/emlog-variables-dev-of-keypad-and-acme-sh/</loc>
     
     <lastmod>2018-08-18T07:53:29.459Z</lastmod>
@@ -296,9 +303,9 @@
   </url>
   
   <url>
-    <loc>/posts/enable-CX-20751-2-by-AppleALC/</loc>
+    <loc>/posts/deploying-frp-reverse-proxy.html</loc>
     
-    <lastmod>2018-08-18T07:53:29.459Z</lastmod>
+    <lastmod>2018-08-18T07:53:29.458Z</lastmod>
     
   </url>
   
@@ -310,9 +317,9 @@
   </url>
   
   <url>
-    <loc>/posts/deploying-frp-reverse-proxy.html</loc>
+    <loc>/posts/changing-website's-architecture.html</loc>
     
-    <lastmod>2018-08-18T07:53:29.458Z</lastmod>
+    <lastmod>2018-08-18T07:53:29.457Z</lastmod>
     
   </url>
   
@@ -338,21 +345,7 @@
   </url>
   
   <url>
-    <loc>/posts/changing-website's-architecture.html</loc>
-    
-    <lastmod>2018-08-18T07:53:29.457Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L/</loc>
-    
-    <lastmod>2018-08-18T07:53:29.456Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/posts/a-better-solution-of-markdown-support-for-emlog/</loc>
+    <loc>/posts/a-better-solution-of-markdown-support-for-emlog.html</loc>
     
     <lastmod>2018-08-18T07:53:29.456Z</lastmod>
     
@@ -366,7 +359,14 @@
   </url>
   
   <url>
-    <loc>/posts/a-better-solution-of-markdown-support-for-emlog.html</loc>
+    <loc>/posts/98-percent-perfection-of-ASUS-Pro451L/</loc>
+    
+    <lastmod>2018-08-18T07:53:29.456Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/a-better-solution-of-markdown-support-for-emlog/</loc>
     
     <lastmod>2018-08-18T07:53:29.456Z</lastmod>
     
@@ -408,13 +408,6 @@
   </url>
   
   <url>
-    <loc>/posts/a-completely-new-beginning.html</loc>
-    
-    <lastmod>2017-11-29T14:49:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>/posts/a-completely-new-beginning/</loc>
     
     <lastmod>2017-11-29T14:49:48.000Z</lastmod>
@@ -422,14 +415,21 @@
   </url>
   
   <url>
-    <loc>/posts/drcom-auto-login-script.html</loc>
+    <loc>/posts/a-completely-new-beginning.html</loc>
+    
+    <lastmod>2017-11-29T14:49:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/drcom-auto-login-script/</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>/posts/drcom-auto-login-script/</loc>
+    <loc>/posts/drcom-auto-login-script.html</loc>
     
     <lastmod>2017-11-04T06:00:32.000Z</lastmod>
     
